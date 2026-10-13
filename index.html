@@ -1,0 +1,357 @@
+<!doctype html>
+<html lang="es-AR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>kick.ai – Video completo para torneos de fútbol amateur</title>
+<meta name="description" content="kick.ai graba todos los partidos de tu torneo amateur con cámaras VEO. Video completo de cada partido, cortes automáticos de goles y jugadas clave, y todos los videos por fecha.">
+<meta name="theme-color" content="#0b0c0d">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_AR">
+<meta property="og:title" content="kick.ai – Llevá tu torneo al siguiente nivel">
+<meta property="og:description" content="Grabamos todos los partidos de tu torneo, completos y en video profesional.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='8' fill='%230b0c0d'/%3E%3Ccircle cx='6.5' cy='9' r='4.5' fill='%23ff6b1f'/%3E%3Ccircle cx='6.5' cy='31' r='4.5' fill='%23ff6b1f'/%3E%3Cpath d='M33 5 17 20l16 15' fill='none' stroke='%23ff6b1f' stroke-width='8.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0b0c0d;--panel:#131517;--line:#26292c;--ink:#f4f4f2;--mute:#9aa0a4;--accent:#ff6b1f;--accent-ink:#1a0b02;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*:before,*:after{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:300 18px/1.6 Figtree,system-ui,sans-serif}
+h1,h2,h3{margin:0;font-weight:400;line-height:1.05;letter-spacing:-.02em}
+b,strong{font-weight:700}a{color:inherit}
+:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.wrap{max-width:1060px;margin:0 auto;padding:0 22px}
+.acc{color:var(--accent)}
+header.top{position:relative;z-index:2}
+header.top .wrap{display:flex;align-items:center;justify-content:space-between;height:72px}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;font-size:28px;font-weight:400;letter-spacing:-.02em}
+.logo svg{width:30px;height:30px}
+nav a{margin-left:24px;text-decoration:none;font-weight:500;font-size:16px;padding:6px 0;border-bottom:2px solid transparent}
+nav a.on,nav a:hover{border-color:var(--accent)}
+.hero{position:relative;overflow:hidden;margin-top:-72px;padding-top:72px;background:radial-gradient(900px 420px at 60% -10%,rgba(255,107,31,.28),transparent 70%),var(--bg)}
+.hero>svg{position:absolute;inset:0;width:100%;height:100%;-webkit-mask-image:linear-gradient(90deg,#000 25%,transparent 50%);mask-image:linear-gradient(90deg,#000 25%,transparent 50%)}
+.hero-img{position:absolute;top:0;right:0;width:72%;height:100%;object-fit:cover;object-position:50% 40%;filter:brightness(.78) saturate(.8);-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 62%);mask-image:linear-gradient(90deg,transparent 0,#000 62%)}
+.hero:after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(0deg,var(--bg) 0,transparent 28%),linear-gradient(120deg,rgba(255,107,31,.16),transparent 55%)}
+.hero .wrap{z-index:1}
+.band{position:relative;min-height:440px;overflow:hidden;display:flex;align-items:flex-end;border-top:1px solid var(--line)}
+.band img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 62%;filter:brightness(.72) saturate(.9)}
+.band:before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(0deg,var(--bg) 0,transparent 38%),linear-gradient(180deg,var(--bg) 0,transparent 24%),linear-gradient(90deg,rgba(255,107,31,.2),transparent 60%)}
+.band .wrap{position:relative;z-index:2;padding-top:220px;padding-bottom:48px}
+.band h2{font-size:clamp(34px,5.5vw,56px);max-width:12em;margin-bottom:12px}
+.contact{position:relative;overflow:hidden}
+.contact .wrap{position:relative;z-index:1}
+.contact-img{position:absolute;top:0;right:0;width:64%;height:100%;object-fit:cover;object-position:60% 50%;filter:brightness(.55) saturate(.75);-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 60%);mask-image:linear-gradient(90deg,transparent 0,#000 60%)}
+@media(max-width:700px){.contact-img{width:100%;opacity:.3;-webkit-mask-image:none;mask-image:none}}
+.adminbar{background:var(--accent);color:var(--accent-ink);display:flex;flex-wrap:wrap;gap:6px 18px;justify-content:center;align-items:center;padding:8px 16px;font-size:14px;font-weight:500;position:relative;z-index:3}
+.adminbar .x{color:var(--accent-ink);font-weight:700;padding:0}
+.bento{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.tile{position:relative;height:84px;outline:0}
+.tc{position:absolute;top:0;left:0;right:0;min-height:100%;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px 16px;display:grid;grid-template-columns:auto 1fr;column-gap:14px;align-items:center;align-content:center;cursor:pointer;transform-origin:50% 0;transition:border-color .2s,box-shadow .25s,transform .25s}
+.tile:hover,.tile:focus-within,.tile.open{z-index:5}
+.tile:hover .tc,.tile:focus-within .tc,.tile.open .tc{border-color:var(--accent);box-shadow:0 18px 40px rgba(0,0,0,.6);transform:scale(1.07)}
+.tile:focus-visible .tc{outline:3px solid var(--accent);outline-offset:2px}
+.tc .vis svg{display:block;height:42px;width:auto}
+.tc b{font-size:16px;font-weight:500;line-height:1.2}
+.more{grid-column:1/-1;display:grid;grid-template-rows:0fr;transition:grid-template-rows .25s ease}
+.more>div{overflow:hidden;min-height:0}
+.more p{margin:10px 0 2px;color:var(--mute);font-size:15px;line-height:1.45}
+.tile:hover .more,.tile:focus-within .more,.tile.open .more{grid-template-rows:1fr}
+.live.sm{display:flex;align-items:center;gap:10px;height:42px}
+.live.sm b{font-size:24px;font-weight:300;line-height:1}
+.pill{display:inline-flex;align-items:center;gap:6px;background:var(--accent);color:var(--accent-ink);font-weight:700;font-size:12px;padding:3px 10px;border-radius:999px}
+.pill i{width:7px;height:7px;border-radius:50%;background:var(--accent-ink)}
+@media(max-width:700px){.bento{grid-template-columns:repeat(2,1fr)}.tile{height:96px}}
+@media(max-width:460px){.bento{grid-template-columns:1fr}.tile{height:84px}}
+@media(prefers-reduced-motion:no-preference){.rec,.pill i{animation:blink 1.4s ease-in-out infinite}@keyframes blink{50%{opacity:.25}}}
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin:22px 0 28px}
+.chip{border:1.5px solid var(--accent);border-radius:999px;padding:6px 16px;font-size:16px;font-weight:500}
+.plans{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:22px}
+.plan{border-top:2px solid var(--accent);padding-top:14px}
+.plan b{font-size:19px;font-weight:500;display:block;margin-bottom:4px}
+.plan p{margin:0;color:var(--mute);font-size:16px}
+.sports{display:flex;flex-wrap:wrap;gap:12px;margin:18px 0 4px}
+.sp{display:flex;align-items:center;gap:10px;background:var(--panel);border-radius:999px;padding:8px 22px 8px 10px;font-weight:500;font-size:18px}
+.sp svg{width:40px;height:40px;color:var(--accent);fill:none;stroke:currentColor;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.mos{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 4px}
+.mo{font:inherit;font-size:16px;font-weight:500;text-transform:capitalize;background:var(--panel);color:var(--ink);border:1.5px solid #33373a;border-radius:999px;padding:8px 18px;cursor:pointer}
+.mo:hover{border-color:var(--accent)}
+.mo.on{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.wks{margin:6px 0 2px}
+.wks .mo{font-size:14px;padding:6px 14px;border-radius:6px}
+.fh{font-size:20px;font-weight:500;color:var(--accent);margin:20px 0 8px}
+@media(max-width:700px){.hero-img{width:100%;opacity:.38;-webkit-mask-image:none;mask-image:none}.hero>svg{display:none}}
+.hero .wrap{position:relative;padding-top:96px;padding-bottom:110px}
+.hero h1{font-size:clamp(46px,9vw,100px);max-width:10em}
+.hero p{max-width:30em;font-size:21px;margin:24px 0 32px;color:#d3d6d8}
+.btn{display:inline-block;background:var(--accent);color:var(--accent-ink);font:500 17px Figtree,sans-serif;padding:13px 24px;border:0;border-radius:6px;text-decoration:none;cursor:pointer}
+.btn.alt{background:transparent;color:var(--ink);border:1.5px solid #5b6064;margin-left:10px}
+.btn.sm{padding:8px 15px;font-size:15px}
+section.blk{padding:68px 0;border-top:1px solid var(--line)}
+section.blk h2{font-size:clamp(34px,5.5vw,56px);margin-bottom:20px}
+.lead{max-width:38em;color:#cfd2d4}
+.formats{display:flex;flex-wrap:wrap;gap:12px;margin:26px 0 10px}
+.fmt{border:1.5px solid var(--accent);color:var(--accent);padding:12px 22px;border-radius:6px;font-size:38px;font-weight:400;min-width:100px;text-align:center}
+.fmt small{display:block;font-size:13px;font-weight:300;color:var(--mute)}
+.list{display:grid;gap:8px;margin-top:26px}
+.item{background:var(--panel);border-left:3px solid var(--accent);padding:16px 20px}
+.item b{display:block;font-weight:500;font-size:19px}
+.item span{color:var(--mute);font-size:16px}
+.aud{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-top:26px}
+.aud div{background:var(--panel);border-radius:10px;padding:90px 20px 20px;font-weight:500;font-size:21px;line-height:1.2}
+.aud div:after{content:"";display:block;width:56px;height:3px;background:var(--accent);margin-top:14px}
+.gal{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:12px;margin-top:36px}
+.gal img{width:100%;height:100%;object-fit:cover;border-radius:10px;display:block;aspect-ratio:16/9;background:var(--panel)}
+.gal img:first-child{grid-column:1/-1;aspect-ratio:2/1}
+.contact{text-align:left;background:radial-gradient(700px 300px at 20% 0,rgba(255,107,31,.18),transparent 70%)}
+.contact h2{font-size:clamp(44px,8vw,88px)}
+.contact a.mail{display:inline-block;font-size:clamp(20px,4vw,30px);margin-top:18px;border-bottom:2px solid var(--accent);text-decoration:none}
+footer{padding:26px 0 44px;color:var(--mute);font-size:14px}
+.page{padding:48px 0 80px}
+.page h1{font-size:clamp(40px,7vw,68px);margin-bottom:10px}
+.sub{color:var(--mute);margin:0 0 26px}
+.tgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px}
+.tcard{display:block;text-decoration:none;background:var(--panel);border-left:3px solid var(--accent);border-radius:4px;padding:20px 22px}
+.tcard:hover{background:#1a1d20}
+.tcard h3{font-size:28px;font-weight:500;margin-bottom:4px}
+.tcard span{color:var(--mute);font-size:15px;display:block}
+.date{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;margin:36px 0 12px;border-bottom:1px solid var(--line);padding-bottom:8px}
+.date h2{font-size:30px;font-weight:500;text-transform:capitalize}.date span{color:var(--mute);font-size:15px}
+.match{display:grid;grid-template-columns:64px 1fr auto;gap:14px;align-items:center;background:var(--panel);border-radius:6px;padding:14px 18px;margin-bottom:8px}
+.match .t{font-size:24px;font-weight:500;color:var(--accent)}
+.match.th{grid-template-columns:168px 64px 1fr auto}
+.thumb{display:block;border-radius:6px;overflow:hidden;aspect-ratio:16/9;background:#0f1113}
+.thumb img{display:block;width:100%;height:100%;object-fit:cover;transition:transform .25s}
+.thumb:hover img{transform:scale(1.05)}
+@media(max-width:560px){.match.th{grid-template-columns:56px 1fr}.match.th .thumb{grid-column:1/-1}}
+.match .tm{font-weight:500;font-size:19px}.match .meta{color:var(--mute);font-size:14px}
+.tag{display:inline-block;font-size:12px;font-weight:500;border:1px solid #3a3e42;border-radius:3px;padding:0 7px;margin-right:5px}
+.soon{color:var(--mute);font-size:14px}
+input,select{font:inherit;font-size:16px;padding:10px 12px;border:1px solid #33373a;border-radius:6px;background:#0f1113;color:var(--ink);min-width:0}
+.bar{display:flex;margin-bottom:6px}.bar input{flex:1}
+.admin{background:var(--panel);border:1.5px dashed var(--accent);border-radius:8px;padding:18px;margin:0 0 28px}
+.admin h3{font-size:24px;font-weight:500;margin-bottom:12px}
+.admin form{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}
+.x{background:none;border:0;color:var(--mute);cursor:pointer;font:inherit;font-size:14px;text-decoration:underline;padding:6px 0}
+.empty{padding:30px;border:1px dashed #3a3e42;border-radius:8px;color:var(--mute)}
+.back{display:inline-block;margin-bottom:16px;color:var(--mute)}
+@media(max-width:560px){.match{grid-template-columns:56px 1fr}.match .go{grid-column:1/-1}nav a{margin-left:14px}.btn.alt{margin:10px 0 0}}
+@media(prefers-reduced-motion:no-preference){.hero h1{animation:rise .8s ease-out both}@keyframes rise{from{opacity:0;transform:translateY(14px)}}}
+</style>
+</head>
+<body>
+<div id="adminhost"></div>
+<header class="top"><div class="wrap">
+<a class="logo" href="#/" aria-label="kick.ai, inicio"><svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="6.5" cy="9" r="4.5" fill="#ff6b1f"/><circle cx="6.5" cy="31" r="4.5" fill="#ff6b1f"/><path d="M33 5 17 20l16 15" fill="none" stroke="#ff6b1f" stroke-width="8.5" stroke-linecap="round" stroke-linejoin="round"/></svg>kick.ai</a>
+<nav><a href="#/" data-r="home">Servicio</a><a href="#/torneos" data-r="torneos">Torneos</a><a href="#contacto" data-r="contacto">Contacto</a></nav>
+</div></header>
+<!-- torneos: Liga Olvos, JAG, Boston League -->
+<main id="app"></main>
+<footer><div class="wrap">© kick.ai · La inteligencia detrás del juego.</div></footer>
+
+
+<script>
+const EMAIL="kickai.recording@gmail.com", PHONE="+1 646 577 8673", PHONE_TEL="+16465778673";
+let S={tournaments:[]}, canEdit=false, adminOn=false, artifact=null, query="";
+const isAdmin=()=>canEdit&&adminOn;
+const app=document.getElementById("app");
+const el=(t,a={},...k)=>{const e=document.createElement(t);for(const[x,v]of Object.entries(a)){if(x==="on")for(const[ev,f]of Object.entries(v))e.addEventListener(ev,f);else if(x==="text")e.textContent=v;else e.setAttribute(x,v)}k.flat().forEach(c=>c!=null&&e.append(c));return e};
+const safe=u=>/^https?:\/\//i.test(u)?u:null;
+const fmtDate=d=>new Date(d+"T12:00:00").toLocaleDateString("es-AR",{weekday:"long",day:"numeric",month:"long",year:"numeric"});
+const uid=()=>Math.random().toString(36).slice(2,9);
+const plural=(n,a,b)=>n+" "+(n===1?a:b);
+const fmtMonth=mo=>new Date(mo+"-15T12:00:00").toLocaleDateString("es-AR",{month:"long",year:"numeric"});
+let monthSel=null, monthT=null, weekSel=null, dateSel="all";
+const pad2=n=>String(n).padStart(2,"0");
+function weekendKey(date){const d=new Date(date+"T12:00:00");d.setDate(d.getDate()-((d.getDay()+6)%7));return d.getFullYear()+"-"+pad2(d.getMonth()+1)+"-"+pad2(d.getDate())}
+function fmtHs(t){return t?(t.endsWith(":00")?String(parseInt(t,10)):t):""}
+function shortDate(date){const d=new Date(date+"T12:00:00");return["dom","lun","mar","mié","jue","vie","sáb"][d.getDay()]+" "+d.getDate()+"/"+(d.getMonth()+1)}
+function parseVeo(u){
+  const d=/matches\/(\d{4})(\d{2})(\d{2})-/.exec(u||"");if(!d)return null;
+  const c=/cancha-(\d+)/.exec(u),h=/-(\d{1,2})hs/.exec(u),f=/-f(\d+)-/.exec(u);
+  let dt=new Date(d[1]+"-"+d[2]+"-"+d[3]+"T12:00:00");if(h&&+h[1]>=21)dt.setDate(dt.getDate()-1);
+  return {date:dt.getFullYear()+"-"+pad2(dt.getMonth()+1)+"-"+pad2(dt.getDate()),field:c?"Cancha "+c[1]:"",time:h?String(h[1]).padStart(2,"0")+":00":"",fmt:f?"F"+f[1]:"",note:/primer-tiempo/.test(u)?"Primer tiempo":""};
+}
+function autofill(inp){
+  const p=parseVeo(inp.value),f=inp.form;if(!p)return;
+  f.d.value=p.date;if(p.time)f.tm.value=p.time;if(p.field)f.fl.value=p.field;
+  if(p.fmt&&[...f.fm.options].some(o=>o.value===p.fmt))f.fm.value=p.fmt;
+}
+
+async function save(){
+  if(!artifact)return;
+  const c=document.documentElement.cloneNode(true);
+  c.querySelector("#app").replaceChildren();
+  c.querySelector("#adminhost").replaceChildren();
+  c.querySelector("#data").textContent=JSON.stringify(S).replace(/</g,"\\u003c");
+  try{await artifact.publish("<!doctype html>\n"+c.outerHTML)}catch(e){alert("No se pudo guardar: "+(e&&e.message||e.code||"error desconocido"))}
+}
+
+function pitch(){const s=document.createElementNS("http://www.w3.org/2000/svg","svg");s.setAttribute("viewBox","0 0 1200 600");s.setAttribute("preserveAspectRatio","xMidYMid slice");s.setAttribute("aria-hidden","true");
+s.innerHTML='<g fill="none" stroke="#ff6b1f" stroke-opacity=".22" stroke-width="2"><rect x="20" y="20" width="1160" height="560"/><path d="M600 20v560"/><circle cx="600" cy="300" r="95"/><circle cx="600" cy="300" r="5" fill="#ff6b1f" fill-opacity=".3"/><path d="M20 140h170v320H20M1180 140h-170v320h170M20 225h70v150H20M1180 225h-70v150h70"/><path d="M190 240a90 90 0 0 1 0 120M1010 240a90 90 0 0 0 0 120"/></g>';return s}
+
+const PHOTOS=["fotos/cancha-1.jpg"];
+function gallery(){return el("div",{class:"gal"},PHOTOS.map(p=>el("img",{src:p,alt:"Partido grabado por kick.ai",loading:"lazy"})))}
+
+function bento(){
+  const sv=b=>'<svg viewBox="0 0 300 130" aria-hidden="true">'+b+'</svg>';
+  const V={
+   rec:sv('<g fill="none" stroke="#3d4246" stroke-width="2"><rect x="4" y="6" width="292" height="118" rx="8"/><path d="M150 6v118"/><circle cx="150" cy="65" r="24"/><path d="M4 38h34v54H4M296 38h-34v54h34"/></g><g transform="translate(14 14)"><rect width="64" height="24" rx="12" fill="#ff6b1f"/><circle class="rec" cx="15" cy="12" r="5" fill="#1a0b02"/><text x="27" y="16.5" font-size="12" font-weight="700" fill="#1a0b02" font-family="Figtree,sans-serif">REC</text></g>'),
+   track:sv('<g fill="#59606a"><circle cx="50" cy="40" r="5"/><circle cx="90" cy="95" r="5"/><circle cx="215" cy="30" r="5"/><circle cx="250" cy="96" r="5"/><circle cx="118" cy="52" r="5"/></g><circle cx="168" cy="72" r="6" fill="#ff6b1f"/><g fill="none" stroke="#ff6b1f" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M140 54v-10h10M196 54v-10h-10M140 90v10h10M196 90v10h-10"/></g>'),
+   clips:sv('<path d="M8 78h284" stroke="#3d4246" stroke-width="6" stroke-linecap="round"/><g fill="#ff6b1f"><rect x="62" y="72" width="34" height="12" rx="6"/><rect x="146" y="72" width="34" height="12" rx="6"/><rect x="230" y="72" width="44" height="12" rx="6"/></g><g fill="none" stroke="#ff6b1f" stroke-width="2.4"><circle cx="79" cy="46" r="9"/><circle cx="163" cy="46" r="9"/><circle cx="252" cy="46" r="9"/><path d="M79 55v17M163 55v17M252 55v17"/></g><g fill="#9aa0a4" font-size="12" font-family="Figtree,sans-serif" text-anchor="middle"><text x="79" y="26">gol</text><text x="163" y="26">jugada</text><text x="252" y="26">gol</text></g>'),
+   data:sv('<path d="M10 122h280" stroke="#3d4246" stroke-width="2"/><g fill="#3d4246"><rect x="24" y="82" width="36" height="40" rx="4"/><rect x="74" y="52" width="36" height="70" rx="4"/><rect x="124" y="67" width="36" height="55" rx="4"/><rect x="224" y="47" width="36" height="75" rx="4"/></g><rect x="174" y="27" width="36" height="95" rx="4" fill="#ff6b1f"/>'),
+   live:'<div class="live sm"><span class="pill"><i></i>EN VIVO</span><b>2 - 1</b></div>',
+   share:sv('<g fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="40" cy="64" r="26" stroke="#ff6b1f"/><path d="M40 50v22M30 63l10 10 10-10" stroke="#ff6b1f"/><path d="M112 74v20h30V74M127 84V54M118 63l9-9 9 9" stroke="#ff6b1f"/><rect x="196" y="12" width="66" height="108" rx="10" stroke="#59606a"/></g><path d="M219 54l24 12-24 12z" fill="#ff6b1f"/>')
+  };
+  const I=[
+   ["Grabación completa","Video profesional de cada partido, de principio a fin, con cortes automáticos.","rec"],
+   ["Seguimiento automático con IA","La cámara sigue la jugada sola, sin camarógrafo.","track"],
+   ["Cortes automáticos de goles y jugadas clave","Los goles y las jugadas importantes se cortan solos. Descargalos y compartilos en las plataformas favoritas de tu torneo.","clips"],
+   ["Análisis de datos","Estadísticas clave del equipo y comparativas.","data"],
+   ["Transmisión en vivo","En vivo, con marcador y estadísticas.","live"],
+   ["Videos para edición o redes","Los videos para que los edites o los subas a tus redes.","share"]
+  ];
+  const grid=el("div",{class:"bento"},I.map(([t,d,v])=>{
+    const tile=el("div",{class:"tile",tabindex:"0"});
+    const card=el("div",{class:"tc"});
+    const x=el("div",{class:"vis"});x.innerHTML=V[v];
+    card.append(x,el("b",{text:t}),el("div",{class:"more"},el("div",{},el("p",{text:d}))));
+    tile.append(card);
+    tile.addEventListener("click",()=>{const o=tile.classList.contains("open");document.querySelectorAll(".tile.open").forEach(e=>e.classList.remove("open"));if(!o)tile.classList.add("open")});
+    tile.addEventListener("mouseleave",()=>tile.classList.remove("open"));
+    return tile}));
+  return el("div",{},el("p",{class:"sub",text:"Pasá el cursor por arriba o tocá cada tarjeta para ver el detalle."}),grid);
+}
+
+function sportsRow(){
+  const S4=[
+   ["Fútbol",'<circle cx="24" cy="24" r="20"/><path d="M24 17l6.7 4.9-2.6 7.9h-8.2l-2.6-7.9z"/><path d="M24 17V4.5M30.7 21.9L43 18M28.1 29.8L36 41M19.9 29.8L12 41M17.3 21.9L5 18"/>'],
+   ["Básquet",'<circle cx="24" cy="24" r="20"/><path d="M24 4v40M4 24h40M10 8q12 16 0 32M38 8q-12 16 0 32"/>'],
+   ["Hockey",'<path d="M12 5v25q0 8 8 8h7"/><circle cx="37" cy="36" r="5.5"/>'],
+   ["Rugby",'<ellipse cx="24" cy="24" rx="21" ry="12" transform="rotate(-35 24 24)"/><path d="M8 35L40 13M19 24l3.4 5M22.3 21.5l3.4 5M25.6 19.2l3.4 5"/>']
+  ];
+  return el("div",{class:"sports"},S4.map(([n,p])=>{const e=el("span",{class:"sp"});e.innerHTML='<svg viewBox="0 0 48 48" aria-hidden="true">'+p+'</svg>';e.append(n);return e}));
+}
+
+function home(){
+  const fm=[["F5","5 vs 5"],["F7","7 vs 7"],["F10","10 vs 10"],["F11","11 vs 11"]];
+  const sv=[["Grabación completa","Video profesional de cada partido, de principio a fin, con cortes automáticos."],["Seguimiento automático con IA","La cámara sigue la jugada sola, sin camarógrafo."],["Cortes automáticos de goles y jugadas clave","Los goles y las jugadas importantes se cortan solos. Descargalos y compartilos en las plataformas favoritas de tu torneo."],["Análisis de datos","Estadísticas clave del equipo y comparativas."],["Transmisión en vivo","En vivo, con marcador y estadísticas."],["Videos para edición o redes","Los videos para que los edites o los subas a tus redes."]];
+  const au=["Ligas y torneos amateurs","Escuelas deportivas","Entrenadores y analistas","Jugadores que buscan destacar"];
+  return [
+  el("section",{class:"hero"},el("img",{class:"hero-img",src:"fotos/hero-camara.jpg",alt:"Cámara VEO en una cancha de fútbol durante un torneo"}),pitch(),el("div",{class:"wrap"},
+    el("h1",{},"La inteligencia ",el("span",{class:"acc",text:"detrás del juego"})),
+    el("p",{text:"Grabamos cada partido de tu torneo de punta a punta con cámaras VEO. Video profesional y sin vueltas, para clubes y torneos amateurs."}),
+    el("a",{class:"btn",href:"#contacto",text:"Transformá tu torneo"}),el("a",{class:"btn alt",href:"#/torneos",text:"Buscá tu partido"}))),
+  el("section",{class:"blk"},el("div",{class:"wrap"},
+    el("h2",{text:"Pensado para torneos amateurs"}),
+    el("p",{class:"lead",text:"Vamos a tu cancha, grabamos todos los partidos de principio a fin y subimos el video completo para que jugadores, familiares y entrenadores lo vean y lo compartan."}),
+    el("div",{class:"formats"},fm.map(([f,s])=>el("div",{class:"fmt"},f,el("small",{text:s})))),
+    el("p",{class:"sub",text:"Fútbol masculino y femenino, en todos los formatos."}),
+    el("p",{class:"lead",text:"Y no solo fútbol, también grabamos:"}),
+    sportsRow())),
+  el("section",{class:"blk"},el("div",{class:"wrap"},
+    el("h2",{},"Más que videos: ",el("span",{class:"acc",text:"grabación, datos y análisis"})),
+    bento())),
+  el("section",{class:"band"},el("img",{src:"fotos/hero-1.jpg",alt:"Partido de fútbol en una cancha, visto desde la cámara de kick.ai",loading:"lazy"}),el("div",{class:"wrap"},
+    el("h2",{text:"Cada partido, de punta a punta."}),
+    el("p",{class:"lead",text:"La cancha completa, de arco a arco. Desde que rueda la pelota hasta el pitazo final, no te perdés nada."}))),
+  el("section",{class:"blk"},el("div",{class:"wrap"},
+    el("h2",{},el("span",{class:"acc",text:"kick.ai, "}),"tu aliado estratégico"),
+    el("div",{class:"aud"},au.map(a=>el("div",{text:a}))))),
+  el("section",{class:"blk"},el("div",{class:"wrap"},
+    el("h2",{},"Precios accesibles, ",el("span",{class:"acc",text:"para todo tipo de torneo"})),
+    el("p",{class:"lead",text:"Trabajamos con clubes y ligas amateurs, con soluciones accesibles para que tu torneo dé un salto de calidad. Armamos un plan a la medida, sea un campeonato de un día o una liga de todo el año."}),
+    el("div",{class:"chips"},["Un día o todo el año","Una cancha o varias","Todos los formatos"].map(x=>el("span",{class:"chip",text:x}))),
+    el("p",{class:"sub",style:"margin:0 0 16px",text:"Arrancás con la grabación y sumás lo que necesite tu torneo."}),
+    el("div",{class:"plans"},[["Grabación básica","Video profesional de todos los partidos, con cortes automáticos."],["Análisis de datos","Sumá estadísticas clave del equipo y comparativas."],["Transmisión en vivo","Sumá la transmisión en vivo, con marcador y estadísticas."]].map(([x,y])=>el("div",{class:"plan"},el("b",{text:x}),el("p",{text:y})))),
+    el("p",{class:"sub",style:"margin:30px 0 16px",text:"Contanos cuántos partidos, canchas y formatos tenés y te mandamos un presupuesto."}),
+    el("a",{class:"btn",href:"#contacto",text:"Pedí tu presupuesto"}))),
+  el("section",{class:"blk contact",id:"contacto"},el("img",{class:"contact-img",src:"fotos/contacto-camara.jpg",alt:"",loading:"lazy"}),el("div",{class:"wrap"},
+    el("h2",{},el("span",{class:"acc",text:"Transformá"}),el("br"),"tu torneo."),
+    el("p",{class:"lead",text:"Armamos una propuesta a medida, con planes flexibles que se adaptan a tus necesidades. Contanos fechas, sede y formatos."}),
+    el("div",{style:"display:flex;flex-wrap:wrap;gap:4px 36px"},el("a",{class:"mail",href:"mailto:"+EMAIL,text:EMAIL}),el("a",{class:"mail",href:"tel:"+PHONE_TEL,text:PHONE}))))];
+}
+
+function torneos(){
+  const w=el("div",{class:"wrap page"},el("h1",{text:"Torneos"}),el("p",{class:"sub",text:"Elegí tu torneo y encontrá tu partido por fecha."}));
+  if(isAdmin())w.append(el("div",{class:"admin"},el("h3",{text:"Agregar torneo"}),
+    el("form",{on:{submit:e=>{e.preventDefault();const f=e.target;S.tournaments.push({id:uid(),name:f.n.value.trim(),place:f.p.value.trim(),matches:[]});save()}}},
+      el("input",{name:"n",placeholder:"Nombre del torneo",required:""}),el("input",{name:"p",placeholder:"Sede / ciudad"}),el("button",{class:"btn sm",text:"Agregar torneo"}))));
+  if(!S.tournaments.length)w.append(el("div",{class:"empty",text:"Todavía no hay torneos. Volvé pronto."}));
+  w.append(el("div",{class:"tgrid"},S.tournaments.map(t=>
+    el("div",{},el("a",{class:"tcard",href:"#/t/"+t.id},el("h3",{text:t.name}),el("span",{text:t.place||""}),el("span",{text:plural(t.matches.length,"partido","partidos")})),
+      isAdmin()?el("button",{class:"x",text:"Eliminar torneo",on:{click:()=>{if(confirm("¿Eliminar "+t.name+" y todos sus videos?")){S.tournaments=S.tournaments.filter(x=>x!==t);save()}}}}):null))));
+  return w;
+}
+
+function torneo(id){
+  const t=S.tournaments.find(x=>x.id===id);
+  if(!t)return el("div",{class:"wrap page"},el("p",{text:"No encontramos ese torneo."}),el("a",{href:"#/torneos",text:"Volver a torneos"}));
+  const w=el("div",{class:"wrap page"},el("a",{class:"back",href:"#/torneos",text:"Todos los torneos"}),el("h1",{text:t.name}),el("p",{class:"sub",text:t.place||""}));
+  if(isAdmin())w.append(el("div",{class:"admin"},el("h3",{text:"Agregar video"}),
+    el("form",{on:{submit:e=>{e.preventDefault();const f=e.target;
+      if(!safe(f.url.value.trim())){alert("El link debe empezar con http:// o https://");return}
+      t.matches.push({id:uid(),date:f.d.value,time:f.tm.value,field:f.fl.value.trim(),home:f.h.value.trim(),away:f.a.value.trim(),fmt:f.fm.value,gender:f.g.value,url:f.url.value.trim(),note:(parseVeo(f.url.value.trim())||{}).note||""});save()}}},
+      el("input",{type:"date",name:"d",required:"","aria-label":"Fecha"}),el("input",{type:"time",name:"tm","aria-label":"Horario"}),
+      el("input",{name:"fl",placeholder:"Cancha"}),el("input",{name:"h",placeholder:"Equipo local (opcional)"}),el("input",{name:"a",placeholder:"Equipo visitante (opcional)"}),
+      el("select",{name:"fm"},["F5","F7","F8","F10","F11"].map(x=>el("option",{text:x}))),el("select",{name:"g","aria-label":"Género"},[["","Género (opcional)"],["Masculino","Masculino"],["Femenino","Femenino"]].map(([v,x])=>el("option",{value:v,text:x}))),
+      el("input",{name:"url",placeholder:"Pegá el link del video (https://...)",required:"",on:{input:e=>autofill(e.target)}}),el("button",{class:"btn sm",text:"Agregar video"}))));
+  const q=el("input",{type:"search",placeholder:"Buscar por equipo, cancha o formato",value:query,"aria-label":"Buscar partidos"});
+  const list=el("div"), tabs=el("div",{class:"mos"}), wtabs=el("div",{class:"mos wks"}), dtabs=el("div",{class:"mos wks"});
+  if(monthT!==id){monthSel=null;weekSel=null;dateSel="all";monthT=id}
+  q.addEventListener("input",()=>{query=q.value;draw()});
+  w.append(el("div",{class:"bar"},q),tabs,wtabs,dtabs,list);
+  function draw(){
+    const s=query.toLowerCase();
+    const months=[...new Set(t.matches.map(m=>m.date.slice(0,7)))].sort().reverse();
+    if(monthSel&&!months.includes(monthSel)){monthSel=null;weekSel=null;dateSel="all"}
+    tabs.replaceChildren();wtabs.replaceChildren();dtabs.replaceChildren();
+    if(!s)months.forEach(mo=>tabs.append(el("button",{class:"mo"+(mo===monthSel?" on":""),type:"button",text:fmtMonth(mo),on:{click:()=>{monthSel=mo;weekSel=null;dateSel="all";draw()}}})));
+    const inMonth=monthSel?t.matches.filter(m=>m.date.slice(0,7)===monthSel):[];
+    const wks=[...new Set(inMonth.map(m=>weekendKey(m.date)))].sort().reverse();
+    if(weekSel&&weekSel!=="all"&&!wks.includes(weekSel))weekSel=null;
+    if(!s&&monthSel){
+      wks.forEach(k=>{const ds=[...new Set(inMonth.filter(m=>weekendKey(m.date)===k).map(m=>m.date))].sort();
+        wtabs.append(el("button",{class:"mo"+(k===weekSel?" on":""),type:"button",text:ds.map(shortDate).join(" y "),on:{click:()=>{weekSel=k;dateSel="all";draw()}}}))});
+      if(wks.length>1)wtabs.append(el("button",{class:"mo"+(weekSel==="all"?" on":""),type:"button",text:"Todo el mes",on:{click:()=>{weekSel="all";dateSel="all";draw()}}}));
+    }
+    const wd=(!s&&weekSel&&weekSel!=="all")?[...new Set(inMonth.filter(m=>weekendKey(m.date)===weekSel).map(m=>m.date))].sort():[];
+    if(dateSel!=="all"&&!wd.includes(dateSel))dateSel="all";
+    if(wd.length>1){
+      dtabs.append(el("button",{class:"mo"+(dateSel==="all"?" on":""),type:"button",text:"Ambos días",on:{click:()=>{dateSel="all";draw()}}}));
+      wd.forEach(d=>dtabs.append(el("button",{class:"mo"+(d===dateSel?" on":""),type:"button",text:shortDate(d),on:{click:()=>{dateSel=d;draw()}}})));
+    }
+    const ms=s?t.matches.filter(m=>[m.home,m.away,m.field,m.fmt,m.gender].join(" ").toLowerCase().includes(s)):((!monthSel||!weekSel)?[]:inMonth.filter(m=>(weekSel==="all"||weekendKey(m.date)===weekSel)&&(dateSel==="all"||weekSel==="all"||m.date===dateSel)));
+    list.replaceChildren();
+    if(!ms.length){list.append(el("div",{class:"empty",text:s?"No encontramos partidos. Probá con otro equipo.":(t.matches.length?(monthSel?"Elegí una fecha para ver los videos.":"Elegí un mes para ver los videos."):"Los videos de este torneo van a aparecer acá.")}));return}
+    [...new Set(ms.map(m=>m.date))].sort().forEach(d=>{
+      const dm=ms.filter(m=>m.date===d).sort((a,b)=>(a.field||"").localeCompare(b.field||"",undefined,{numeric:true})||(a.time||"").localeCompare(b.time||""));
+      const multi=new Set(dm.map(m=>m.field)).size>1;let last=null;
+      list.append(el("div",{class:"date"},el("h2",{text:fmtDate(d)}),el("span",{text:plural(dm.length,"partido","partidos")})));
+      dm.forEach(m=>{const u=safe(m.url);
+        if(multi&&m.field!==last){list.append(el("h3",{class:"fh",text:m.field||"Otra cancha"}));last=m.field}
+        list.append(el("div",{class:"match"+(m.thumb?" th":"")},m.thumb?el("a",{class:"thumb",href:u||"#",target:"_blank",rel:"noopener","aria-label":"Ver video"},el("img",{src:m.thumb,alt:"Imagen del partido",loading:"lazy",on:{error:e=>{const a=e.target.parentNode;a.parentNode&&a.parentNode.classList.remove("th");a.remove()}}})):null,el("div",{class:"t",text:m.time||"--:--"}),
+          el("div",{},el("div",{class:"tm",text:(m.home||m.away)?(m.home+" vs "+m.away):"Partido de las "+fmtHs(m.time)+" hs"}),el("div",{class:"meta"},m.fmt?el("span",{class:"tag",text:m.fmt}):null,m.note?el("span",{class:"tag",text:m.note}):null,m.gender?el("span",{class:"tag",text:m.gender}):null,(m.home||m.away)?(m.field||""):null)),
+          el("div",{class:"go"},u?el("a",{class:"btn sm",href:u,target:"_blank",rel:"noopener",text:"Ver video"}):el("span",{class:"soon",text:"Video próximamente"}),
+            isAdmin()?el("button",{class:"x",text:"Quitar",style:"margin-left:10px",on:{click:()=>{t.matches=t.matches.filter(x=>x!==m);save()}}}):null)))});
+    });
+  }
+  draw();return w;
+}
+
+function render(){
+  const h=location.hash||"#/";let r="home",out;
+  if(h.startsWith("#/t/")){r="torneos";out=torneo(h.slice(4))}
+  else if(h.startsWith("#/torneos")){r="torneos";out=torneos()}
+  else out=home();
+  document.getElementById("adminhost").replaceChildren(...(canEdit?[el("div",{class:"adminbar"},el("span",{text:adminOn?"Modo administrador: solo vos ves los formularios.":"Estás viendo la página como la ve un visitante."}),el("button",{class:"x",text:adminOn?"Ver como visitante":"Volver al modo administrador",on:{click:()=>{adminOn=!adminOn;render()}}}))]:[]));
+  app.replaceChildren(...[].concat(out));
+  document.querySelectorAll("nav a").forEach(a=>a.classList.toggle("on",a.dataset.r===r&&a.dataset.r!=="contacto"));
+  if(h==="#contacto")document.getElementById("contacto")?.scrollIntoView();else window.scrollTo(0,0);
+}
+window.addEventListener("hashchange",render);
+fetch("videos.json",{cache:"no-cache"}).then(r=>r.json()).then(d=>{S=d}).catch(()=>{}).finally(render);
+</script>
+</body>
+</html>
