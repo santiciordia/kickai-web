@@ -1928,26 +1928,48 @@
    "place": "",
    "matches": [
     {
-     "id": "jve97efeb",
-     "date": "2026-09-29",
-     "time": "20:00",
-     "field": "Cancha 1",
-     "home": "",
-     "away": "",
+     "id": "vv21595ef",
+     "date": "2026-10-13",
+     "time": "21:00",
+     "field": "Cancha 2",
+     "home": "Porto",
+     "away": "Tirame Un Centro",
      "fmt": "F7",
      "gender": "",
-     "url": "https://app.veo.co/matches/20260929-jag-f7-cancha-1-2909-20hs-ve97efeb/"
+     "url": "https://app.veo.co/matches/20261014-jag-f7-cancha-2-1310-21hs-porto-vs-tirame-un-centro-v21595ef/"
     },
     {
-     "id": "jv8e5e340",
-     "date": "2026-09-29",
+     "id": "vv87d84ac",
+     "date": "2026-10-13",
      "time": "20:00",
      "field": "Cancha 2",
-     "home": "",
-     "away": "",
+     "home": "Carioca",
+     "away": "Juventus",
      "fmt": "F7",
      "gender": "",
-     "url": "https://app.veo.co/matches/20260929-jag-f7-cancha-2-2909-20hs-v8e5e340/"
+     "url": "https://app.veo.co/matches/20261013-jag-f7-cancha-2-1310-20hs-carioca-vs-juventus-v87d84ac/"
+    },
+    {
+     "id": "vv18a9e76",
+     "date": "2026-10-13",
+     "time": "21:00",
+     "field": "Cancha 1",
+     "home": "Liverpool",
+     "away": "Fiorito",
+     "fmt": "F7",
+     "gender": "",
+     "url": "https://app.veo.co/matches/20261014-jag-f7-cancha-1-1310-21hs-liverpool-vs-fiorito-v18a9e76/"
+    },
+    {
+     "id": "vv37ac398",
+     "date": "2026-10-13",
+     "time": "20:00",
+     "field": "Cancha 1",
+     "home": "Ultimo Minuto",
+     "away": "Manchester",
+     "fmt": "F7",
+     "gender": "",
+     "url": "https://app.veo.co/matches/20261013-jag-f7-cancha-1-1310-20hs-ultimo-minuto-vs-manchester-v37ac398/"
     },
     {
      "id": "jv75460d3",
@@ -1961,6 +1983,17 @@
      "url": "https://app.veo.co/matches/20260930-jag-f7-cancha-2-2909-21hs-v75460d3/"
     },
     {
+     "id": "jv8e5e340",
+     "date": "2026-09-29",
+     "time": "20:00",
+     "field": "Cancha 2",
+     "home": "",
+     "away": "",
+     "fmt": "F7",
+     "gender": "",
+     "url": "https://app.veo.co/matches/20260929-jag-f7-cancha-2-2909-20hs-v8e5e340/"
+    },
+    {
      "id": "jv00f0c8e",
      "date": "2026-09-29",
      "time": "21:00",
@@ -1972,6 +2005,17 @@
      "url": "https://app.veo.co/matches/20260930-jag-f7-cancha-1-2909-21hs-v00f0c8e/"
     },
     {
+     "id": "jve97efeb",
+     "date": "2026-09-29",
+     "time": "20:00",
+     "field": "Cancha 1",
+     "home": "",
+     "away": "",
+     "fmt": "F7",
+     "gender": "",
+     "url": "https://app.veo.co/matches/20260929-jag-f7-cancha-1-2909-20hs-ve97efeb/"
+    },
+    {
      "id": "jv6ba16cc",
      "date": "2026-09-15",
      "time": "21:00",
@@ -1981,6 +2025,17 @@
      "fmt": "F7",
      "gender": "",
      "url": "https://app.veo.co/matches/20260916-jag-f7-cancha-2-1509-21hs-v6ba16cc/"
+    },
+    {
+     "id": "jv4c78d45",
+     "date": "2026-09-15",
+     "time": "20:00",
+     "field": "Cancha 2",
+     "home": "",
+     "away": "",
+     "fmt": "F7",
+     "gender": "",
+     "url": "https://app.veo.co/matches/20260915-jag-f7-cancha-2-1509-20hs-v4c78d45/"
     },
     {
      "id": "jv28a3fc3",
@@ -2005,37 +2060,15 @@
      "url": "https://app.veo.co/matches/20260915-jag-f7-cancha-1-1509-20hs-v1be56f4/"
     },
     {
-     "id": "jv4c78d45",
-     "date": "2026-09-15",
-     "time": "20:00",
+     "id": "jv5a6de52",
+     "date": "2026-09-08",
+     "time": "21:00",
      "field": "Cancha 2",
      "home": "",
      "away": "",
      "fmt": "F7",
      "gender": "",
-     "url": "https://app.veo.co/matches/20260915-jag-f7-cancha-2-1509-20hs-v4c78d45/"
-    },
-    {
-     "id": "jvc209d92",
-     "date": "2026-09-08",
-     "time": "20:00",
-     "field": "Cancha 1",
-     "home": "",
-     "away": "",
-     "fmt": "F7",
-     "gender": "",
-     "url": "https://app.veo.co/matches/20260908-jag-f7-cancha-1-0809-20hs-vc209d92/"
-    },
-    {
-     "id": "jv525416a",
-     "date": "2026-09-08",
-     "time": "21:00",
-     "field": "Cancha 1",
-     "home": "",
-     "away": "",
-     "fmt": "F7",
-     "gender": "",
-     "url": "https://app.veo.co/matches/20260909-jaf-f7-cancha-1-0809-21hs-v525416a/"
+     "url": "https://app.veo.co/matches/20260909-jag-f7-cancha-2-0809-21hs-v5a6de52/"
     },
     {
      "id": "jva5682d4",
@@ -2049,48 +2082,26 @@
      "url": "https://app.veo.co/matches/20260908-jag-f7-cancha-2-0809-20hs-va5682d4/"
     },
     {
-     "id": "jv5a6de52",
+     "id": "jv525416a",
      "date": "2026-09-08",
      "time": "21:00",
-     "field": "Cancha 2",
+     "field": "Cancha 1",
      "home": "",
      "away": "",
      "fmt": "F7",
      "gender": "",
-     "url": "https://app.veo.co/matches/20260909-jag-f7-cancha-2-0809-21hs-v5a6de52/"
+     "url": "https://app.veo.co/matches/20260909-jaf-f7-cancha-1-0809-21hs-v525416a/"
     },
     {
-     "id": "jvb2f291e",
-     "date": "2026-09-01",
+     "id": "jvc209d92",
+     "date": "2026-09-08",
      "time": "20:00",
      "field": "Cancha 1",
      "home": "",
      "away": "",
      "fmt": "F7",
      "gender": "",
-     "url": "https://app.veo.co/matches/20260901-jag-f7-cancha-1-0109-20hs-vb2f291e/"
-    },
-    {
-     "id": "jv57154ba",
-     "date": "2026-09-01",
-     "time": "21:00",
-     "field": "Cancha 1",
-     "home": "",
-     "away": "",
-     "fmt": "F7",
-     "gender": "",
-     "url": "https://app.veo.co/matches/20260902-jag-f7-cancha-1-0109-21hs-v57154ba/"
-    },
-    {
-     "id": "jv5156a97",
-     "date": "2026-09-01",
-     "time": "20:00",
-     "field": "Cancha 2",
-     "home": "",
-     "away": "",
-     "fmt": "F7",
-     "gender": "",
-     "url": "https://app.veo.co/matches/20260901-jag-f7-cancha-2-0109-20hs-v5156a97/"
+     "url": "https://app.veo.co/matches/20260908-jag-f7-cancha-1-0809-20hs-vc209d92/"
     },
     {
      "id": "jv9c768fb",
@@ -2104,26 +2115,48 @@
      "url": "https://app.veo.co/matches/20260902-jag-f7-cancha-2-0109-21hs-v9c768fb/"
     },
     {
-     "id": "jv0568422",
-     "date": "2026-08-25",
+     "id": "jv5156a97",
+     "date": "2026-09-01",
      "time": "20:00",
-     "field": "Cancha 1",
+     "field": "Cancha 2",
      "home": "",
      "away": "",
      "fmt": "F7",
      "gender": "",
-     "url": "https://app.veo.co/matches/20260825-jag-f7-cancha-1-2508-20hs-v0568422/"
+     "url": "https://app.veo.co/matches/20260901-jag-f7-cancha-2-0109-20hs-v5156a97/"
     },
     {
-     "id": "jv1c16576",
-     "date": "2026-08-25",
+     "id": "jv57154ba",
+     "date": "2026-09-01",
      "time": "21:00",
      "field": "Cancha 1",
      "home": "",
      "away": "",
      "fmt": "F7",
      "gender": "",
-     "url": "https://app.veo.co/matches/20260826-jag-f7-cancha-1-2508-21hs-v1c16576/"
+     "url": "https://app.veo.co/matches/20260902-jag-f7-cancha-1-0109-21hs-v57154ba/"
+    },
+    {
+     "id": "jvb2f291e",
+     "date": "2026-09-01",
+     "time": "20:00",
+     "field": "Cancha 1",
+     "home": "",
+     "away": "",
+     "fmt": "F7",
+     "gender": "",
+     "url": "https://app.veo.co/matches/20260901-jag-f7-cancha-1-0109-20hs-vb2f291e/"
+    },
+    {
+     "id": "jv97c8a2d",
+     "date": "2026-08-25",
+     "time": "21:00",
+     "field": "Cancha 2",
+     "home": "",
+     "away": "",
+     "fmt": "F7",
+     "gender": "",
+     "url": "https://app.veo.co/matches/20260826-jag-f7-cancha-2-2508-21hs-v97c8a2d/"
     },
     {
      "id": "jva37fd41",
@@ -2137,15 +2170,26 @@
      "url": "https://app.veo.co/matches/20260825-jag-f7-cancha-2-2508-20hs-va37fd41/"
     },
     {
-     "id": "jv97c8a2d",
+     "id": "jv1c16576",
      "date": "2026-08-25",
      "time": "21:00",
-     "field": "Cancha 2",
+     "field": "Cancha 1",
      "home": "",
      "away": "",
      "fmt": "F7",
      "gender": "",
-     "url": "https://app.veo.co/matches/20260826-jag-f7-cancha-2-2508-21hs-v97c8a2d/"
+     "url": "https://app.veo.co/matches/20260826-jag-f7-cancha-1-2508-21hs-v1c16576/"
+    },
+    {
+     "id": "jv0568422",
+     "date": "2026-08-25",
+     "time": "20:00",
+     "field": "Cancha 1",
+     "home": "",
+     "away": "",
+     "fmt": "F7",
+     "gender": "",
+     "url": "https://app.veo.co/matches/20260825-jag-f7-cancha-1-2508-20hs-v0568422/"
     }
    ]
   },

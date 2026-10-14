@@ -21,6 +21,8 @@ for u in sys.stdin.read().split():
     mid = 'v' + (vid[1] if vid else str(len(ids)))
     m = {'id': mid, 'date': dt.isoformat(), 'time': f'{int(h[1]):02d}:00' if h else '', 'field': f'Cancha {c[1]}' if c else '',
          'home': '', 'away': '', 'fmt': f'F{f[1]}' if f else '', 'gender': '', 'url': u}
+    tm = re.search(r'hs-(.+?)-vs-(.+?)-v[0-9a-f]{7}/?$', u)
+    if tm: m['home'], m['away'] = [x.replace('-', ' ').title() for x in tm.groups()]
     if 'primer-tiempo' in u: m['note'] = 'Primer tiempo'
     t['matches'].append(m); have.add(u); ids.add(mid); add += 1
 t['matches'].sort(key=lambda m: (m['date'], m['field'], m['time']), reverse=True)
