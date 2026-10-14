@@ -234,6 +234,11 @@ function sportsRow(){
   return el("div",{class:"sports"},S4.map(([n,p])=>{const e=el("span",{class:"sp"});e.innerHTML='<svg viewBox="0 0 48 48" aria-hidden="true">'+p+'</svg>';e.append(n);return e}));
 }
 
+function zonasRow(){
+  const pin='<path d="M24 44S10 31 10 20a14 14 0 0 1 28 0c0 11-14 24-14 24z"/><circle cx="24" cy="20" r="5"/>';
+  return el("div",{class:"sports"},["Zona Norte","Capital Federal"].map(n=>{const e=el("span",{class:"sp"});e.innerHTML='<svg viewBox="0 0 48 48" aria-hidden="true">'+pin+'</svg>';e.append(n);return e}));
+}
+
 function home(){
   const fm=[["F5","5 vs 5"],["F7","7 vs 7"],["F10","10 vs 10"],["F11","11 vs 11"]];
   const sv=[["Grabación completa","Video profesional de cada partido, de principio a fin, con cortes automáticos."],["Seguimiento automático con IA","La cámara sigue la jugada sola, sin camarógrafo."],["Cortes automáticos de goles y jugadas clave","Los goles y las jugadas importantes se cortan solos. Descargalos y compartilos en las plataformas favoritas de tu torneo."],["Análisis de datos","Estadísticas clave del equipo y comparativas."],["Transmisión en vivo","En vivo, con marcador y estadísticas."],["Videos para edición o redes","Los videos para que los edites o los subas a tus redes."]];
@@ -248,7 +253,9 @@ function home(){
     el("p",{class:"lead",text:"Vamos a tu cancha, grabamos todos los partidos de principio a fin y subimos el video completo para que jugadores, familiares y entrenadores lo vean y lo compartan."}),
     el("div",{class:"formats"},fm.map(([f,s])=>el("div",{class:"fmt"},f,el("small",{text:s})))),
     el("p",{class:"sub",text:"Fútbol masculino y femenino, en todos los formatos."}),
-    el("p",{class:"lead",text:"Y no solo fútbol, también grabamos:"}),
+    el("p",{class:"lead",text:"Grabamos en Zona Norte y Capital Federal."}),
+    zonasRow(),
+    el("p",{class:"lead",style:"margin-top:28px",text:"Y no solo fútbol, también grabamos:"}),
     sportsRow())),
   el("section",{class:"blk"},el("div",{class:"wrap"},
     el("h2",{},"Más que videos: ",el("span",{class:"acc",text:"grabación, datos y análisis"})),
@@ -331,8 +338,8 @@ function torneo(id){
       list.append(el("div",{class:"date"},el("h2",{text:fmtDate(d)}),el("span",{text:plural(dm.length,"partido","partidos")})));
       dm.forEach(m=>{const u=safe(m.url);
         if(multi&&m.field!==last){list.append(el("h3",{class:"fh",text:m.field||"Otra cancha"}));last=m.field}
-        list.append(el("div",{class:"match"+(m.thumb?" th":"")},m.thumb?el("a",{class:"thumb",href:u||"#",target:"_blank",rel:"noopener","aria-label":"Ver video"},el("img",{src:m.thumb,alt:"Imagen del partido",loading:"lazy",on:{error:e=>{const a=e.target.parentNode;a.parentNode&&a.parentNode.classList.remove("th");a.remove()}}})):null,el("div",{class:"t",text:m.time||"--:--"}),
-          el("div",{},el("div",{class:"tm",text:(m.home||m.away)?(m.home+" vs "+m.away):"Partido de las "+fmtHs(m.time)+" hs"}),el("div",{class:"meta"},m.fmt?el("span",{class:"tag",text:m.fmt}):null,m.note?el("span",{class:"tag",text:m.note}):null,m.gender?el("span",{class:"tag",text:m.gender}):null,(m.home||m.away)?(m.field||""):null)),
+        list.append(el("div",{class:"match"+(m.thumb?" th":"")},m.thumb?el("a",{class:"thumb",href:u||"#",target:"_blank",rel:"noopener","aria-label":"Ver video"},el("img",{src:m.thumb,alt:"Imagen del partido",loading:"lazy",on:{error:e=>{const a=e.target.parentNode;a.parentNode&&a.parentNode.classList.remove("th");a.remove()}}})):null,el("div",{class:"t",text:m.time||"·"}),
+          el("div",{},el("div",{class:"tm",text:(m.home||m.away)?(m.home+" vs "+m.away):(m.title||(m.time?"Partido de las "+fmtHs(m.time)+" hs":"Partido"))}),el("div",{class:"meta"},m.fmt?el("span",{class:"tag",text:m.fmt}):null,m.note?el("span",{class:"tag",text:m.note}):null,m.gender?el("span",{class:"tag",text:m.gender}):null,(m.home||m.away)?(m.field||""):null)),
           el("div",{class:"go"},u?el("a",{class:"btn sm",href:u,target:"_blank",rel:"noopener",text:"Ver video"}):el("span",{class:"soon",text:"Video próximamente"}),
             isAdmin()?el("button",{class:"x",text:"Quitar",style:"margin-left:10px",on:{click:()=>{t.matches=t.matches.filter(x=>x!==m);save()}}}):null)))});
     });
