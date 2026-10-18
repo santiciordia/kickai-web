@@ -2275,6 +2275,24 @@
      "title": "Green FC"
     }
    ]
+  },
+  {
+   "id": "northchamp",
+   "name": "Northchamp",
+   "place": "",
+   "matches": [
+    {
+     "id": "vvd62b771",
+     "date": "2026-10-17",
+     "time": "17:00",
+     "field": "Cancha 1D",
+     "home": "Northchamp",
+     "away": "Mata",
+     "fmt": "F7",
+     "gender": "",
+     "url": "https://app.veo.co/matches/20261017-nortchamp-f7-cancha-1d-1710-17hs-nortchamp-vs-mata-vd62b771/?tag=goal&highlight=6d3d79e3-9089-406e-a5e3-eb91251dc3fe&scroll=MT#/highlights/"
+    }
+   ]
   }
  ]
 }
