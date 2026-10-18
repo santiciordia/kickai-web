@@ -26,20 +26,20 @@ b,strong{font-weight:700}a{color:inherit}
 .acc{color:var(--accent)}
 header.top{position:relative;z-index:5;background:linear-gradient(180deg,rgba(11,12,13,.82),rgba(11,12,13,0))}
 nav a{text-shadow:0 1px 8px rgba(0,0,0,.6)}
-.burger{display:none;background:none;border:0;padding:10px;margin:0 6px 0 -10px;cursor:pointer;flex-direction:column;gap:5px;justify-content:center}
+.burger{display:flex;background:none;border:0;padding:10px;margin:0 6px 0 -10px;cursor:pointer;flex-direction:column;gap:5px;justify-content:center}
 .burger span{display:block;width:26px;height:2.5px;border-radius:2px;background:#f4f4f2;transition:transform .2s,opacity .2s}
 header.top.open .burger span:nth-child(1){transform:translateY(7.5px) rotate(45deg)}
 header.top.open .burger span:nth-child(2){opacity:0}
 header.top.open .burger span:nth-child(3){transform:translateY(-7.5px) rotate(-45deg)}
 @media(max-width:700px){header.top{background:rgba(11,12,13,.8);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}}
-@media all{
+.drawer{display:none;position:absolute;top:100%;left:0;right:0;background:#0b0c0d;border-bottom:1px solid #26292c;box-shadow:0 18px 30px rgba(0,0,0,.5);flex-direction:column}
+header.top.open .drawer{display:flex}
+.drawer a{display:block;text-decoration:none;font-weight:500;margin:0;padding:18px 24px 18px max(24px,calc(50vw - 508px));font-size:20px;border-left:4px solid transparent}
+.drawer a.on,.drawer a:hover{border-left-color:var(--accent);background:#14161a}
 header.top>.wrap{justify-content:flex-start!important}
+header.top>.wrap>nav{margin-left:auto}
 .burger{display:flex}
-header.top nav{display:none;position:absolute;top:100%;left:0;right:0;background:#0b0c0d;border-bottom:1px solid #26292c;box-shadow:0 18px 30px rgba(0,0,0,.5);flex-direction:column;padding:0}
-header.top.open nav{display:flex}
-header.top nav a,header.top nav a:hover,header.top nav a.on{margin:0;padding:18px 24px 18px max(24px,calc(50vw - 508px));font-size:20px;border-bottom:0;border-left:4px solid transparent;text-shadow:none}
-header.top nav a.on,header.top nav a:hover{border-left-color:var(--accent);background:#14161a}
-}
+@media(max-width:700px){header.top>.wrap>nav{display:none}}
 header.top .wrap{display:flex;align-items:center;justify-content:space-between;height:72px}
 .logo{display:flex;align-items:center;gap:10px;text-decoration:none;font-size:28px;font-weight:400;letter-spacing:-.02em}
 .logo svg{width:30px;height:30px}
@@ -163,6 +163,7 @@ input,select{font:inherit;font-size:16px;padding:10px 12px;border:1px solid #333
 <header class="top"><div class="wrap">
 <button class="burger" aria-label="Abrir menú" aria-expanded="false"><span></span><span></span><span></span></button>
 <a class="logo" href="#/" aria-label="kick.ai, inicio"><svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="6.5" cy="9" r="4.5" fill="#ff6b1f"/><circle cx="6.5" cy="31" r="4.5" fill="#ff6b1f"/><path d="M33 5 17 20l16 15" fill="none" stroke="#ff6b1f" stroke-width="8.5" stroke-linecap="round" stroke-linejoin="round"/></svg>kick.ai</a>
+<div class="drawer"><a href="#/" data-r="home">Servicio</a><a href="#/torneos" data-r="torneos">Torneos</a><a href="#contacto" data-r="contacto">Contacto</a></div>
 <nav><a href="#/" data-r="home">Servicio</a><a href="#/torneos" data-r="torneos">Torneos</a><a href="#contacto" data-r="contacto">Contacto</a></nav>
 </div></header>
 <!-- torneos: Liga Olvos, JAG, Boston League -->
@@ -387,13 +388,13 @@ function render(){
   else out=home();
   document.getElementById("adminhost").replaceChildren(...(canEdit?[el("div",{class:"adminbar"},el("span",{text:adminOn?"Modo administrador: solo vos ves los formularios.":"Estás viendo la página como la ve un visitante."}),el("button",{class:"x",text:adminOn?"Ver como visitante":"Volver al modo administrador",on:{click:()=>{adminOn=!adminOn;render()}}}))]:[]));
   app.replaceChildren(...[].concat(out));
-  document.querySelectorAll("nav a").forEach(a=>a.classList.toggle("on",a.dataset.r===r&&a.dataset.r!=="contacto"));
+  document.querySelectorAll("nav a,.drawer a").forEach(a=>a.classList.toggle("on",a.dataset.r===r&&a.dataset.r!=="contacto"));
   if(h==="#contacto")document.getElementById("contacto")?.scrollIntoView();else window.scrollTo(0,0);
 }
 (function(){const hd=document.querySelector("header.top"),bt=hd.querySelector(".burger");
 const set=o=>{hd.classList.toggle("open",o);bt.setAttribute("aria-expanded",o);bt.setAttribute("aria-label",o?"Cerrar menú":"Abrir menú")};
 bt.addEventListener("click",()=>set(!hd.classList.contains("open")));
-hd.querySelectorAll("nav a").forEach(a=>a.addEventListener("click",()=>set(false)));
+hd.querySelectorAll(".drawer a").forEach(a=>a.addEventListener("click",()=>set(false)));
 document.addEventListener("click",e=>{if(!hd.contains(e.target))set(false)});
 window.addEventListener("hashchange",()=>set(false));})();
 window.addEventListener("hashchange",render);
