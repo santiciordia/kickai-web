@@ -348,6 +348,7 @@ function torneo(id){
     const months=[...new Set(t.matches.map(m=>m.date.slice(0,7)))].sort().reverse();
     if(monthSel&&!months.includes(monthSel)){monthSel=null;weekSel=null;dateSel="all"}
     tabs.replaceChildren();wtabs.replaceChildren();dtabs.replaceChildren();
+    if(!s&&months.length>1)tabs.append(el("button",{class:"mo"+(!monthSel?" on":""),type:"button",text:"Todos",on:{click:()=>{monthSel=null;weekSel=null;dateSel="all";draw()}}}));
     if(!s)months.forEach(mo=>tabs.append(el("button",{class:"mo"+(mo===monthSel?" on":""),type:"button",text:fmtMonth(mo),on:{click:()=>{monthSel=mo;weekSel=null;dateSel="all";draw()}}})));
     const inMonth=monthSel?t.matches.filter(m=>m.date.slice(0,7)===monthSel):[];
     const wks=[...new Set(inMonth.map(m=>weekendKey(m.date)))].sort().reverse();
@@ -355,7 +356,7 @@ function torneo(id){
     if(!s&&monthSel){
       wks.forEach(k=>{const ds=[...new Set(inMonth.filter(m=>weekendKey(m.date)===k).map(m=>m.date))].sort();
         wtabs.append(el("button",{class:"mo"+(k===weekSel?" on":""),type:"button",text:ds.map(shortDate).join(" y "),on:{click:()=>{weekSel=k;dateSel="all";draw()}}}))});
-      if(wks.length>1)wtabs.append(el("button",{class:"mo"+(weekSel==="all"?" on":""),type:"button",text:"Todo el mes",on:{click:()=>{weekSel="all";dateSel="all";draw()}}}));
+      if(wks.length>1)wtabs.append(el("button",{class:"mo"+(!weekSel||weekSel==="all"?" on":""),type:"button",text:"Todo el mes",on:{click:()=>{weekSel="all";dateSel="all";draw()}}}));
     }
     const wd=(!s&&weekSel&&weekSel!=="all")?[...new Set(inMonth.filter(m=>weekendKey(m.date)===weekSel).map(m=>m.date))].sort():[];
     if(dateSel!=="all"&&!wd.includes(dateSel))dateSel="all";
@@ -363,10 +364,10 @@ function torneo(id){
       dtabs.append(el("button",{class:"mo"+(dateSel==="all"?" on":""),type:"button",text:"Ambos días",on:{click:()=>{dateSel="all";draw()}}}));
       wd.forEach(d=>dtabs.append(el("button",{class:"mo"+(d===dateSel?" on":""),type:"button",text:shortDate(d),on:{click:()=>{dateSel=d;draw()}}})));
     }
-    const ms=s?t.matches.filter(m=>[m.home,m.away,m.field,m.fmt,m.gender].join(" ").toLowerCase().includes(s)):((!monthSel||!weekSel)?[]:inMonth.filter(m=>(weekSel==="all"||weekendKey(m.date)===weekSel)&&(dateSel==="all"||weekSel==="all"||m.date===dateSel)));
+    const ms=s?t.matches.filter(m=>[m.home,m.away,m.field,m.fmt,m.gender].join(" ").toLowerCase().includes(s)):(monthSel?inMonth:t.matches).filter(m=>(!weekSel||weekSel==="all"||weekendKey(m.date)===weekSel)&&(dateSel==="all"||m.date===dateSel));
     list.replaceChildren();
     if(!ms.length){list.append(el("div",{class:"empty",text:s?"No encontramos partidos. Probá con otro equipo.":(t.matches.length?(monthSel?"Elegí una fecha para ver los videos.":"Elegí un mes para ver los videos."):"Los videos de este torneo van a aparecer acá.")}));return}
-    [...new Set(ms.map(m=>m.date))].sort().forEach(d=>{
+    [...new Set(ms.map(m=>m.date))].sort((a,b)=>(weekSel&&weekSel!=="all")?a.localeCompare(b):b.localeCompare(a)).forEach(d=>{
       const dm=ms.filter(m=>m.date===d).sort((a,b)=>(a.field||"").localeCompare(b.field||"",undefined,{numeric:true})||(a.time||"").localeCompare(b.time||""));
       const multi=new Set(dm.map(m=>m.field)).size>1;let last=null;
       list.append(el("div",{class:"date"},el("h2",{text:fmtDate(d)}),el("span",{text:plural(dm.length,"partido","partidos")})));
