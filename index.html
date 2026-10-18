@@ -139,6 +139,7 @@ input,select{font:inherit;font-size:16px;padding:10px 12px;border:1px solid #333
 .empty{padding:30px;border:1px dashed #3a3e42;border-radius:8px;color:var(--mute)}
 .back{display:inline-block;margin-bottom:16px;color:var(--mute)}
 @media(max-width:560px){.match{grid-template-columns:56px 1fr}.match .go{grid-column:1/-1}nav a{margin-left:14px}.btn.alt{margin:10px 0 0}}
+@media(prefers-reduced-motion:reduce){.hero-img{display:none}}
 @media(prefers-reduced-motion:no-preference){.hero h1{animation:rise .8s ease-out both}@keyframes rise{from{opacity:0;transform:translateY(14px)}}}
 </style>
 </head>
@@ -241,6 +242,15 @@ function zonasRow(){
   return el("div",{class:"sports"},["Zona Norte","Capital Federal"].map(n=>{const e=el("span",{class:"sp"});e.innerHTML='<svg viewBox="0 0 48 48" aria-hidden="true">'+pin+'</svg>';e.append(n);return e}));
 }
 
+function heroVideo(){
+  const v=document.createElement("video");v.className="hero-img";
+  v.src="video/portada.mp4";v.poster="video/portada.jpg";
+  v.muted=true;v.defaultMuted=true;v.loop=true;v.autoplay=true;v.playsInline=true;v.preload="auto";
+  v.setAttribute("muted","");v.setAttribute("playsinline","");v.setAttribute("aria-label","Goles de partidos grabados con kick.ai");
+  v.play&&v.play().catch(()=>{});
+  return v;
+}
+
 function igLink(){
   const a=el("a",{class:"ig",href:"https://www.instagram.com/kick_ai/",target:"_blank",rel:"noopener","aria-label":"Instagram @kick_ai"});
   a.innerHTML='<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.3" cy="6.7" r="1" fill="currentColor" stroke="none"/></svg>';
@@ -252,7 +262,7 @@ function home(){
   const sv=[["Grabación completa","Video profesional de cada partido, de principio a fin, con cortes automáticos."],["Seguimiento automático con IA","La cámara sigue la jugada sola, sin camarógrafo."],["Cortes automáticos de goles y jugadas clave","Los goles y las jugadas importantes se cortan solos. Descargalos y compartilos en las plataformas favoritas de tu torneo."],["Análisis de datos","Estadísticas clave del equipo y comparativas."],["Transmisión en vivo","En vivo, con marcador y estadísticas."],["Videos para edición o redes","Los videos para que los edites o los subas a tus redes."]];
   const au=["Ligas y torneos amateurs","Escuelas deportivas","Entrenadores y analistas","Jugadores que buscan destacar"];
   return [
-  el("section",{class:"hero"},el("img",{class:"hero-img",src:"fotos/hero-camara.jpg",alt:"Cámara VEO en una cancha de fútbol durante un torneo"}),pitch(),el("div",{class:"wrap"},
+  el("section",{class:"hero"},heroVideo(),pitch(),el("div",{class:"wrap"},
     el("h1",{},"Transformá ",el("span",{class:"acc",text:"tu torneo"})),
     el("p",{text:"Grabamos cada partido de tu torneo de punta a punta con cámaras VEO. Video profesional y sin vueltas, para clubes y torneos amateurs."}),
     el("a",{class:"btn",href:"#contacto",text:"Cotizá tu torneo"}),el("a",{class:"btn alt",href:"#/torneos",text:"Buscá tu partido"}))),
