@@ -1994,6 +1994,50 @@
    "place": "",
    "matches": [
     {
+     "id": "vvda5e575",
+     "date": "2026-10-20",
+     "time": "21:00",
+     "field": "Cancha 2",
+     "home": "Liverpool",
+     "away": "Tirame Un Centro",
+     "fmt": "F7",
+     "gender": "",
+     "url": "https://app.veo.co/matches/20261021-jag-f7-cancha-2-2010-21hs-liverpool-vs-tirame-un-centro-vda5e575/"
+    },
+    {
+     "id": "vv568ffef",
+     "date": "2026-10-20",
+     "time": "20:00",
+     "field": "Cancha 2",
+     "home": "Porto",
+     "away": "Manchester City",
+     "fmt": "F7",
+     "gender": "",
+     "url": "https://app.veo.co/matches/20261020-jag-f7-cancha-2-2010-20hs-porto-vs-manchester-city-v568ffef/"
+    },
+    {
+     "id": "vv9c61508",
+     "date": "2026-10-20",
+     "time": "21:00",
+     "field": "Cancha 1",
+     "home": "Carioca",
+     "away": "Fiorito",
+     "fmt": "F7",
+     "gender": "",
+     "url": "https://app.veo.co/matches/20261021-jag-f7-cancha-1-2010-21hs-carioca-vs-fiorito-v9c61508/"
+    },
+    {
+     "id": "vv08576b9",
+     "date": "2026-10-20",
+     "time": "20:00",
+     "field": "Cancha 1",
+     "home": "Juventus",
+     "away": "Ultimo Minuto",
+     "fmt": "F7",
+     "gender": "",
+     "url": "https://app.veo.co/matches/20261020-jag-f7-cancha-1-2010-20hs-juventus-vs-ultimo-minuto-v08576b9/"
+    },
+    {
      "id": "vv21595ef",
      "date": "2026-10-13",
      "time": "21:00",
