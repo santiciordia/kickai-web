@@ -157,17 +157,19 @@ input,select{font:inherit;font-size:16px;padding:10px 12px;border:1px solid #333
 @media(prefers-reduced-motion:reduce){.hero-img{display:none}}
 @media(prefers-reduced-motion:no-preference){.hero h1{animation:rise .8s ease-out both}@keyframes rise{from{opacity:0;transform:translateY(14px)}}}
 </style>
+<link rel="stylesheet" href="equipos/equipos.css">
 </head>
 <body>
 <div id="adminhost"></div>
 <header class="top"><div class="wrap">
 <button class="burger" aria-label="Abrir menú" aria-expanded="false"><span></span><span></span><span></span></button>
 <a class="logo" href="#/" aria-label="kick.ai, inicio"><svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="6.5" cy="9" r="4.5" fill="#ff6b1f"/><circle cx="6.5" cy="31" r="4.5" fill="#ff6b1f"/><path d="M33 5 17 20l16 15" fill="none" stroke="#ff6b1f" stroke-width="8.5" stroke-linecap="round" stroke-linejoin="round"/></svg>kick.ai</a>
-<div class="drawer"><a href="#/" data-r="home">Servicio</a><a href="#/torneos" data-r="torneos">Torneos</a><a href="#contacto" data-r="contacto">Contacto</a></div>
-<nav><a href="#/" data-r="home">Servicio</a><a href="#/torneos" data-r="torneos">Torneos</a><a href="#contacto" data-r="contacto">Contacto</a></nav>
+<div class="drawer"><a href="#/" data-r="home">Servicio</a><a href="#/torneos" data-r="torneos">Torneos</a><a href="#/equipos" data-r="equipos">Equipos</a><a href="#contacto" data-r="contacto">Contacto</a></div>
+<nav><a href="#/" data-r="home">Servicio</a><a href="#/torneos" data-r="torneos">Torneos</a><a href="#/equipos" data-r="equipos">Equipos</a><a href="#contacto" data-r="contacto">Contacto</a></nav>
 </div></header>
 <!-- torneos: Liga Olvos, JAG, Boston League -->
 <main id="app"></main>
+<script src="equipos/equipos.js"></script>
 <footer><div class="wrap">© kick.ai · Transformá tu torneo.</div></footer>
 
 
@@ -386,6 +388,7 @@ function render(){
   const h=location.hash||"#/";let r="home",out;
   if(h.startsWith("#/t/")){r="torneos";out=torneo(h.slice(4))}
   else if(h.startsWith("#/torneos")){r="torneos";out=torneos()}
+  else if(h.startsWith("#/equipo")){r="equipos";out=equiposPagina(h)}
   else out=home();
   document.getElementById("adminhost").replaceChildren(...(canEdit?[el("div",{class:"adminbar"},el("span",{text:adminOn?"Modo administrador: solo vos ves los formularios.":"Estás viendo la página como la ve un visitante."}),el("button",{class:"x",text:adminOn?"Ver como visitante":"Volver al modo administrador",on:{click:()=>{adminOn=!adminOn;render()}}}))]:[]));
   app.replaceChildren(...[].concat(out));
