@@ -409,7 +409,7 @@ function viewMatch(mid){
     : `<div class="player">
       <div class="stage" id="stage"><video id="v" playsinline muted preload="auto"></video><canvas id="ov" aria-hidden="true"></canvas><div class="slabel" id="slabel"></div><div class="gol" id="gol">¡GOL!</div><span class="sload" id="sload">Cargando…</span><canvas id="mp" class="minimap" aria-label="Mapa de la jugada visto desde arriba"></canvas>
         <div class="vtoggles" role="group" aria-label="Qué mostrar sobre el video">
-          <button type="button" class="vt" data-layer="players" aria-pressed="true">Jugadores</button><button type="button" class="vt" data-layer="lines" aria-pressed="true">Cancha</button><button type="button" class="vt" data-layer="map" aria-pressed="true">Mapa</button>
+          <button type="button" class="vt" data-layer="players" aria-pressed="true">Jugadores</button><button type="button" class="vt" data-layer="map" aria-pressed="true">Mapa</button>
         </div><button class="fsbtn" type="button" id="fsG" aria-label="Pantalla completa">${icon("expand")}</button></div>
       <div class="controls">
         <button class="ibtn" type="button" id="prevG" aria-label="Gol anterior">${icon("prev")}</button>
@@ -537,7 +537,7 @@ function Player(m){
   const v = $("#v"), ov = $("#ov"), mp = $("#mp"), stage = $("#stage"), scrub = $("#scrub"), playBtn = $("#playG"), label = $("#slabel"), flash = $("#gol"), load = $("#sload");
   const cx = ov.getContext("2d"), mx = mp.getContext("2d"), col = [tcol(m.home), tcol(m.away)];
   const mio = state.from === m.home ? 0 : state.from === m.away ? 1 : -1;
-  const L = {players:true, ball:false, lines:true, goals:false, map:true};
+  const L = {players:true, ball:false, lines:false, goals:false, map:true};   // owner 2026-11-12: pitch line drawings off (corners placed on the bent map were wrong)
   let gi = 0, D = null, dur = 1, seq = 0, flashed = false, urls = [];
   const ac = new AbortController(), opt = {signal: ac.signal};
   const setIcon = () => { playBtn.innerHTML = icon(v.paused ? (v.ended ? "replay" : "play") : "pause"); playBtn.setAttribute("aria-label", v.paused ? "Reproducir" : "Pausar"); };
