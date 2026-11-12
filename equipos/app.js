@@ -1,4 +1,4 @@
-const SHOW_TABLE = false;   // owner 2026-11-11: no standings table yet
+const SHOW_TABLE = false; const SHOW_HEAT = false;   // owner 2026-11-12: heat maps hidden (built on wrong pitch limits)   // owner 2026-11-11: no standings table yet
 /* kick.ai · Equipos v2 (2026-11-11). Port of the approved prototype (docs/rediseno_1111/sitio/equipos.html) on our real data.
    Flow (owner): Liga (JAG, Liga Olivos) -> Torneo (tabla + resultados + goles) -> Equipo (tendencias) -> Partido.
    Data: window.EQ_DATA (preview) or data.enc (AES-GCM, key from the password, same lock as the live site). Clips: clips/ or enc/clips/. */
@@ -462,7 +462,7 @@ function viewMatch(mid){
         </div>
       </section>` : ""}
     </div>
-    ${m.heat ? `<section class="section">
+    ${m.heat && SHOW_HEAT ? `<section class="section">
       <div class="sh"><h2>${icon("chart")}Mapa de calor</h2><span class="aside">${tip("Dónde estuvieron los jugadores de cada equipo durante el partido (cada medio segundo de juego). Rojo = donde más estuvieron. Siempre atacando hacia la derecha.")}</span></div>
       <div class="heat-card">
         <div class="heat-ctl">
@@ -723,7 +723,7 @@ function mount(p){
     swap("mtab", "mtab", "data-mtab", () => { $("#mBox").innerHTML = teamMatchesHTML(p[2], s); const r = $("#mBox .formstrip"); if (r) r.scrollLeft = r.scrollWidth; });
   }
   const mm = p[0] === "partido" ? MATCHES.find(x => x.id === p[1]) : null;
-  if (mm && mm.heat){ const hd = () => drawHeat(mm); swap("hteam", "hteam", "data-hteam", hd); swap("hhalf", "hhalf", "data-hhalf", hd); hd(); addEventListener("resize", hd); }
+  if (mm && mm.heat && SHOW_HEAT){ const hd = () => drawHeat(mm); swap("hteam", "hteam", "data-hteam", hd); swap("hhalf", "hhalf", "data-hhalf", hd); hd(); addEventListener("resize", hd); }
   if (mm) swap("stab", "stab", "data-stab", () => { const st = $("#stats"); st.classList.remove("is-in"); $("#statRows").innerHTML = statsHTML(mm); requestAnimationFrame(() => requestAnimationFrame(() => st.classList.add("is-in"))); });
   bindGoto();
   const back = app.querySelector("[data-back]");
