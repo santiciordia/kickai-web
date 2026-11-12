@@ -198,6 +198,16 @@ function goalCards(list){
       <span class="meta">${esc(TEAMS[x.m.home].name)} ${x.m.hs}–${x.m.as} ${esc(TEAMS[x.m.away].name)} · ${fShort(x.m.F)}</span>
     </button>`).join("");
 }
+/* owner 2026-11-12: 'Seguí a tu equipo' before Resultados - every team of the tournament, short; a tap opens the team page */
+function followHTML(tid){
+  const ids = [...new Set(MATCHES.filter(m => m.tournament === tid).flatMap(m => [m.home, m.away]))].filter(id => TEAMS[id])
+    .sort((a, b) => TEAMS[a].name.localeCompare(TEAMS[b].name, "es"));
+  if (!ids.length) return "";
+  return `<section class="section">
+      <div class="sh"><h2>${icon("users")}Seguí a tu equipo</h2></div>
+      <div class="follow">${ids.map(id => `<a class="fteam" href="#equipo/${tid}/${id}">${shield(id, 30)}<span>${esc(TEAMS[id].name)}</span></a>`).join("")}</div>
+    </section>`;
+}
 function viewTournament(tid){
   const T = TOURN.find(x => x.id === tid); if (!T) return viewNotFound();
   const o = ORGS.find(x => x.name === T.org);
@@ -215,6 +225,7 @@ function viewTournament(tid){
       <div class="sh"><h2>${icon("list")}${T.groups ? "Grupos" : "Tabla de posiciones"}</h2><span class="aside">${tip("Ganar suma <b>3</b>, empatar <b>1</b>, perder <b>0</b>. Empate en puntos: diferencia de gol, después goles a favor. <b>PJ</b> partidos jugados, <b>DG</b> diferencia de gol. En Forma: <b>G</b> ganó, <b>E</b> empató, <b>P</b> perdió.")}</span></div>
       ${table}
     </section>` : ""}
+    ${followHTML(tid)}
     <section class="section">
       <div class="sh"><h2>${icon("ball")}Resultados</h2></div>
       <div class="fechas" role="group" aria-label="Elegí la fecha">${fechaBtns}</div>
