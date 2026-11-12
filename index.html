@@ -2,407 +2,848 @@
 <html lang="es-AR">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>kick.ai – Video completo para torneos de fútbol amateur</title>
-<meta name="description" content="kick.ai graba todos los partidos de tu torneo amateur con cámaras VEO. Video completo de cada partido, cortes automáticos de goles y jugadas clave, y todos los videos por fecha.">
-<meta name="theme-color" content="#0b0c0d">
-<meta property="og:type" content="website">
-<meta property="og:locale" content="es_AR">
-<meta property="og:title" content="kick.ai – Llevá tu torneo al siguiente nivel">
-<meta property="og:description" content="Grabamos todos los partidos de tu torneo, completos y en video profesional.">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='8' fill='%230b0c0d'/%3E%3Ccircle cx='6.5' cy='9' r='4.5' fill='%23ff6b1f'/%3E%3Ccircle cx='6.5' cy='31' r='4.5' fill='%23ff6b1f'/%3E%3Cpath d='M33 5 17 20l16 15' fill='none' stroke='%23ff6b1f' stroke-width='8.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>kick.ai · Cada partido de tu torneo, grabado de arco a arco</title>
+<meta name="description" content="Video profesional de todos los partidos de tu torneo, para que jugadores, familias y entrenadores los vean y los compartan. Zona Norte y Capital Federal.">
+<meta property="og:type" content="website"><meta property="og:url" content="https://kickai.com.ar/">
+<meta property="og:title" content="kick.ai · Cada partido de tu torneo, grabado de arco a arco">
+<meta property="og:description" content="Video profesional de todos los partidos de tu torneo, para que jugadores, familias y entrenadores los vean y los compartan.">
+<meta property="og:image" content="https://kickai.com.ar/video/portada.jpg"><meta property="og:image:width" content="1280"><meta property="og:image:height" content="720">
+<meta name="theme-color" content="#0A0B0C">
+<script>/* links shared before the new home (kickai.com.ar/#/torneos, #/t/<id>) keep working */
+if(/^#\/(t|torneos)/.test(location.hash))location.replace("torneos.html"+location.hash);else if(/^#\/equipo/.test(location.hash))location.replace("equipos/");</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#0b0c0d;--panel:#131517;--line:#26292c;--ink:#f4f4f2;--mute:#9aa0a4;--accent:#ff6b1f;--accent-ink:#1a0b02;
-box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
-html{scroll-padding-top:env(safe-area-inset-top,0px)}
-*,*:before,*:after{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--ink);font:300 18px/1.6 Figtree,system-ui,sans-serif}
-h1,h2,h3{margin:0;font-weight:400;line-height:1.05;letter-spacing:-.02em}
-b,strong{font-weight:700}a{color:inherit}
-:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
-.wrap{max-width:1060px;margin:0 auto;padding:0 22px}
-.acc{color:var(--accent)}
-header.top{position:relative;z-index:5;background:linear-gradient(180deg,rgba(11,12,13,.82),rgba(11,12,13,0))}
-nav a{text-shadow:0 1px 8px rgba(0,0,0,.6)}
-.burger{display:flex;background:none;border:0;padding:10px;margin:0 6px 0 -10px;cursor:pointer;flex-direction:column;gap:5px;justify-content:center}
-.burger span{display:block;width:26px;height:2.5px;border-radius:2px;background:#f4f4f2;transition:transform .2s,opacity .2s}
-header.top.open .burger span:nth-child(1){transform:translateY(7.5px) rotate(45deg)}
-header.top.open .burger span:nth-child(2){opacity:0}
-header.top.open .burger span:nth-child(3){transform:translateY(-7.5px) rotate(-45deg)}
-@media(max-width:700px){header.top{background:rgba(11,12,13,.8);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}}
-.drawer{display:none;position:absolute;top:100%;left:0;right:0;background:#0b0c0d;border-bottom:1px solid #26292c;box-shadow:0 18px 30px rgba(0,0,0,.5);flex-direction:column}
-header.top.open .drawer{display:flex}
-.drawer a{display:block;text-decoration:none;font-weight:500;margin:0;padding:18px 24px 18px max(24px,calc(50vw - 508px));font-size:20px;border-left:4px solid transparent}
-.drawer a.on,.drawer a:hover{border-left-color:var(--accent);background:#14161a}
-header.top>.wrap{justify-content:flex-start!important}
-header.top>.wrap>nav{margin-left:auto}
-.burger{display:flex}
-@media(max-width:700px){header.top>.wrap>nav{display:none}}
-header.top .wrap{display:flex;align-items:center;justify-content:space-between;height:72px}
-.logo{display:flex;align-items:center;gap:10px;text-decoration:none;font-size:28px;font-weight:400;letter-spacing:-.02em}
-.logo svg{width:30px;height:30px}
-nav a{margin-left:24px;text-decoration:none;font-weight:500;font-size:16px;padding:6px 0;border-bottom:2px solid transparent}
-nav a.on,nav a:hover{border-color:var(--accent)}
-.hero{position:relative;overflow:hidden;margin-top:-72px;padding-top:72px;background:radial-gradient(900px 420px at 60% -10%,rgba(255,107,31,.28),transparent 70%),var(--bg)}
-.hero>svg{position:absolute;inset:0;width:100%;height:100%;-webkit-mask-image:linear-gradient(90deg,#000 25%,transparent 50%);mask-image:linear-gradient(90deg,#000 25%,transparent 50%)}
-.hero-img{position:absolute;top:0;right:0;width:72%;height:100%;object-fit:cover;object-position:50% 40%;filter:brightness(.78) saturate(.8);-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 62%);mask-image:linear-gradient(90deg,transparent 0,#000 62%)}
-.hero:after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(0deg,var(--bg) 0,transparent 28%),linear-gradient(120deg,rgba(255,107,31,.16),transparent 55%)}
-.hero .wrap{z-index:1}
-.band{position:relative;min-height:440px;overflow:hidden;display:flex;align-items:flex-end;border-top:1px solid var(--line)}
-.band img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 62%;filter:brightness(.72) saturate(.9)}
-.band:before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(0deg,var(--bg) 0,transparent 38%),linear-gradient(180deg,var(--bg) 0,transparent 24%),linear-gradient(90deg,rgba(255,107,31,.2),transparent 60%)}
-.band .wrap{position:relative;z-index:2;padding-top:220px;padding-bottom:48px}
-.band h2{font-size:clamp(34px,5.5vw,56px);max-width:12em;margin-bottom:12px}
-.contact{position:relative;overflow:hidden}
-.contact .wrap{position:relative;z-index:1}
-.contact-img{position:absolute;top:0;right:0;width:64%;height:100%;object-fit:cover;object-position:60% 50%;filter:brightness(.55) saturate(.75);-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 60%);mask-image:linear-gradient(90deg,transparent 0,#000 60%)}
-@media(max-width:700px){.contact-img{width:100%;opacity:.3;-webkit-mask-image:none;mask-image:none}}
-.adminbar{background:var(--accent);color:var(--accent-ink);display:flex;flex-wrap:wrap;gap:6px 18px;justify-content:center;align-items:center;padding:8px 16px;font-size:14px;font-weight:500;position:relative;z-index:3}
-.adminbar .x{color:var(--accent-ink);font-weight:700;padding:0}
-.bento{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
-.tile{position:relative;height:84px;outline:0}
-.tc{position:absolute;top:0;left:0;right:0;min-height:100%;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px 16px;display:grid;grid-template-columns:auto 1fr;column-gap:14px;align-items:center;align-content:center;cursor:pointer;transform-origin:50% 0;transition:border-color .2s,box-shadow .25s,transform .25s}
-.tile:hover,.tile:focus-within,.tile.open{z-index:5}
-.tile:hover .tc,.tile:focus-within .tc,.tile.open .tc{border-color:var(--accent);box-shadow:0 18px 40px rgba(0,0,0,.6);transform:scale(1.07)}
-.tile:focus-visible .tc{outline:3px solid var(--accent);outline-offset:2px}
-.tc .vis svg{display:block;height:42px;width:auto}
-.tc b{font-size:16px;font-weight:500;line-height:1.2}
-.more{grid-column:1/-1;display:grid;grid-template-rows:0fr;transition:grid-template-rows .25s ease}
-.more>div{overflow:hidden;min-height:0}
-.more p{margin:10px 0 2px;color:var(--mute);font-size:15px;line-height:1.45}
-.tile:hover .more,.tile:focus-within .more,.tile.open .more{grid-template-rows:1fr}
-.live.sm{display:flex;align-items:center;gap:10px;height:42px}
-.live.sm b{font-size:24px;font-weight:300;line-height:1}
-.pill{display:inline-flex;align-items:center;gap:6px;background:var(--accent);color:var(--accent-ink);font-weight:700;font-size:12px;padding:3px 10px;border-radius:999px}
-.pill i{width:7px;height:7px;border-radius:50%;background:var(--accent-ink)}
-@media(max-width:700px){.bento{grid-template-columns:repeat(2,1fr)}.tile{height:96px}}
-@media(max-width:460px){.bento{grid-template-columns:1fr}.tile{height:84px}}
-@media(prefers-reduced-motion:no-preference){.rec,.pill i{animation:blink 1.4s ease-in-out infinite}@keyframes blink{50%{opacity:.25}}}
-.chips{display:flex;flex-wrap:wrap;gap:10px;margin:22px 0 28px}
-.chip{border:1.5px solid var(--accent);border-radius:999px;padding:6px 16px;font-size:16px;font-weight:500}
-.plans{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:22px}
-.plan{border-top:2px solid var(--accent);padding-top:14px}
-.plan b{font-size:19px;font-weight:500;display:block;margin-bottom:4px}
-.plan p{margin:0;color:var(--mute);font-size:16px}
-.sports{display:flex;flex-wrap:wrap;gap:12px;margin:18px 0 4px}
-.sp{display:flex;align-items:center;gap:10px;background:var(--panel);border-radius:999px;padding:8px 22px 8px 10px;font-weight:500;font-size:18px}
-.sp svg{width:40px;height:40px;color:var(--accent);fill:none;stroke:currentColor;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round;flex:none}
-.mos{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 4px}
-.mo{font:inherit;font-size:16px;font-weight:500;text-transform:capitalize;background:var(--panel);color:var(--ink);border:1.5px solid #33373a;border-radius:999px;padding:8px 18px;cursor:pointer}
-.mo:hover{border-color:var(--accent)}
-.mo.on{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
-.wks{margin:6px 0 2px}
-.wks .mo{font-size:14px;padding:6px 14px;border-radius:6px}
-.fh{font-size:20px;font-weight:500;color:var(--accent);margin:20px 0 8px}
-@media(max-width:700px){.hero-img{width:100%;opacity:.38;-webkit-mask-image:none;mask-image:none}.hero>svg{display:none}}
-.hero .wrap{position:relative;padding-top:96px;padding-bottom:110px}
-.hero h1{font-size:clamp(46px,9vw,100px);max-width:10em}
-.hero p{max-width:30em;font-size:21px;margin:24px 0 32px;color:#d3d6d8}
-.btn{display:inline-block;background:var(--accent);color:var(--accent-ink);font:500 17px Figtree,sans-serif;padding:13px 24px;border:0;border-radius:6px;text-decoration:none;cursor:pointer}
-.btn.alt{background:transparent;color:var(--ink);border:1.5px solid #5b6064;margin-left:10px}
-.btn.sm{padding:8px 15px;font-size:15px}
-section.blk{padding:68px 0;border-top:1px solid var(--line)}
-section.blk h2{font-size:clamp(34px,5.5vw,56px);margin-bottom:20px}
-.lead{max-width:38em;color:#cfd2d4}
-.formats{display:flex;flex-wrap:wrap;gap:12px;margin:26px 0 10px}
-.fmt{border:1.5px solid var(--accent);color:var(--accent);padding:12px 22px;border-radius:6px;font-size:38px;font-weight:400;min-width:100px;text-align:center}
-.fmt small{display:block;font-size:13px;font-weight:300;color:var(--mute)}
-.list{display:grid;gap:8px;margin-top:26px}
-.item{background:var(--panel);border-left:3px solid var(--accent);padding:16px 20px}
-.item b{display:block;font-weight:500;font-size:19px}
-.item span{color:var(--mute);font-size:16px}
-.aud{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-top:26px}
-.aud div{background:var(--panel);border-radius:10px;padding:90px 20px 20px;font-weight:500;font-size:21px;line-height:1.2}
-.aud div:after{content:"";display:block;width:56px;height:3px;background:var(--accent);margin-top:14px}
-.gal{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:12px;margin-top:36px}
-.gal img{width:100%;height:100%;object-fit:cover;border-radius:10px;display:block;aspect-ratio:16/9;background:var(--panel)}
-.gal img:first-child{grid-column:1/-1;aspect-ratio:2/1}
-.contact{text-align:left;background:radial-gradient(700px 300px at 20% 0,rgba(255,107,31,.18),transparent 70%)}
-.contact h2{font-size:clamp(44px,8vw,88px)}
-.contact a.ig{display:inline-flex;align-items:center;gap:12px;margin-top:26px;font-size:clamp(20px,4vw,26px);text-decoration:none}
-.contact a.ig svg{width:34px;height:34px;color:var(--accent);fill:none;stroke:currentColor;stroke-width:2;flex:none}
-.contact a.mail{display:inline-block;font-size:clamp(20px,4vw,30px);margin-top:18px;border-bottom:2px solid var(--accent);text-decoration:none}
-footer{padding:26px 0 44px;color:var(--mute);font-size:14px}
-.page{padding:48px 0 80px}
-.page h1{font-size:clamp(40px,7vw,68px);margin-bottom:10px}
-.sub{color:var(--mute);margin:0 0 26px}
-.tgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px}
-.tcard{display:block;text-decoration:none;background:var(--panel);border-left:3px solid var(--accent);border-radius:4px;padding:20px 22px}
-.tcard:hover{background:#1a1d20}
-.tcard h3{font-size:28px;font-weight:500;margin-bottom:4px}
-.tcard span{color:var(--mute);font-size:15px;display:block}
-.date{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;margin:36px 0 12px;border-bottom:1px solid var(--line);padding-bottom:8px}
-.date h2{font-size:30px;font-weight:500;text-transform:capitalize}.date span{color:var(--mute);font-size:15px}
-.match{display:grid;grid-template-columns:64px 1fr auto;gap:14px;align-items:center;background:var(--panel);border-radius:6px;padding:14px 18px;margin-bottom:8px}
-.match .t{font-size:24px;font-weight:500;color:var(--accent)}
-.match.th{grid-template-columns:168px 64px 1fr auto}
-.thumb{display:block;border-radius:6px;overflow:hidden;aspect-ratio:16/9;background:#0f1113}
-.thumb img{display:block;width:100%;height:100%;object-fit:cover;transition:transform .25s}
-.thumb:hover img{transform:scale(1.05)}
-@media(max-width:560px){.match.th{grid-template-columns:56px 1fr}.match.th .thumb{grid-column:1/-1}}
-.match .tm{font-weight:500;font-size:19px}.match .meta{color:var(--mute);font-size:14px}
-.tag{display:inline-block;font-size:12px;font-weight:500;border:1px solid #3a3e42;border-radius:3px;padding:0 7px;margin-right:5px}
-.soon{color:var(--mute);font-size:14px}
-input,select{font:inherit;font-size:16px;padding:10px 12px;border:1px solid #33373a;border-radius:6px;background:#0f1113;color:var(--ink);min-width:0}
-.bar{display:flex;margin-bottom:6px}.bar input{flex:1}
-.admin{background:var(--panel);border:1.5px dashed var(--accent);border-radius:8px;padding:18px;margin:0 0 28px}
-.admin h3{font-size:24px;font-weight:500;margin-bottom:12px}
-.admin form{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}
-.x{background:none;border:0;color:var(--mute);cursor:pointer;font:inherit;font-size:14px;text-decoration:underline;padding:6px 0}
-.empty{padding:30px;border:1px dashed #3a3e42;border-radius:8px;color:var(--mute)}
-.back{display:inline-block;margin-bottom:16px;color:var(--mute)}
-@media(max-width:560px){.match{grid-template-columns:56px 1fr}.match .go{grid-column:1/-1}nav a{margin-left:14px}.btn.alt{margin:10px 0 0}}
-@media(prefers-reduced-motion:reduce){.hero-img{display:none}}
-@media(prefers-reduced-motion:no-preference){.hero h1{animation:rise .8s ease-out both}@keyframes rise{from{opacity:0;transform:translateY(14px)}}}
+:root{
+  --bg:#0A0B0C;
+  --surface:#111315;
+  --surface-2:#16191B;
+  --line:rgba(255,255,255,.08);
+  --line-2:rgba(255,255,255,.14);
+  --text:#F2F3F4;
+  --muted:#9AA0A4;
+  --faint:#5E6468;
+  --orange:#FF6B1F;
+  --orange-ink:#1A0B02;
+  --pitch:rgba(255,255,255,.16);
+  --radius:16px;
+  --sans:"Figtree",system-ui,sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,monospace;
+  --wrap:1120px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased}
+img,video,svg{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button,input,select{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--orange);outline-offset:3px;border-radius:6px}
+.wrap{max-width:var(--wrap);margin:0 auto;padding:0 24px}
+.mono{font-family:var(--mono);font-size:12px;letter-spacing:.02em}
+
+/* ---------- Buttons ---------- */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:44px;padding:0 18px;border-radius:10px;font-weight:500;font-size:15px;cursor:pointer;border:1px solid transparent;transition:background .2s,border-color .2s,transform .2s}
+.btn-primary{background:var(--orange);color:var(--orange-ink)}
+.btn-primary:hover{background:#FF7D3A}
+.btn-ghost{border-color:var(--line-2);color:var(--text)}
+.btn-ghost:hover{border-color:rgba(255,255,255,.3);background:rgba(255,255,255,.03)}
+.btn-sm{height:36px;padding:0 14px;font-size:14px;border-radius:8px}
+
+/* ---------- Nav ---------- */
+.nav{position:sticky;top:0;z-index:50;background:rgba(10,11,12,.72);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;height:64px}
+.logo{display:flex;align-items:center;gap:8px;font-weight:500;font-size:20px;letter-spacing:-.02em}
+.nav-links{display:flex;gap:28px;font-size:14px;color:var(--muted)}
+.nav-links a:hover{color:var(--text)}
+.nav-cta{display:flex;gap:8px}
+@media (max-width:760px){.nav-links{display:none}}
+@media (max-width:420px){.nav-cta .btn-primary{display:none}}
+
+/* ---------- Section scaffolding ---------- */
+section{padding:120px 0}
+.sec-head{max-width:640px;margin-bottom:56px}
+.sec-head.center{margin-left:auto;margin-right:auto;text-align:center}
+.eyebrow{display:inline-block;font-family:var(--mono);font-size:12px;color:var(--orange);margin-bottom:16px;letter-spacing:.04em;text-transform:uppercase}
+h1,h2,h3{font-weight:500;letter-spacing:-.035em;line-height:1.05}
+h2{font-size:clamp(32px,4.4vw,52px)}
+h3{font-size:19px;letter-spacing:-.015em;line-height:1.25}
+.lead{color:var(--muted);font-size:18px;margin-top:18px}
+@media (max-width:760px){section{padding:80px 0}.sec-head{margin-bottom:40px}}
+
+/* ---------- Hero ---------- */
+.hero{padding:96px 0 0;text-align:center;position:relative;overflow:hidden}
+.hero::before{content:"";position:absolute;inset:-200px 0 auto;height:700px;background:radial-gradient(600px 300px at 50% 30%,rgba(255,107,31,.13),transparent 70%);pointer-events:none}
+.chip{display:inline-flex;align-items:center;gap:8px;height:30px;padding:0 12px;border:1px solid var(--line-2);border-radius:999px;font-size:13px;color:var(--muted);background:rgba(255,255,255,.02)}
+.chip .dot{width:6px;height:6px;border-radius:50%;background:var(--orange)}
+.hero h1{font-size:clamp(42px,7vw,84px);max-width:900px;margin:0 auto}
+.hero h1 em{font-style:normal;color:var(--orange)}
+.hero .lead{max-width:560px;margin:24px auto 0}
+.hero-ctas{display:flex;gap:10px;justify-content:center;margin-top:36px;flex-wrap:wrap}
+
+/* Viewfinder — signature */
+.viewfinder{position:relative;margin:72px auto 0;max-width:1080px;aspect-ratio:16/8.2;border-radius:20px;overflow:hidden;border:1px solid var(--line-2);box-shadow:0 40px 120px -40px rgba(255,107,31,.25),0 0 0 6px rgba(255,255,255,.02)}
+.viewfinder video,.viewfinder img{width:100%;height:100%;object-fit:cover}
+.viewfinder::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.35),transparent 25%,transparent 60%,rgba(0,0,0,.65))}
+.vf-ui{position:absolute;inset:0;z-index:2;padding:22px;display:flex;flex-direction:column;justify-content:space-between;text-align:left}
+.vf-row{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.rec{display:inline-flex;align-items:center;gap:8px;background:rgba(0,0,0,.5);backdrop-filter:blur(6px);padding:6px 10px;border-radius:8px}
+.rec i{width:8px;height:8px;border-radius:50%;background:#FF3B30;animation:blink 1.2s steps(2) infinite}
+@keyframes blink{50%{opacity:.2}}
+.vf-tag{background:rgba(0,0,0,.5);backdrop-filter:blur(6px);padding:6px 10px;border-radius:8px;color:#D6D9DB}
+.corner{position:absolute;width:26px;height:26px;border-color:rgba(255,255,255,.7);border-style:solid;z-index:2}
+.c-tl{top:62px;left:22px;border-width:2px 0 0 2px}.c-tr{top:62px;right:22px;border-width:2px 2px 0 0}
+.c-bl{bottom:96px;left:22px;border-width:0 0 2px 2px}.c-br{bottom:96px;right:22px;border-width:0 2px 2px 0}
+.score{display:inline-flex;align-items:stretch;border-radius:8px;overflow:hidden;font-family:var(--mono);font-size:13px;background:rgba(10,11,12,.8);backdrop-filter:blur(6px)}
+.score span{padding:7px 10px}
+.score .s{background:var(--orange);color:var(--orange-ink);font-weight:500}
+.score .min{color:var(--muted)}
+.timeline{position:relative;height:4px;background:rgba(255,255,255,.18);border-radius:4px;margin-top:34px}
+.timeline .fill{position:absolute;inset:0 30% 0 0;background:#fff;border-radius:4px}
+.timeline .mk{position:absolute;top:50%;width:10px;height:10px;border-radius:50%;background:var(--orange);border:2px solid #0A0B0C;transform:translate(-50%,-50%)}
+.timeline .mk b{position:absolute;bottom:14px;left:50%;transform:translateX(-50%);font:500 11px var(--mono);color:#fff;background:rgba(0,0,0,.6);padding:2px 6px;border-radius:4px;white-space:nowrap}
+.vf-pause{width:36px;height:36px;border-radius:8px;border:0;background:rgba(0,0,0,.5);backdrop-filter:blur(6px);display:grid;place-items:center;cursor:pointer}
+@media (max-width:760px){
+  .viewfinder{aspect-ratio:4/5;margin-top:48px;border-radius:14px}
+  .vf-ui{padding:14px}.corner{display:none}.vf-tag{display:none}
+  .timeline .mk b{display:none}
+}
+
+/* Proof — contador en vivo */
+.proof{padding:72px 0 0}
+.stat-card{display:flex;justify-content:space-between;align-items:flex-end;gap:32px;flex-wrap:wrap;background:var(--surface);border-radius:20px;padding:36px;position:relative;overflow:hidden}
+.stat-card::before{content:"";position:absolute;inset:0;background:radial-gradient(60% 90% at 0% 0%,rgba(255,107,31,.14),transparent 60%);pointer-events:none}
+.stat-card > *{position:relative}
+.big{display:flex;align-items:baseline;gap:14px;margin-top:14px;flex-wrap:wrap}
+.big strong{font-size:clamp(72px,10vw,120px);font-weight:500;letter-spacing:-.05em;line-height:.9;font-variant-numeric:tabular-nums}
+.delta{display:inline-flex;align-items:center;gap:6px;height:30px;padding:0 10px;border-radius:999px;background:rgba(255,107,31,.14);color:var(--orange);font:500 13px var(--mono)}
+.big-label{color:var(--text);font-size:clamp(20px,2.2vw,24px);font-weight:500;letter-spacing:-.02em}
+.leagues{display:flex;align-items:center;gap:10px;flex-wrap:wrap;justify-content:flex-end;max-width:520px}
+.leagues small{flex-basis:100%;text-align:right;font-size:13px;color:var(--faint);margin-bottom:2px}
+.leagues span{height:34px;padding:0 14px;border-radius:999px;background:var(--surface-2);display:inline-flex;align-items:center;font-size:14px;font-weight:500;color:#C9CDD0}
+@media (max-width:760px){.stat-card{padding:24px}.leagues{justify-content:flex-start}.leagues small{text-align:left}}
+/* ---------- Coverage (equal-weight columns) ---------- */
+.cover-grid{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+.cover-col{padding:32px;border-right:1px solid var(--line);display:flex;flex-direction:column;gap:20px}
+.cover-col:last-child{border-right:0}
+.cover-col .ic{width:40px;height:40px;border-radius:10px;background:var(--surface-2);border:1px solid var(--line);display:grid;place-items:center}
+.cover-col p{color:var(--muted);font-size:15px}
+.tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:auto}
+.tag{white-space:nowrap;height:32px;padding:0 12px;border-radius:8px;background:var(--surface-2);border:1px solid var(--line);display:inline-flex;align-items:center;font-size:14px}
+.tag.m{font-family:var(--mono);font-size:13px}
+@media (max-width:860px){.cover-grid{grid-template-columns:1fr}.cover-col{border-right:0;border-bottom:1px solid var(--line)}.cover-col:last-child{border-bottom:0}}
+
+/* ---------- Features bento ---------- */
+.bento{display:grid;grid-template-columns:repeat(6,1fr);gap:12px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:28px;display:flex;flex-direction:column;gap:24px;overflow:hidden;position:relative}
+.card .art{flex:1;min-height:220px;display:flex;align-items:center;justify-content:center;padding:28px;border-radius:12px;border:1px solid var(--line);overflow:hidden;
+  background:radial-gradient(120% 90% at 50% 125%,rgba(255,107,31,.18),transparent 62%),linear-gradient(180deg,#1B1E21,#141618)}
+.bento .card{padding:10px;gap:18px}
+.bento .card > div:last-child{padding:0 16px 16px}
+.bento .card:nth-child(2) .art,.bento .card:nth-child(5) .art{background:radial-gradient(110% 90% at 50% 120%,rgba(52,140,92,.22),transparent 62%),linear-gradient(180deg,#191E1B,#131715)}
+.bento .card:nth-child(3) .art,.bento .card:nth-child(6) .art{background:radial-gradient(120% 80% at 50% -20%,rgba(255,255,255,.08),transparent 60%),linear-gradient(180deg,#1A1C1F,#141618)}
+.card p{color:var(--muted);font-size:15px;margin-top:6px;max-width:44ch}
+.s4{grid-column:span 4}.s2{grid-column:span 2}.s3{grid-column:span 3}
+@media (max-width:960px){.bento{grid-template-columns:1fr 1fr}.s4,.s2,.s3{grid-column:span 1}.s4{grid-column:span 2}}
+@media (max-width:640px){.bento{grid-template-columns:1fr}.s4,.s2,.s3{grid-column:span 1}}
+
+/* Illustrations */
+.pitch-line{fill:none;stroke:var(--pitch);stroke-width:1.5}
+.track{animation:track 7s ease-in-out infinite}
+@keyframes track{0%,100%{transform:translate(0,0)}25%{transform:translate(70px,-30px)}50%{transform:translate(130px,20px)}75%{transform:translate(40px,40px)}}
+.stat-row{display:grid;grid-template-columns:36px 1fr 36px;gap:12px;align-items:center;font-family:var(--mono);font-size:13px}
+.stat-row .lbl{grid-column:1/-1;text-align:center;color:var(--muted);font-family:var(--sans);font-size:12px;margin-bottom:-6px}
+.bar{display:flex;height:6px;border-radius:6px;overflow:hidden;background:rgba(255,255,255,.08)}
+.bar i{background:var(--orange)}.bar u{background:rgba(255,255,255,.35);margin-left:auto}
+.clip{border-radius:10px;background:linear-gradient(160deg,#24412F,#13261B);aspect-ratio:16/10;position:relative;border:1px solid var(--line)}
+.clip span{position:absolute;left:8px;bottom:8px;font:500 11px var(--mono);background:rgba(0,0,0,.55);padding:2px 6px;border-radius:4px}
+.clip svg{position:absolute;inset:0;margin:auto}
+
+/* ---------- Audiences ---------- */
+.aud{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+@media (max-width:960px){.aud{grid-template-columns:1fr 1fr}}
+@media (max-width:560px){.aud{grid-template-columns:1fr}}
+.aud-ic{width:44px;height:44px;border-radius:12px;display:grid;place-items:center;background:rgba(255,107,31,.1);border:1px solid rgba(255,107,31,.2)}
+/* B — images */
+.aud-b .tile{aspect-ratio:3/4;border-radius:var(--radius);overflow:hidden;position:relative;display:flex;flex-direction:column;justify-content:flex-end;padding:22px;border:1px solid var(--line)}
+.aud-b .tile img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.aud-b .tile.photo::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(0,0,0,.82))}
+.aud-b .tile.color{background:radial-gradient(circle at 70% 25%,rgba(255,107,31,.28),transparent 55%),var(--surface-2)}
+.aud-b .tile.color::before{content:"";position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.12) 1px,transparent 1.4px);background-size:10px 10px;-webkit-mask-image:radial-gradient(circle at 70% 25%,#000,transparent 60%);mask-image:radial-gradient(circle at 70% 25%,#000,transparent 60%)}
+.aud-b .tile > div{position:relative;z-index:1}
+.aud-b .tile p{color:#C9CDD0;font-size:14px;margin-top:6px}
+.aud-b .swap{position:absolute;top:12px;right:12px;z-index:1;font:11px var(--mono);color:#fff;background:rgba(0,0,0,.5);border:1px dashed rgba(255,255,255,.4);padding:3px 7px;border-radius:6px}
+@media (max-width:560px){.aud-b .tile{aspect-ratio:4/3}}
+
+/* ---------- Steps ---------- */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid var(--line)}
+.step{padding:28px 28px 0 0}
+.step .n{font-family:var(--mono);font-size:12px;color:var(--orange)}
+.step h3{margin-top:14px}
+.step p{color:var(--muted);font-size:15px;margin-top:8px}
+@media (max-width:760px){.steps{grid-template-columns:1fr}.step{padding:24px 0;border-bottom:1px solid var(--line)}}
+
+/* ---------- Pricing builder ---------- */
+.price{display:grid;grid-template-columns:1fr;gap:12px;max-width:760px}
+.plan{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+.plan-base{padding:28px;border-bottom:1px solid var(--line)}
+.plan-top{display:flex;justify-content:space-between;align-items:flex-start;gap:16px}
+.badge{font:500 11px var(--mono);text-transform:uppercase;letter-spacing:.04em;padding:4px 8px;border-radius:6px;background:rgba(255,107,31,.12);color:var(--orange)}
+.badge.g{background:rgba(255,255,255,.06);color:var(--muted)}
+.checks{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:10px 20px;margin-top:22px;font-size:15px}
+.checks li{display:flex;gap:10px;align-items:flex-start;color:#D4D7D9}
+.checks svg{flex:none;margin-top:4px}
+@media (max-width:560px){.checks{grid-template-columns:1fr}}
+.addon{display:flex;align-items:center;gap:16px;padding:22px 28px;border-bottom:1px solid var(--line);cursor:pointer;transition:background .2s}
+.addon:last-child{border-bottom:0}
+.addon:hover{background:rgba(255,255,255,.02)}
+.addon input{position:absolute;opacity:0;pointer-events:none}
+.toggle{flex:none;width:40px;height:24px;border-radius:999px;background:rgba(255,255,255,.12);position:relative;transition:background .2s}
+.toggle::after{content:"";position:absolute;top:3px;left:3px;width:18px;height:18px;border-radius:50%;background:#fff;transition:transform .2s}
+.addon input:checked + .toggle{background:var(--orange)}
+.addon input:checked + .toggle::after{transform:translateX(16px)}
+.addon input:focus-visible + .toggle{outline:2px solid var(--orange);outline-offset:3px}
+.addon .t{flex:1}
+.addon .t p{color:var(--muted);font-size:14px;margin-top:2px}
+.summary{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:28px;position:sticky;top:88px}
+.summary h3{font-size:15px;color:var(--muted);font-weight:500}
+.sum-list{list-style:none;margin:16px 0 24px;display:flex;flex-direction:column;gap:10px}
+.sum-list li{display:flex;justify-content:space-between;font-size:15px;padding-bottom:10px;border-bottom:1px dashed var(--line)}
+.sum-list li span:last-child{color:var(--muted);font-family:var(--mono);font-size:12px}
+.adapts{display:flex;flex-direction:column;gap:12px;margin:0 0 24px;padding:16px;border-radius:12px;background:var(--surface-2)}
+.adapts div{display:flex;gap:10px;font-size:14px;color:#D4D7D9}
+.adapts div span:first-child{color:var(--faint);font-family:var(--mono);font-size:12px;width:76px;flex:none;padding-top:2px}
+.summary .btn{width:100%}
+.note{font-size:13px;color:var(--faint);margin-top:12px;text-align:center}
+@media (max-width:900px){.price{grid-template-columns:1fr}.summary{position:static}}
+
+/* ---------- Contact ---------- */
+.contact{position:relative;border-top:1px solid var(--line)}
+.contact-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:64px;align-items:start}
+.contact-side .lead{max-width:420px}
+.direct{display:flex;gap:10px;margin-top:32px}
+.direct a{width:52px;height:52px;display:grid;place-items:center;border-radius:14px;background:var(--surface);transition:background .2s}
+.direct a:hover{background:var(--surface-2)}
+.direct small{display:block;color:var(--muted);font-size:13px}
+.form{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:28px;display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.field{display:flex;flex-direction:column;gap:8px}
+.field.full{grid-column:1/-1}
+.field label,.field legend{font-size:13px;color:var(--muted)}
+.field input,.field select{height:44px;border-radius:10px;border:1px solid var(--line-2);background:var(--bg);padding:0 12px;outline:none;transition:border-color .2s}
+.field input:focus,.field select:focus{border-color:var(--orange)}
+fieldset{border:0}
+.pick{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+.pick label{cursor:pointer}
+.pick input{position:absolute;opacity:0}
+.pick span{display:inline-flex;align-items:center;height:36px;padding:0 14px;border-radius:8px;border:1px solid var(--line-2);font:13px var(--mono);color:var(--text);transition:all .2s}
+.pick input:checked + span{background:var(--orange);border-color:var(--orange);color:var(--orange-ink)}
+.pick input:focus-visible + span{outline:2px solid var(--orange);outline-offset:2px}
+.form .btn{grid-column:1/-1;height:48px}
+.form-ok{grid-column:1/-1;display:none;padding:14px;border-radius:10px;background:rgba(255,107,31,.1);color:#FFB48A;font-size:14px}
+@media (max-width:860px){.contact-grid{grid-template-columns:1fr;gap:40px}.form{grid-template-columns:1fr}}
+
+footer{border-top:1px solid var(--line);padding:32px 0;color:var(--faint);font-size:13px}
+footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+
+/* ---------- Cards por color (sin outline) + contenedor tonal sutil ---------- */
+.bento .card{background:var(--surface);border:0;padding:10px;gap:18px}
+.bento .card > div:last-child{padding:0 16px 16px}
+.bento .card .art{border:0;border-radius:12px;position:relative;isolation:isolate;--pitch:rgba(255,255,255,.2)}
+.bento .card .art::after,.aud-b .tile.color::after{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;opacity:.14;mix-blend-mode:overlay;border-radius:inherit;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+.bento .card .art > *{position:relative;z-index:1}
+.bento .card .art{flex:none;height:300px;min-height:0}
+.bento .card .art > svg{width:100%;height:100%;max-height:100%}
+@media (max-width:960px) and (min-width:641px){.bento .card:first-child{grid-column:span 2}}
+@media (max-width:640px){.bento .card .art{height:260px}}
+.bento .card:nth-child(1) .art{background:radial-gradient(110% 120% at 15% 0%,rgba(255,107,31,.22),transparent 60%),#1A1512}
+.bento .card:nth-child(2) .art{background:linear-gradient(165deg,rgba(255,107,31,.16),transparent 65%),#171311}
+.bento .card:nth-child(3) .art{background:radial-gradient(120% 110% at 85% 0%,rgba(240,160,90,.18),transparent 60%),#181412}
+.bento .card:nth-child(4) .art{background:radial-gradient(100% 110% at 50% 115%,rgba(255,107,31,.24),transparent 62%),#171311}
+.bento .card:nth-child(5) .art{background:radial-gradient(120% 110% at 15% 100%,rgba(245,170,120,.18),transparent 60%),#181412}
+.bento .card:nth-child(6) .art{background:linear-gradient(200deg,rgba(210,100,62,.2),transparent 65%),#171311}
+.bento .art .clip{background:rgba(255,255,255,.05);border:0}
+.bento .art .tag{background:rgba(255,255,255,.06);border:0}
+/* Para quién: sin bordes, tiles de color en tonos naranja */
+.aud-b .tile{border:0}
+.aud-b .tile.color{background:radial-gradient(120% 110% at 80% 0%,#E98A4C 0%,#B24A18 35%,#4E1D0A 72%,#190C06 100%)}
+.aud-b .tile.color:nth-child(4){background:linear-gradient(200deg,#C9583A 0%,#6E2414 50%,#200C08 100%)}
+.aud-b .tile.color::before{display:none}
+.aud-b .tile.color .aud-ic{background:rgba(255,255,255,.14);border:0}
+.aud-b .tile.color .aud-ic svg{stroke:#fff}
+.aud-b .tile.color p{color:rgba(255,255,255,.78)}
+
+/* Pills (mismo estilo que las ligas) */
+.tags.pills span{height:34px;padding:0 14px;border-radius:999px;background:var(--surface-2);display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:500;color:#C9CDD0;white-space:nowrap}
+
+/* ---------- Planes (base + extras) ---------- */
+.pl-grid{display:grid;grid-template-columns:1.5fr auto 1fr 1fr;gap:12px;align-items:stretch}
+.pl-base{position:relative;isolation:isolate;overflow:hidden;border-radius:20px;padding:32px;display:flex;flex-direction:column;
+  background:radial-gradient(120% 120% at 0% 0%,#E98A4C 0%,#B24A18 34%,#4E1D0A 72%,#190C06 100%)}
+.pl-base::after{content:"";position:absolute;inset:0;z-index:-1;opacity:.2;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+.pl-top{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.pl-kicker{font:12px var(--mono);text-transform:uppercase;letter-spacing:.04em;color:rgba(255,255,255,.75)}
+.pl-inc{background:rgba(255,255,255,.16);color:#fff}
+.pl-base h3{font-size:clamp(32px,3.6vw,44px);margin-top:28px;letter-spacing:-.035em}
+.pl-sub{color:rgba(255,255,255,.8);font-size:16px;margin-top:8px}
+.pl-checks{list-style:none;display:grid;grid-template-columns:1fr;gap:12px;margin-top:28px;font-size:15px;color:#fff}
+.pl-checks li{display:flex;align-items:center;gap:10px}
+.pl-checks svg{flex:none}
+.pl-plus{align-self:center;width:40px;height:40px;border-radius:50%;background:var(--surface-2);display:grid;place-items:center;font-size:22px;color:var(--muted)}
+.pl-extra{background:var(--surface);border-radius:20px;padding:28px;display:flex;flex-direction:column;gap:20px}
+.pl-extra .pl-top{margin-bottom:auto}
+.pl-ic{width:48px;height:48px;border-radius:14px;background:rgba(255,107,31,.1);display:grid;place-items:center}
+.pl-extra h3{font-size:22px}
+.pl-extra > div:last-child{min-height:104px;margin-top:56px}
+.pl-extra p{color:var(--muted);font-size:15px;margin-top:8px}
+@media (max-width:960px){.pl-grid{grid-template-columns:1fr 1fr}.pl-base{grid-column:1/-1}.pl-plus{display:none}.pl-checks{grid-template-columns:1fr 1fr}}
+@media (max-width:600px){.pl-grid{grid-template-columns:1fr}.pl-checks{grid-template-columns:1fr}.pl-extra h3{margin-top:28px}}
+
+/* ---------- Cómo funciona (cards expandibles) ---------- */
+.steps-x{display:flex;gap:12px;height:360px;--ease:cubic-bezier(.65,0,.35,1)}
+.sx{flex:1 1 0;min-width:0;background:var(--surface);border-radius:20px;padding:28px;display:flex;flex-direction:column;justify-content:space-between;cursor:default;outline-offset:4px;position:relative;overflow:hidden;
+  transition:flex-grow .8s var(--ease),background-color .6s ease}
+.sx::before{content:"";position:absolute;inset:0;background:radial-gradient(120% 100% at 0% 0%,rgba(255,107,31,.16),transparent 60%);opacity:0;transition:opacity .8s ease;pointer-events:none}
+.sx > *{position:relative}
+.sx.on{flex-grow:2.1;background-color:var(--surface-2)}
+.sx.on::before{opacity:1}
+.sx-n{font-size:clamp(48px,5vw,72px);font-weight:500;letter-spacing:-.05em;line-height:1;color:rgba(255,255,255,.1);transition:color .6s ease}
+.sx.on .sx-n{color:var(--orange)}
+.sx-ic{width:40px;height:40px;border-radius:12px;background:rgba(255,107,31,.1);display:grid;place-items:center;margin-bottom:16px}
+.sx h3{font-size:20px;line-height:1.2;transition:font-size .8s var(--ease)}
+.sx.on h3{font-size:clamp(24px,2.6vw,32px)}
+.sx-desc{display:grid;grid-template-rows:0fr;opacity:0;transition:grid-template-rows .8s var(--ease),opacity .35s ease}
+.sx-desc > p{min-height:0;overflow:hidden;color:var(--muted);font-size:15px;max-width:40ch;padding-top:10px}
+.sx.on .sx-desc{grid-template-rows:1fr;opacity:1;transition:grid-template-rows .8s var(--ease),opacity .5s ease .3s}
+@media (max-width:860px){.steps-x{flex-direction:column;height:auto}.sx,.sx.on{flex:none;gap:40px}.sx-desc{grid-template-rows:1fr;opacity:1}.sx h3,.sx.on h3{font-size:22px}}
+
+/* ---------- Cobertura: cards naranja de alto contraste ---------- */
+.cover-grid{border:0;border-radius:0;overflow:visible;gap:12px}
+.cover-col{position:relative;isolation:isolate;overflow:hidden;border:0 !important;border-radius:20px;padding:32px;gap:20px;min-height:340px}
+.cover-col:nth-child(1){background:radial-gradient(120% 120% at 0% 0%,#F0904F 0%,#C2521B 34%,#5A210B 72%,#1A0C06 100%)}
+.cover-col:nth-child(2){background:radial-gradient(120% 120% at 100% 0%,#E8A964 0%,#B5561E 36%,#4E1D0A 74%,#190C06 100%)}
+.cover-col:nth-child(3){background:radial-gradient(130% 120% at 50% 120%,#F07A3A 0%,#A83A12 38%,#4A1A08 74%,#160B06 100%)}
+.cover-col::after{content:"";position:absolute;inset:0;z-index:-1;opacity:.2;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+.cover-col .ic{background:rgba(255,255,255,.16);border:0}
+.cover-col .ic svg,.cover-col .tags.pills svg{stroke:#fff}
+.cover-col .ic svg circle[fill]{fill:#fff}
+.cover-col h3{font-size:clamp(26px,2.6vw,32px);letter-spacing:-.03em}
+.cover-col p{margin-top:6px}
+.cover-col p{color:rgba(255,255,255,.8)}
+.cover-col .tags.pills span{background:rgba(0,0,0,.28);color:#fff;backdrop-filter:blur(4px)}
+@media (max-width:860px){.cover-col{min-height:0}}
+
+/* ---------- Ilustraciones del bento (v3) ---------- */
+.bento .card .art.art-media,.bento .card .art.art-cuts{padding:14px}
+.pano,.live-frame{position:relative;width:100%;height:100%;border-radius:8px;overflow:hidden;background:#0d0f10}
+.pano img,.live-frame video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.pano img{filter:saturate(.85) brightness(.9)}
+.pano::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(0,0,0,.7))}
+.pano-ui{position:absolute;left:14px;right:14px;bottom:12px;z-index:1;display:flex;align-items:center;gap:12px;font:500 11px var(--mono);color:#fff}
+.pano-rec{display:inline-flex;align-items:center;gap:6px}
+.pano-rec i{width:7px;height:7px;border-radius:50%;background:#FF3B30;animation:blink 1.2s steps(2) infinite}
+.pano-bar{flex:1;height:3px;border-radius:3px;background:rgba(255,255,255,.25);overflow:hidden}
+.pano-fill{height:100%;width:100%;background:#fff;transform-origin:left;animation:scrub 14s linear infinite}
+@keyframes scrub{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+.pano-tc{min-width:3ch;text-align:right}
+.cuts{position:relative;width:100%;height:100%;display:flex;flex-direction:column;justify-content:space-between;padding:10px 6px 4px}
+.curve{width:100%;height:64px;display:block}
+.playhead{position:absolute;top:6px;left:6px;width:1px;height:72px;background:#fff;opacity:.7;animation:sweep 8s linear infinite}
+@keyframes sweep{from{transform:translateX(0)}to{transform:translateX(calc(var(--w,280px)))}}
+.cut-row{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.cut{aspect-ratio:4/5;border-radius:8px;background-size:cover;position:relative;opacity:.35;filter:grayscale(.6);animation:pop 8s ease infinite}
+.cut span{position:absolute;left:6px;bottom:6px;font:500 10px var(--mono);color:#fff;background:rgba(0,0,0,.55);padding:2px 5px;border-radius:4px}
+@keyframes pop{0%{opacity:1;filter:none;transform:translateY(-3px)}6%{transform:none}70%{opacity:1;filter:none}100%{opacity:.35;filter:grayscale(.6)}}
+.net .edge{stroke-dasharray:1;stroke-dashoffset:1;stroke-linecap:round}
+.card.in .net .edge{animation:draw 1.2s cubic-bezier(.65,0,.35,1) forwards}
+@keyframes draw{to{stroke-dashoffset:0}}
+.live-chip{position:absolute;top:10px;left:10px;display:inline-flex;align-items:center;gap:6px;background:var(--orange);color:var(--orange-ink);font:500 11px var(--mono);padding:3px 8px;border-radius:5px}
+.live-chip i{width:6px;height:6px;border-radius:50%;background:var(--orange-ink);animation:blink 1.2s steps(2) infinite}
+.live-views{position:absolute;top:10px;right:10px;display:inline-flex;align-items:center;gap:6px;background:rgba(0,0,0,.55);font:500 11px var(--mono);padding:3px 8px;border-radius:5px;font-variant-numeric:tabular-nums}
+.live-score{position:absolute;left:10px;bottom:10px}
+@media (prefers-reduced-motion:reduce){.cut{opacity:1;filter:none}.net .edge{stroke-dashoffset:0}.pano-fill{transform:scaleX(.6)}}
+
+/* ---------- Cobertura: el contenido manda ---------- */
+.cover-col{display:grid !important;grid-template-columns:auto 1fr;grid-template-rows:auto 1fr;column-gap:12px;row-gap:0;align-items:center}
+.cover-col .ic{width:36px;height:36px;border-radius:10px}
+.cover-col h3{font-size:17px !important;letter-spacing:-.01em;color:rgba(255,255,255,.85);font-weight:500}
+.cover-col .tags.pills{grid-column:1/-1;align-self:end;margin-top:0;gap:10px 22px}
+.cover-col .tags.pills span{height:auto;padding:0;background:none !important;backdrop-filter:none;border-radius:0;color:#fff;font-size:clamp(30px,3.2vw,44px);font-weight:500;letter-spacing:-.035em;line-height:1.05}
+.cover-col:nth-child(1) .tags.pills{flex-wrap:wrap;gap:0}
+.cover-col:nth-child(1) .tags.pills span{gap:0}
+.cover-col:nth-child(1) .tags.pills span + span::before{content:"·";margin:0 .32em;color:rgba(255,255,255,.55)}
+.cover-col:nth-child(1) .tags.pills span,.cover-col:nth-child(2) .tags.pills span{font-size:clamp(24px,2.5vw,34px)}
+.cover-col:nth-child(2) .tags.pills{flex-direction:column;gap:6px}
+.cover-col:nth-child(3) .tags.pills{display:grid;grid-template-columns:1fr 1fr;gap:14px 18px}
+.cover-col:nth-child(3) .tags.pills span{font-size:clamp(22px,2.2vw,28px);gap:10px}
+.cover-col:nth-child(3) .tags.pills svg{width:24px;height:24px;flex:none}
+
+/* ---------- Ilustración editorial a sangre ---------- */
+.bento .card .art.art-illo{padding:0;background:#2F6139 !important}
+.bento .card .art.art-illo::after{opacity:.35;mix-blend-mode:soft-light;z-index:2}
+.illo{width:100%;height:100%;display:block}
+.illo .track{animation:track 7s ease-in-out infinite}
+.illo .lift{animation:lift 4s cubic-bezier(.45,0,.25,1) infinite}
+@keyframes lift{0%,100%{transform:translate(0,0)}50%{transform:translate(-4px,-16px)}}
+.illo .dribble{animation:dribble 6s ease-in-out infinite}
+@keyframes dribble{0%,100%{transform:translate(-50px,-10px)}30%{transform:translate(10px,15px)}60%{transform:translate(60px,-20px)}}
+.illo .edge{stroke-dasharray:1;stroke-dashoffset:1}
+.card.in .illo .edge{animation:draw 1.1s cubic-bezier(.65,0,.35,1) forwards}
+@media (prefers-reduced-motion:reduce){.illo .edge{stroke-dashoffset:0}}
+
+/* ---------- Ilustraciones línea + riso ---------- */
+.bento .card .art.art-riso{padding:0}
+.bento .card .art.art-riso::after{opacity:.32;mix-blend-mode:overlay}
+.riso{width:100%;height:100%;max-height:100%;display:block}
+.riso .track{animation:track 7s ease-in-out infinite}
+.riso .edge{stroke-dasharray:1;stroke-dashoffset:1}
+.card.in .riso .edge{animation:draw 1.1s cubic-bezier(.65,0,.35,1) forwards}
+.riso .playhead-s{animation:sweep-s 8s linear infinite}
+@keyframes sweep-s{from{transform:translateX(0)}to{transform:translateX(300px)}}
+.riso .dribble-s{animation:dribble 6s ease-in-out infinite}
+@media (prefers-reduced-motion:reduce){.riso .edge{stroke-dashoffset:0}}
+
+/* ---------- Encuadres v5 ---------- */
+.riso .playhead-c{animation:ph 3.5s linear infinite}
+@keyframes ph{from{transform:translateX(0)}to{transform:translateX(262px)}}
+.riso .shot{transform-box:fill-box;transform-origin:center;transform:scale(0)}
+.card.in .riso .shot{animation:popin .5s cubic-bezier(.3,1.4,.5,1) forwards}
+@keyframes popin{to{transform:scale(1)}}
+@media (prefers-reduced-motion:reduce){.riso .shot{transform:none}}
+
+/* Cortes: cada gol aparece cuando el cabezal pasa por su marca (loop de 10s) */
+.riso .clip-c{opacity:.28}
+.riso .clip-c.c1{animation:c1 3.5s linear infinite}
+.riso .clip-c.c2{animation:c2 3.5s linear infinite}
+.riso .clip-c.c3{animation:c3 3.5s linear infinite}
+@keyframes c1{0%,13.2%{opacity:.28}15%,96%{opacity:1}100%{opacity:.28}}
+@keyframes c2{0%,63.2%{opacity:.28}65%,96%{opacity:1}100%{opacity:.28}}
+@keyframes c3{0%,86.6%{opacity:.28}88.4%,96%{opacity:1}100%{opacity:.28}}
+.riso .fill-c{transform-box:fill-box;transform-origin:left;animation:fillc 3.5s linear infinite}
+@keyframes fillc{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+/* Análisis: hexágonos */
+.riso .hex{opacity:0;transform-box:fill-box;transform-origin:center}
+.card.in .riso .hex{animation:hexin .45s cubic-bezier(.3,1.3,.5,1) forwards}
+@keyframes hexin{from{opacity:0;transform:scale(.4)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.riso .clip-c,.riso .hex{opacity:1}}
+
+/* En vivo: los jugadores acompañan a la pelota */
+.riso .pl{animation:roam 6s ease-in-out infinite}
+@keyframes roam{0%,100%{transform:translate(0,0)}30%{transform:translate(var(--ax),var(--ay))}60%{transform:translate(var(--bx),var(--by))}}
+
+/* Reveal: carga + scroll */
+.nav{animation:navin .8s cubic-bezier(.2,.7,.2,1) both}
+@keyframes navin{from{opacity:0;transform:translateY(-12px)}}
+.rv{opacity:0}
+.rv.in{animation:rvin .9s cubic-bezier(.2,.7,.2,1) var(--d,0s) both}
+@keyframes rvin{from{opacity:0;transform:translateY(28px);filter:blur(6px)}to{opacity:1;transform:none;filter:none}}
+.rv-zoom.in{animation-name:rvzoom;animation-duration:1.2s}
+@keyframes rvzoom{from{opacity:0;transform:translateY(40px) scale(.96);filter:blur(8px)}to{opacity:1;transform:none;filter:none}}
+.eyebrow{display:inline-block}
+.sec-head.in .eyebrow{animation:rvin .7s cubic-bezier(.2,.7,.2,1) both}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .rv{opacity:1}
+  html{scroll-behavior:auto}
+}
+.tile.photo picture{display:contents}
+.nav-links a,.nav-cta .btn{white-space:nowrap}
+@media (max-width:920px){.nav-links{display:none}}   /* 6 links since Calificar y Revisar was added */
+.delta[hidden]{display:none!important}
+.f-err{font-size:13px;color:#FF8A80;min-height:0}
+.field input[aria-invalid=true]{border-color:#FF8A80}
+.form-err{grid-column:1/-1;margin:0;padding:14px;border-radius:10px;background:rgba(255,90,79,.1);color:#FFB3AD;font-size:14px}
+.form-err a{color:inherit}
+.btn[disabled]{opacity:.6;cursor:default}
 </style>
-<link rel="stylesheet" href="equipos/equipos.css">
 </head>
 <body>
-<div id="adminhost"></div>
-<header class="top"><div class="wrap">
-<button class="burger" aria-label="Abrir menú" aria-expanded="false"><span></span><span></span><span></span></button>
-<a class="logo" href="#/" aria-label="kick.ai, inicio"><svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="6.5" cy="9" r="4.5" fill="#ff6b1f"/><circle cx="6.5" cy="31" r="4.5" fill="#ff6b1f"/><path d="M33 5 17 20l16 15" fill="none" stroke="#ff6b1f" stroke-width="8.5" stroke-linecap="round" stroke-linejoin="round"/></svg>kick.ai</a>
-<div class="drawer"><a href="#/" data-r="home">Servicio</a><a href="#/torneos" data-r="torneos">Torneos</a><a href="equipos/" data-r="equipos">Equipos</a><a href="https://claude.ai/artifact/RG7pwsMTZe8Zc5FAbdBi7a" target="_blank" rel="noopener">Calificar y Revisar</a><a href="#contacto" data-r="contacto">Contacto</a></div>
-<nav><a href="#/" data-r="home">Servicio</a><a href="#/torneos" data-r="torneos">Torneos</a><a href="equipos/" data-r="equipos">Equipos</a><a href="https://claude.ai/artifact/RG7pwsMTZe8Zc5FAbdBi7a" target="_blank" rel="noopener">Calificar y Revisar</a><a href="#contacto" data-r="contacto">Contacto</a></nav>
-</div></header>
-<!-- torneos: Liga Olvos, JAG, Boston League -->
-<main id="app"></main>
-<script src="equipos/equipos.js"></script>
-<footer><div class="wrap">© kick.ai · Transformá tu torneo.</div></footer>
 
+<!-- NAV -->
+<header class="nav">
+  <div class="wrap">
+    <a href="./" class="logo" aria-label="kick.ai inicio">
+      <svg width="26" height="26" viewBox="0 0 40 40" aria-hidden="true"><circle cx="6.5" cy="9" r="4.5" fill="#FF6B1F"/><circle cx="6.5" cy="31" r="4.5" fill="#FF6B1F"/><path d="M33 5 17 20l16 15" fill="none" stroke="#FF6B1F" stroke-width="8.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      kick.ai
+    </a>
+    <nav class="nav-links" aria-label="Principal">
+      <a href="#servicio">Servicio</a>
+      <a href="#para-quien">Para quién</a>
+      <a href="#planes">Planes</a>
+      <a href="torneos.html#/torneos">Torneos</a>
+      <a href="equipos/">Equipos</a>
+      <a href="https://claude.ai/artifact/RG7pwsMTZe8Zc5FAbdBi7a" target="_blank" rel="noopener">Calificar y Revisar</a>
+    </nav>
+    <div class="nav-cta">
+      <a href="torneos.html#/torneos" class="btn btn-ghost btn-sm">Buscá tu partido</a>
+      <a href="#contacto" class="btn btn-primary btn-sm">Pedí presupuesto</a>
+    </div>
+  </div>
+</header>
+
+<main>
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap">
+    <h1 class="rv" style="--d:.05s">Cada partido de tu torneo, <em>grabado de arco a arco.</em></h1>
+    <p class="lead rv" style="--d:.2s">Video profesional de todos los partidos, para que jugadores, familias y entrenadores los vean y los compartan.</p>
+    <div class="hero-ctas rv" style="--d:.32s">
+      <a href="#contacto" class="btn btn-primary">Pedí presupuesto</a>
+      <a href="torneos.html#/torneos" class="btn btn-ghost">Buscá tu partido</a>
+    </div>
+
+    <div class="viewfinder rv rv-zoom" style="--d:.45s">
+      <video id="heroVideo" autoplay muted loop playsinline poster="video/portada.jpg" preload="metadata" aria-label="Partido amateur grabado por una cámara de kick.ai">
+        <source src="video/portada.mp4" type="video/mp4">
+      </video>
+      <span class="corner c-tl"></span><span class="corner c-tr"></span><span class="corner c-bl"></span><span class="corner c-br"></span>
+      <div class="vf-ui">
+        <div class="vf-row">
+          <span class="rec mono"><i></i>REC <span id="tc">00:47:12</span></span>
+          <span class="vf-tag mono">Liga Olivos · Cancha 2 · F8</span>
+        </div>
+        <div>
+          <div class="vf-row">
+            <span class="score"><span>LOC</span><span class="s">2 – 1</span><span>VIS</span><span class="min" id="min">47'</span></span>
+            <button class="vf-pause" id="pauseBtn" aria-label="Pausar video">
+              <svg id="pauseIc" width="14" height="14" viewBox="0 0 14 14" fill="#fff"><rect x="2" y="1" width="3.5" height="12" rx="1"/><rect x="8.5" y="1" width="3.5" height="12" rx="1"/></svg>
+            </button>
+          </div>
+          <div class="timeline" aria-hidden="true">
+            <div class="fill"></div>
+            <span class="mk" style="left:14%"><b>GOL 12'</b></span>
+            <span class="mk" style="left:38%"><b>JUGADA 34'</b></span>
+            <span class="mk" style="left:52%"><b>GOL 47'</b></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROOF -->
+<div class="proof">
+  <div class="wrap">
+    <div class="stat-card rv" id="statCard">
+      <div>
+        <p class="big-label">Partidos grabados y publicados</p>
+        <div class="big"><strong id="statTotal" data-total="0">0</strong><span class="delta"><span>↑</span><span>+<b id="statWeek" style="font-weight:500">14</b> esta semana</span></span></div>
+      </div>
+      <div class="leagues" aria-label="Torneos que graban con kick.ai">
+        <small>Graban con kick.ai</small>
+        <span>Liga Olivos</span><span>JAG</span><span>Boston League</span><span>Northchamp</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- COBERTURA -->
+<section id="cobertura">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="eyebrow">Cobertura</span>
+      <h2>Qué grabamos y dónde.</h2>
+    </div>
+    <div class="cover-grid">
+      <div class="cover-col rv">
+        <div class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FF6B1F" stroke-width="1.6"><rect x="3" y="5" width="18" height="14" rx="1.5"/><path d="M12 5v14"/><circle cx="12" cy="12" r="2.5"/></svg></div>
+        <h3>Formatos</h3>
+        <div class="tags pills"><span>F5</span><span>F7</span><span>F8</span><span>F10</span><span>F11</span></div>
+      </div>
+      <div class="cover-col rv">
+        <div class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FF6B1F" stroke-width="1.6"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg></div>
+        <h3>Zonas</h3>
+        <div class="tags pills"><span>Zona Norte</span><span>Capital Federal</span></div>
+      </div>
+      <div class="cover-col rv">
+        <div class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FF6B1F" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 3c3 3 3 15 0 18M3 12h18"/></svg></div>
+        <h3>Deportes</h3>
+        <div class="tags pills"><span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FF6B1F" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7.5l4 2.9-1.5 4.7h-5L8 10.4z"/><path d="M12 3v4.5M21 10.4l-5 0M17.5 19.5l-3-4.4M6.5 19.5l3-4.4M3 10.4l5 0"/></svg>Fútbol</span><span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FF6B1F" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3v18"/><path d="M5.6 5.6a12 12 0 0 1 0 12.8M18.4 5.6a12 12 0 0 0 0 12.8"/></svg>Básquet</span><span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FF6B1F" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3l-5.5 14a2 2 0 0 1-1.9 1.3H4.5a1.5 1.5 0 0 0 0 3h4a3 3 0 0 0 2.8-2L17 3"/><circle cx="17.5" cy="19.5" r="1.8"/></svg>Hockey</span><span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FF6B1F" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="12" rx="10" ry="6" transform="rotate(-45 12 12)"/><path d="M9 15l6-6M10.5 10.5l1.5 1.5M12 9l1.5 1.5M9 12l1.5 1.5"/></svg>Rugby</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section id="servicio" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="eyebrow">Servicio</span>
+      <h2>Más que un video: grabación, datos y transmisión.</h2>
+      <p class="lead">Todo sale de la misma cámara.</p>
+    </div>
+
+    <div class="bento">
+      <!-- 1. Grabación completa -->
+      <article class="card s2 rv">
+        <div class="art art-riso">
+          <svg class="riso" viewBox="0 0 330 300" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><g fill="none" stroke="rgba(242,237,227,.26)" stroke-width="1.2"><rect x="28" y="40" width="274" height="168" rx="2"/><line x1="165.0" y1="40" x2="165.0" y2="208"/><circle cx="165.0" cy="124.0" r="25.2"/><rect x="28" y="85.36" width="30.14" height="77.28"/><rect x="271.86" y="85.36" width="30.14" height="77.28"/></g><polygon points="165,236 28,40 302,40" fill="#FF6B1F" opacity=".2"/><circle cx="70" cy="80" r="3.2" fill="#F2EDE3" opacity="0.9"/><circle cx="105" cy="160" r="3.2" fill="#F2EDE3" opacity="0.9"/><circle cx="135" cy="98" r="3.2" fill="#F2EDE3" opacity="0.9"/><circle cx="185" cy="140" r="3.2" fill="#F2EDE3" opacity="0.9"/><circle cx="210" cy="72" r="3.2" fill="#F2EDE3" opacity="0.9"/><circle cx="240" cy="180" r="3.2" fill="#F2EDE3" opacity="0.9"/><circle cx="270" cy="108" r="3.2" fill="#F2EDE3" opacity="0.9"/><circle cx="55" cy="130" r="3.2" fill="#F2EDE3" opacity="0.9"/><circle cx="162" cy="186" r="3.2" fill="#F2EDE3" opacity="0.9"/><circle cx="100" cy="60" r="3.2" fill="#F2EDE3" opacity="0.9"/><circle cx="176" cy="116" r="3.4" fill="#FF6B1F"/><path d="M136 228 A40 40 0 0 1 194 228" fill="none" stroke="rgba(242,237,227,.5)" stroke-width="1"/><rect x="153" y="228" width="24" height="16" rx="4" fill="#16191B" stroke="#FF6B1F" stroke-width="1.4"/><circle cx="165" cy="236" r="4" fill="none" stroke="#FF6B1F" stroke-width="1.4"/><circle class="blink" cx="184" cy="231" r="2.4" fill="#FF3B30"/><line x1="28" y1="268" x2="302" y2="268" stroke="#F2EDE3" stroke-width="1.6"/><line x1="28" y1="264" x2="28" y2="272" stroke="#F2EDE3" stroke-width="1.2"/><line x1="165" y1="264" x2="165" y2="272" stroke="#F2EDE3" stroke-width="1.2"/><line x1="302" y1="264" x2="302" y2="272" stroke="#F2EDE3" stroke-width="1.2"/></svg>
+        </div>
+        <div><h3>Grabación completa</h3><p>La cancha entera, del pitazo inicial al final, sin cortes.</p></div>
+      </article>
+
+      <!-- 2. Seguimiento IA -->
+      <article class="card s2 rv">
+        <div class="art art-riso">
+          <svg class="riso" viewBox="0 0 330 300" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><g fill="none" stroke="rgba(242,237,227,.26)" stroke-width="1.4"><line x1="200" y1="-10" x2="200" y2="310"/><circle cx="200" cy="150" r="78"/><circle cx="200" cy="150" r="3" fill="rgba(242,237,227,.26)"/><rect x="-40" y="70" width="70" height="160"/></g><circle cx="60" cy="90" r="5" fill="#F2EDE3" opacity="0.75"/><circle cx="130" cy="250" r="5" fill="#F2EDE3" opacity="0.75"/><circle cx="250" cy="60" r="5" fill="#F2EDE3" opacity="0.75"/><circle cx="300" cy="140" r="5" fill="#F2EDE3" opacity="0.75"/><circle cx="280" cy="250" r="5" fill="#F2EDE3" opacity="0.75"/><circle cx="170" cy="190" r="5" fill="#F2EDE3" opacity="0.75"/><circle cx="40" cy="200" r="5" fill="#F2EDE3" opacity="0.75"/><g class="track"><line x1="90" y1="0" x2="90" y2="138" stroke="#FF6B1F" stroke-width=".8" stroke-dasharray="2 4" opacity=".55"/><line x1="0" y1="170" x2="58" y2="170" stroke="#FF6B1F" stroke-width=".8" stroke-dasharray="2 4" opacity=".55"/><circle cx="90" cy="170" r="30" fill="#FF6B1F" opacity=".12"/><circle cx="90" cy="170" r="6" fill="#FF6B1F"/><g fill="none" stroke="#FF6B1F" stroke-width="2.6" stroke-linecap="round"><path d="M62 154v-12h12"/><path d="M106 142h12v12"/><path d="M118 186v12h-12"/><path d="M74 198H62v-12"/></g></g></svg>
+        </div>
+        <div><h3>Seguimiento con IA</h3><p>La cámara sigue la jugada sola, sin camarógrafo.</p></div>
+      </article>
+
+      <!-- 3. Cortes automáticos -->
+      <article class="card s2 rv">
+        <div class="art art-riso">
+          <svg class="riso" viewBox="0 0 330 300" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="330" height="300" fill="#15120F"/><g class="clip-c c1"><rect x="18" y="96" width="90" height="84" rx="8" fill="#1F1A16" stroke="rgba(242,237,227,.26)" stroke-width="1"/><rect x="24" y="102" width="78" height="52" rx="4" fill="#2A221C"/><g fill="none" stroke="rgba(242,237,227,.5)" stroke-width="1"><rect x="78" y="114" width="18" height="28"/></g><circle cx="46" cy="128" r="3.2" fill="#FF6B1F"/><path d="M36 136 Q58 116 82 128" fill="none" stroke="#F2EDE3" stroke-width="1" stroke-dasharray="2 3" opacity=".6"/><text x="26" y="172" font-family="JetBrains Mono" font-size="10" font-weight="500" fill="#F2EDE3" text-anchor="start">GOL 1</text></g><g class="clip-c c2"><rect x="119" y="96" width="90" height="84" rx="8" fill="#1F1A16" stroke="rgba(242,237,227,.26)" stroke-width="1"/><rect x="125" y="102" width="78" height="52" rx="4" fill="#2A221C"/><g fill="none" stroke="rgba(242,237,227,.5)" stroke-width="1"><rect x="179" y="114" width="18" height="28"/></g><circle cx="153" cy="128" r="3.2" fill="#FF6B1F"/><path d="M137 136 Q159 116 183 128" fill="none" stroke="#F2EDE3" stroke-width="1" stroke-dasharray="2 3" opacity=".6"/><text x="127" y="172" font-family="JetBrains Mono" font-size="10" font-weight="500" fill="#F2EDE3" text-anchor="start">GOL 2</text></g><g class="clip-c c3"><rect x="220" y="96" width="90" height="84" rx="8" fill="#1F1A16" stroke="rgba(242,237,227,.26)" stroke-width="1"/><rect x="226" y="102" width="78" height="52" rx="4" fill="#2A221C"/><g fill="none" stroke="rgba(242,237,227,.5)" stroke-width="1"><rect x="280" y="114" width="18" height="28"/></g><circle cx="260" cy="128" r="3.2" fill="#FF6B1F"/><path d="M238 136 Q260 116 284 128" fill="none" stroke="#F2EDE3" stroke-width="1" stroke-dasharray="2 3" opacity=".6"/><text x="228" y="172" font-family="JetBrains Mono" font-size="10" font-weight="500" fill="#F2EDE3" text-anchor="start">GOL 3</text></g><path d="M18 225 l12 7 l-12 7z" fill="#F2EDE3"/><rect x="44" y="229" width="262" height="6" rx="3" fill="rgba(242,237,227,.18)"/><rect class="fill-c" x="44" y="229" width="262" height="6" rx="3" fill="rgba(242,237,227,.5)"/><rect x="71.9" y="225" width="14" height="14" rx="3.5" fill="#FF6B1F"/><rect x="202.9" y="225" width="14" height="14" rx="3.5" fill="#FF6B1F"/><rect x="264.1" y="225" width="14" height="14" rx="3.5" fill="#FF6B1F"/><g class="playhead-c"><circle cx="44" cy="232" r="7" fill="#F2EDE3"/></g></svg>
+        </div>
+        <div><h3>Cortes automáticos</h3><p>Goles y jugadas clave, cortados solos.</p></div>
+      </article>
+
+      <!-- 4. Análisis de datos -->
+      <article class="card s3 rv">
+        <div class="art art-riso">
+          <svg class="riso" viewBox="0 0 510 300" preserveAspectRatio="xMidYMid meet" aria-hidden="true"><g fill="none" stroke="rgba(242,237,227,.5)" stroke-width="1.3"><rect x="35" y="30" width="440" height="240" rx="2"/><line x1="255.0" y1="30" x2="255.0" y2="270"/><circle cx="255.0" cy="150.0" r="36.0"/><rect x="35" y="94.8" width="48.4" height="110.4"/><rect x="426.6" y="94.8" width="48.4" height="110.4"/></g><polygon class="hex" points="123.3,217.8 116.7,221.6 110.0,217.8 110.0,210.1 116.7,206.2 123.3,210.1" fill="#FF6B1F" fill-opacity="0.85" stroke="#15120F" stroke-width=".8" style="animation-delay:0.00s"/><polygon class="hex" points="172.8,184.3 165.9,188.2 159.1,184.3 159.1,176.4 165.9,172.5 172.8,176.4" fill="#FF6B1F" fill-opacity="0.85" stroke="#15120F" stroke-width=".8" style="animation-delay:0.01s"/><polygon class="hex" points="173.5,177.9 166.3,182.1 159.1,177.9 159.1,169.6 166.3,165.4 173.5,169.6" fill="#FF6B1F" fill-opacity="0.80" stroke="#15120F" stroke-width=".8" style="animation-delay:0.02s"/><polygon class="hex" points="198.2,197.5 192.1,201.1 185.9,197.5 185.9,190.4 192.1,186.9 198.2,190.4" fill="#FF6B1F" fill-opacity="0.89" stroke="#15120F" stroke-width=".8" style="animation-delay:0.04s"/><polygon class="hex" points="206.8,228.7 200.9,232.1 195.0,228.7 195.0,221.9 200.9,218.4 206.8,221.9" fill="#FF6B1F" fill-opacity="0.93" stroke="#15120F" stroke-width=".8" style="animation-delay:0.05s"/><polygon class="hex" points="213.9,217.5 207.5,221.2 201.1,217.5 201.1,210.1 207.5,206.4 213.9,210.1" fill="#8C8F92" fill-opacity="0.53" stroke="#15120F" stroke-width=".8" style="animation-delay:0.06s"/><polygon class="hex" points="220.0,220.7 213.2,224.6 206.4,220.7 206.4,212.8 213.2,208.9 220.0,212.8" fill="#FF6B1F" fill-opacity="0.79" stroke="#15120F" stroke-width=".8" style="animation-delay:0.07s"/><polygon class="hex" points="229.0,140.3 222.0,144.3 215.0,140.3 215.0,132.2 222.0,128.1 229.0,132.2" fill="#FF6B1F" fill-opacity="0.93" stroke="#15120F" stroke-width=".8" style="animation-delay:0.08s"/><polygon class="hex" points="234.7,215.1 228.4,218.8 222.1,215.1 222.1,207.9 228.4,204.2 234.7,207.9" fill="#8C8F92" fill-opacity="0.47" stroke="#15120F" stroke-width=".8" style="animation-delay:0.10s"/><polygon class="hex" points="237.6,201.7 231.7,205.0 225.8,201.7 225.8,194.9 231.7,191.5 237.6,194.9" fill="#FF6B1F" fill-opacity="0.85" stroke="#15120F" stroke-width=".8" style="animation-delay:0.11s"/><polygon class="hex" points="239.9,166.9 232.8,171.0 225.7,166.9 225.7,158.7 232.8,154.6 239.9,158.7" fill="#8C8F92" fill-opacity="0.49" stroke="#15120F" stroke-width=".8" style="animation-delay:0.12s"/><polygon class="hex" points="238.9,188.4 232.8,191.9 226.7,188.4 226.7,181.4 232.8,177.8 238.9,181.4" fill="#8C8F92" fill-opacity="0.38" stroke="#15120F" stroke-width=".8" style="animation-delay:0.13s"/><polygon class="hex" points="249.8,146.5 243.7,150.0 237.6,146.5 237.6,139.4 243.7,135.9 249.8,139.4" fill="#FF6B1F" fill-opacity="0.79" stroke="#15120F" stroke-width=".8" style="animation-delay:0.14s"/><polygon class="hex" points="262.8,198.4 256.1,202.3 249.4,198.4 249.4,190.7 256.1,186.8 262.8,190.7" fill="#FF6B1F" fill-opacity="0.85" stroke="#15120F" stroke-width=".8" style="animation-delay:0.16s"/><polygon class="hex" points="266.5,223.7 259.4,227.8 252.3,223.7 252.3,215.6 259.4,211.5 266.5,215.6" fill="#FF6B1F" fill-opacity="0.95" stroke="#15120F" stroke-width=".8" style="animation-delay:0.17s"/><polygon class="hex" points="275.3,242.0 269.6,245.3 263.8,242.0 263.8,235.4 269.6,232.0 275.3,235.4" fill="#FF6B1F" fill-opacity="0.76" stroke="#15120F" stroke-width=".8" style="animation-delay:0.18s"/><polygon class="hex" points="277.9,260.7 272.2,263.9 266.5,260.7 266.5,254.1 272.2,250.8 277.9,254.1" fill="#8C8F92" fill-opacity="0.49" stroke="#15120F" stroke-width=".8" style="animation-delay:0.19s"/><polygon class="hex" points="296.4,206.2 290.3,209.7 284.1,206.2 284.1,199.0 290.3,195.5 296.4,199.0" fill="#FF6B1F" fill-opacity="0.91" stroke="#15120F" stroke-width=".8" style="animation-delay:0.20s"/><polygon class="hex" points="299.8,149.8 294.0,153.2 288.1,149.8 288.1,143.0 294.0,139.6 299.8,143.0" fill="#FF6B1F" fill-opacity="0.84" stroke="#15120F" stroke-width=".8" style="animation-delay:0.22s"/><polygon class="hex" points="302.6,236.1 295.5,240.1 288.5,236.1 288.5,227.9 295.5,223.8 302.6,227.9" fill="#FF6B1F" fill-opacity="0.80" stroke="#15120F" stroke-width=".8" style="animation-delay:0.23s"/><polygon class="hex" points="303.4,236.5 297.7,239.8 292.0,236.5 292.0,229.9 297.7,226.7 303.4,229.9" fill="#FF6B1F" fill-opacity="0.88" stroke="#15120F" stroke-width=".8" style="animation-delay:0.24s"/><polygon class="hex" points="306.8,240.3 300.1,244.1 293.4,240.3 293.4,232.5 300.1,228.6 306.8,232.5" fill="#FF6B1F" fill-opacity="0.88" stroke="#15120F" stroke-width=".8" style="animation-delay:0.25s"/><polygon class="hex" points="308.0,198.4 300.7,202.6 293.4,198.4 293.4,190.0 300.7,185.7 308.0,190.0" fill="#8C8F92" fill-opacity="0.49" stroke="#15120F" stroke-width=".8" style="animation-delay:0.26s"/><polygon class="hex" points="308.7,189.8 302.3,193.5 295.8,189.8 295.8,182.3 302.3,178.6 308.7,182.3" fill="#FF6B1F" fill-opacity="0.79" stroke="#15120F" stroke-width=".8" style="animation-delay:0.28s"/><polygon class="hex" points="308.8,251.4 302.4,255.1 295.9,251.4 295.9,244.0 302.4,240.2 308.8,244.0" fill="#FF6B1F" fill-opacity="0.89" stroke="#15120F" stroke-width=".8" style="animation-delay:0.29s"/><polygon class="hex" points="310.4,103.1 304.3,106.6 298.2,103.1 298.2,96.1 304.3,92.5 310.4,96.1" fill="#FF6B1F" fill-opacity="0.82" stroke="#15120F" stroke-width=".8" style="animation-delay:0.30s"/><polygon class="hex" points="311.6,215.6 305.1,219.4 298.5,215.6 298.5,208.1 305.1,204.3 311.6,208.1" fill="#8C8F92" fill-opacity="0.47" stroke="#15120F" stroke-width=".8" style="animation-delay:0.31s"/><polygon class="hex" points="313.4,241.7 307.1,245.3 300.8,241.7 300.8,234.4 307.1,230.8 313.4,234.4" fill="#8C8F92" fill-opacity="0.51" stroke="#15120F" stroke-width=".8" style="animation-delay:0.32s"/><polygon class="hex" points="313.1,219.8 307.3,223.1 301.5,219.8 301.5,213.1 307.3,209.8 313.1,213.1" fill="#8C8F92" fill-opacity="0.54" stroke="#15120F" stroke-width=".8" style="animation-delay:0.34s"/><polygon class="hex" points="313.2,241.7 307.3,245.1 301.5,241.7 301.5,235.0 307.3,231.6 313.2,235.0" fill="#8C8F92" fill-opacity="0.44" stroke="#15120F" stroke-width=".8" style="animation-delay:0.35s"/><polygon class="hex" points="316.7,238.6 309.5,242.8 302.3,238.6 302.3,230.3 309.5,226.1 316.7,230.3" fill="#8C8F92" fill-opacity="0.43" stroke="#15120F" stroke-width=".8" style="animation-delay:0.36s"/><polygon class="hex" points="316.9,245.7 309.8,249.8 302.6,245.7 302.6,237.4 309.8,233.3 316.9,237.4" fill="#FF6B1F" fill-opacity="0.91" stroke="#15120F" stroke-width=".8" style="animation-delay:0.37s"/><polygon class="hex" points="318.6,218.8 312.2,222.5 305.8,218.8 305.8,211.3 312.2,207.6 318.6,211.3" fill="#8C8F92" fill-opacity="0.48" stroke="#15120F" stroke-width=".8" style="animation-delay:0.38s"/><polygon class="hex" points="319.6,160.6 312.8,164.5 305.9,160.6 305.9,152.6 312.8,148.6 319.6,152.6" fill="#FF6B1F" fill-opacity="0.91" stroke="#15120F" stroke-width=".8" style="animation-delay:0.40s"/><polygon class="hex" points="321.6,214.5 314.7,218.5 307.8,214.5 307.8,206.6 314.7,202.6 321.6,206.6" fill="#8C8F92" fill-opacity="0.39" stroke="#15120F" stroke-width=".8" style="animation-delay:0.41s"/><polygon class="hex" points="326.2,217.5 318.9,221.8 311.5,217.5 311.5,209.1 318.9,204.8 326.2,209.1" fill="#8C8F92" fill-opacity="0.55" stroke="#15120F" stroke-width=".8" style="animation-delay:0.42s"/><polygon class="hex" points="326.2,103.2 319.2,107.3 312.2,103.2 312.2,95.1 319.2,91.1 326.2,95.1" fill="#FF6B1F" fill-opacity="0.81" stroke="#15120F" stroke-width=".8" style="animation-delay:0.43s"/><polygon class="hex" points="330.7,254.3 323.6,258.4 316.5,254.3 316.5,246.1 323.6,242.0 330.7,246.1" fill="#8C8F92" fill-opacity="0.42" stroke="#15120F" stroke-width=".8" style="animation-delay:0.44s"/><polygon class="hex" points="330.1,228.5 323.7,232.2 317.3,228.5 317.3,221.1 323.7,217.4 330.1,221.1" fill="#FF6B1F" fill-opacity="0.86" stroke="#15120F" stroke-width=".8" style="animation-delay:0.46s"/><polygon class="hex" points="330.5,185.1 324.1,188.9 317.6,185.1 317.6,177.6 324.1,173.9 330.5,177.6" fill="#8C8F92" fill-opacity="0.36" stroke="#15120F" stroke-width=".8" style="animation-delay:0.47s"/><polygon class="hex" points="334.3,198.7 328.5,202.0 322.8,198.7 322.8,192.1 328.5,188.8 334.3,192.1" fill="#8C8F92" fill-opacity="0.51" stroke="#15120F" stroke-width=".8" style="animation-delay:0.48s"/><polygon class="hex" points="337.3,240.8 331.1,244.3 324.9,240.8 324.9,233.6 331.1,230.0 337.3,233.6" fill="#FF6B1F" fill-opacity="0.91" stroke="#15120F" stroke-width=".8" style="animation-delay:0.49s"/><polygon class="hex" points="340.8,211.2 335.0,214.6 329.1,211.2 329.1,204.4 335.0,201.0 340.8,204.4" fill="#FF6B1F" fill-opacity="0.85" stroke="#15120F" stroke-width=".8" style="animation-delay:0.50s"/><polygon class="hex" points="343.3,77.5 336.2,81.5 329.1,77.5 329.1,69.3 336.2,65.2 343.3,69.3" fill="#8C8F92" fill-opacity="0.49" stroke="#15120F" stroke-width=".8" style="animation-delay:0.52s"/><polygon class="hex" points="345.6,246.6 339.1,250.3 332.6,246.6 332.6,239.1 339.1,235.4 345.6,239.1" fill="#8C8F92" fill-opacity="0.54" stroke="#15120F" stroke-width=".8" style="animation-delay:0.53s"/><polygon class="hex" points="349.9,188.9 343.9,192.3 337.9,188.9 337.9,181.9 343.9,178.5 349.9,181.9" fill="#FF6B1F" fill-opacity="0.86" stroke="#15120F" stroke-width=".8" style="animation-delay:0.54s"/><polygon class="hex" points="351.1,224.5 344.2,228.5 337.3,224.5 337.3,216.6 344.2,212.6 351.1,216.6" fill="#FF6B1F" fill-opacity="0.88" stroke="#15120F" stroke-width=".8" style="animation-delay:0.55s"/><polygon class="hex" points="351.6,225.4 344.5,229.5 337.4,225.4 337.4,217.2 344.5,213.1 351.6,217.2" fill="#FF6B1F" fill-opacity="0.86" stroke="#15120F" stroke-width=".8" style="animation-delay:0.56s"/><polygon class="hex" points="350.9,241.0 344.6,244.6 338.3,241.0 338.3,233.7 344.6,230.1 350.9,233.7" fill="#FF6B1F" fill-opacity="0.92" stroke="#15120F" stroke-width=".8" style="animation-delay:0.58s"/><polygon class="hex" points="363.9,59.3 357.9,62.8 351.9,59.3 351.9,52.4 357.9,48.9 363.9,52.4" fill="#8C8F92" fill-opacity="0.52" stroke="#15120F" stroke-width=".8" style="animation-delay:0.59s"/><polygon class="hex" points="368.5,213.7 361.9,217.5 355.4,213.7 355.4,206.2 361.9,202.4 368.5,206.2" fill="#8C8F92" fill-opacity="0.46" stroke="#15120F" stroke-width=".8" style="animation-delay:0.60s"/><polygon class="hex" points="370.7,217.2 364.1,221.0 357.6,217.2 357.6,209.6 364.1,205.8 370.7,209.6" fill="#FF6B1F" fill-opacity="0.85" stroke="#15120F" stroke-width=".8" style="animation-delay:0.61s"/><polygon class="hex" points="371.3,93.7 365.6,97.0 359.9,93.7 359.9,87.1 365.6,83.8 371.3,87.1" fill="#FF6B1F" fill-opacity="0.94" stroke="#15120F" stroke-width=".8" style="animation-delay:0.62s"/><polygon class="hex" points="373.1,235.9 366.7,239.5 360.4,235.9 360.4,228.6 366.7,224.9 373.1,228.6" fill="#FF6B1F" fill-opacity="0.91" stroke="#15120F" stroke-width=".8" style="animation-delay:0.64s"/><polygon class="hex" points="377.4,224.5 370.9,228.2 364.5,224.5 364.5,217.0 370.9,213.3 377.4,217.0" fill="#FF6B1F" fill-opacity="0.89" stroke="#15120F" stroke-width=".8" style="animation-delay:0.65s"/><polygon class="hex" points="381.9,211.7 375.3,215.4 368.8,211.7 368.8,204.1 375.3,200.3 381.9,204.1" fill="#FF6B1F" fill-opacity="0.83" stroke="#15120F" stroke-width=".8" style="animation-delay:0.66s"/><polygon class="hex" points="383.0,228.8 375.7,233.0 368.5,228.8 368.5,220.5 375.7,216.3 383.0,220.5" fill="#8C8F92" fill-opacity="0.40" stroke="#15120F" stroke-width=".8" style="animation-delay:0.67s"/><polygon class="hex" points="385.8,114.9 379.9,118.2 374.1,114.9 374.1,108.1 379.9,104.7 385.8,108.1" fill="#FF6B1F" fill-opacity="0.84" stroke="#15120F" stroke-width=".8" style="animation-delay:0.68s"/><polygon class="hex" points="391.6,222.9 384.4,227.1 377.2,222.9 377.2,214.6 384.4,210.5 391.6,214.6" fill="#8C8F92" fill-opacity="0.45" stroke="#15120F" stroke-width=".8" style="animation-delay:0.70s"/><polygon class="hex" points="390.7,192.3 384.8,195.7 378.8,192.3 378.8,185.4 384.8,182.0 390.7,185.4" fill="#FF6B1F" fill-opacity="0.87" stroke="#15120F" stroke-width=".8" style="animation-delay:0.71s"/><polygon class="hex" points="392.4,198.1 386.5,201.5 380.6,198.1 380.6,191.3 386.5,188.0 392.4,191.3" fill="#8C8F92" fill-opacity="0.51" stroke="#15120F" stroke-width=".8" style="animation-delay:0.72s"/><polygon class="hex" points="395.3,88.0 389.3,91.5 383.4,88.0 383.4,81.1 389.3,77.7 395.3,81.1" fill="#FF6B1F" fill-opacity="0.80" stroke="#15120F" stroke-width=".8" style="animation-delay:0.73s"/><polygon class="hex" points="398.7,236.6 392.6,240.1 386.4,236.6 386.4,229.4 392.6,225.9 398.7,229.4" fill="#8C8F92" fill-opacity="0.42" stroke="#15120F" stroke-width=".8" style="animation-delay:0.74s"/><polygon class="hex" points="398.8,223.8 393.0,227.1 387.2,223.8 387.2,217.1 393.0,213.7 398.8,217.1" fill="#FF6B1F" fill-opacity="0.90" stroke="#15120F" stroke-width=".8" style="animation-delay:0.76s"/><polygon class="hex" points="403.9,258.2 397.3,261.9 390.8,258.2 390.8,250.7 397.3,246.9 403.9,250.7" fill="#FF6B1F" fill-opacity="0.80" stroke="#15120F" stroke-width=".8" style="animation-delay:0.77s"/><polygon class="hex" points="408.5,247.3 402.0,251.1 395.4,247.3 395.4,239.8 402.0,236.0 408.5,239.8" fill="#FF6B1F" fill-opacity="0.84" stroke="#15120F" stroke-width=".8" style="animation-delay:0.78s"/><polygon class="hex" points="411.3,124.7 404.9,128.3 398.6,124.7 398.6,117.3 404.9,113.7 411.3,117.3" fill="#FF6B1F" fill-opacity="0.86" stroke="#15120F" stroke-width=".8" style="animation-delay:0.79s"/><polygon class="hex" points="411.5,231.7 405.5,235.1 399.5,231.7 399.5,224.8 405.5,221.3 411.5,224.8" fill="#FF6B1F" fill-opacity="0.88" stroke="#15120F" stroke-width=".8" style="animation-delay:0.80s"/><polygon class="hex" points="412.5,197.7 405.9,201.4 399.4,197.7 399.4,190.1 405.9,186.3 412.5,190.1" fill="#8C8F92" fill-opacity="0.52" stroke="#15120F" stroke-width=".8" style="animation-delay:0.82s"/><polygon class="hex" points="413.7,122.8 406.6,126.9 399.5,122.8 399.5,114.5 406.6,110.4 413.7,114.5" fill="#FF6B1F" fill-opacity="0.80" stroke="#15120F" stroke-width=".8" style="animation-delay:0.83s"/><polygon class="hex" points="418.0,152.9 410.9,157.0 403.9,152.9 403.9,144.8 410.9,140.8 418.0,144.8" fill="#8C8F92" fill-opacity="0.53" stroke="#15120F" stroke-width=".8" style="animation-delay:0.84s"/><polygon class="hex" points="417.7,218.6 411.6,222.2 405.4,218.6 405.4,211.5 411.6,207.9 417.7,211.5" fill="#FF6B1F" fill-opacity="0.93" stroke="#15120F" stroke-width=".8" style="animation-delay:0.85s"/><polygon class="hex" points="419.8,231.6 412.5,235.8 405.1,231.6 405.1,223.1 412.5,218.8 419.8,223.1" fill="#FF6B1F" fill-opacity="0.93" stroke="#15120F" stroke-width=".8" style="animation-delay:0.86s"/><polygon class="hex" points="418.7,148.2 412.7,151.7 406.6,148.2 406.6,141.2 412.7,137.7 418.7,141.2" fill="#FF6B1F" fill-opacity="0.90" stroke="#15120F" stroke-width=".8" style="animation-delay:0.88s"/><polygon class="hex" points="421.1,230.5 415.3,233.9 409.5,230.5 409.5,223.8 415.3,220.5 421.1,223.8" fill="#FF6B1F" fill-opacity="0.92" stroke="#15120F" stroke-width=".8" style="animation-delay:0.89s"/><polygon class="hex" points="423.5,49.3 416.5,53.3 409.5,49.3 409.5,41.2 416.5,37.1 423.5,41.2" fill="#FF6B1F" fill-opacity="0.78" stroke="#15120F" stroke-width=".8" style="animation-delay:0.90s"/><polygon class="hex" points="425.0,218.4 418.2,222.3 411.4,218.4 411.4,210.5 418.2,206.6 425.0,210.5" fill="#FF6B1F" fill-opacity="0.75" stroke="#15120F" stroke-width=".8" style="animation-delay:0.91s"/><polygon class="hex" points="425.6,184.5 418.7,188.5 411.9,184.5 411.9,176.7 418.7,172.7 425.6,176.7" fill="#FF6B1F" fill-opacity="0.93" stroke="#15120F" stroke-width=".8" style="animation-delay:0.92s"/><polygon class="hex" points="428.3,205.7 422.5,209.0 416.7,205.7 416.7,198.9 422.5,195.6 428.3,198.9" fill="#8C8F92" fill-opacity="0.45" stroke="#15120F" stroke-width=".8" style="animation-delay:0.94s"/><polygon class="hex" points="430.3,203.1 423.8,206.8 417.3,203.1 417.3,195.6 423.8,191.8 430.3,195.6" fill="#8C8F92" fill-opacity="0.49" stroke="#15120F" stroke-width=".8" style="animation-delay:0.95s"/><polygon class="hex" points="431.5,205.0 425.8,208.3 420.0,205.0 420.0,198.3 425.8,195.0 431.5,198.3" fill="#FF6B1F" fill-opacity="0.77" stroke="#15120F" stroke-width=".8" style="animation-delay:0.96s"/><polygon class="hex" points="432.5,215.6 425.9,219.4 419.4,215.6 419.4,208.0 425.9,204.2 432.5,208.0" fill="#FF6B1F" fill-opacity="0.85" stroke="#15120F" stroke-width=".8" style="animation-delay:0.97s"/><polygon class="hex" points="435.3,177.7 429.4,181.1 423.5,177.7 423.5,170.9 429.4,167.5 435.3,170.9" fill="#FF6B1F" fill-opacity="0.79" stroke="#15120F" stroke-width=".8" style="animation-delay:0.98s"/><polygon class="hex" points="437.5,224.5 430.5,228.6 423.4,224.5 423.4,216.4 430.5,212.3 437.5,216.4" fill="#FF6B1F" fill-opacity="0.95" stroke="#15120F" stroke-width=".8" style="animation-delay:1.00s"/><polygon class="hex" points="438.7,129.9 432.9,133.3 427.1,129.9 427.1,123.2 432.9,119.9 438.7,123.2" fill="#8C8F92" fill-opacity="0.36" stroke="#15120F" stroke-width=".8" style="animation-delay:1.01s"/><polygon class="hex" points="440.8,155.8 434.4,159.5 428.0,155.8 428.0,148.4 434.4,144.6 440.8,148.4" fill="#8C8F92" fill-opacity="0.50" stroke="#15120F" stroke-width=".8" style="animation-delay:1.02s"/><polygon class="hex" points="442.3,200.7 435.9,204.4 429.4,200.7 429.4,193.3 435.9,189.5 442.3,193.3" fill="#FF6B1F" fill-opacity="0.85" stroke="#15120F" stroke-width=".8" style="animation-delay:1.03s"/><polygon class="hex" points="444.0,147.1 437.3,151.0 430.7,147.1 430.7,139.4 437.3,135.6 444.0,139.4" fill="#FF6B1F" fill-opacity="0.75" stroke="#15120F" stroke-width=".8" style="animation-delay:1.04s"/><polygon class="hex" points="444.8,236.6 437.7,240.7 430.7,236.6 430.7,228.4 437.7,224.3 444.8,228.4" fill="#8C8F92" fill-opacity="0.39" stroke="#15120F" stroke-width=".8" style="animation-delay:1.06s"/><polygon class="hex" points="445.0,235.2 438.1,239.2 431.2,235.2 431.2,227.2 438.1,223.3 445.0,227.2" fill="#FF6B1F" fill-opacity="0.83" stroke="#15120F" stroke-width=".8" style="animation-delay:1.07s"/><polygon class="hex" points="448.0,106.7 442.1,110.1 436.2,106.7 436.2,99.9 442.1,96.5 448.0,99.9" fill="#FF6B1F" fill-opacity="0.85" stroke="#15120F" stroke-width=".8" style="animation-delay:1.08s"/><polygon class="hex" points="457.7,244.7 450.6,248.8 443.4,244.7 443.4,236.4 450.6,232.3 457.7,236.4" fill="#FF6B1F" fill-opacity="0.91" stroke="#15120F" stroke-width=".8" style="animation-delay:1.09s"/><polygon class="hex" points="462.6,209.3 455.5,213.4 448.4,209.3 448.4,201.1 455.5,197.0 462.6,201.1" fill="#8C8F92" fill-opacity="0.48" stroke="#15120F" stroke-width=".8" style="animation-delay:1.10s"/><polygon class="hex" points="472.8,205.7 466.1,209.6 459.4,205.7 459.4,198.0 466.1,194.2 472.8,198.0" fill="#FF6B1F" fill-opacity="0.85" stroke="#15120F" stroke-width=".8" style="animation-delay:1.12s"/><g opacity=".45"><line x1="35" y1="284" x2="105" y2="284" stroke="#F2EDE3" stroke-width="1.2"/><path d="M105 280 l8 4 l-8 4z" fill="#F2EDE3"/></g></svg>
+        </div>
+        <div><h3>Análisis de datos <span class="badge" style="margin-left:6px;vertical-align:middle">Extra</span></h3><p>Estadísticas por equipo, mapas de calor y comparativas.</p></div>
+      </article>
+
+      <!-- 5. En vivo -->
+      <article class="card s3 rv">
+        <div class="art art-riso">
+          <svg class="riso" viewBox="0 0 510 300" preserveAspectRatio="xMidYMid meet" aria-hidden="true"><circle cx="255" cy="150" r="120" fill="none" stroke="#FF6B1F" stroke-width="1.2" opacity="0.28"/><circle cx="255" cy="150" r="170" fill="none" stroke="#FF6B1F" stroke-width="1.2" opacity="0.18"/><circle cx="255" cy="150" r="220" fill="none" stroke="#FF6B1F" stroke-width="1.2" opacity="0.1"/><circle cx="255" cy="150" r="270" fill="none" stroke="#FF6B1F" stroke-width="1.2" opacity="0.06"/><g transform="translate(55 35)"><rect width="400" height="230" rx="14" fill="#14110F" stroke="rgba(242,237,227,.5)" stroke-width="1"/><g fill="none" stroke="rgba(242,237,227,.26)" stroke-width="1.2"><rect x="18" y="18" width="364" height="194" rx="2"/><line x1="200.0" y1="18" x2="200.0" y2="212"/><circle cx="200.0" cy="115.0" r="29.1"/><rect x="18" y="70.38" width="40.04" height="89.24000000000001"/><rect x="341.96" y="70.38" width="40.04" height="89.24000000000001"/></g><circle class="pl" style="--ax:34px;--ay:19px;--bx:62px;--by:1px;animation-delay:-0.05s" cx="70" cy="60" r="3.6" fill="#F2EDE3" opacity="0.85"/><circle class="pl" style="--ax:15px;--ay:17px;--bx:32px;--by:7px;animation-delay:-0.53s" cx="110" cy="150" r="3.6" fill="#F2EDE3" opacity="0.85"/><circle class="pl" style="--ax:19px;--ay:11px;--bx:47px;--by:-16px;animation-delay:-0.47s" cx="170" cy="70" r="3.6" fill="#F2EDE3" opacity="0.85"/><circle class="pl" style="--ax:31px;--ay:15px;--bx:30px;--by:4px;animation-delay:-0.52s" cx="230" cy="170" r="3.6" fill="#F2EDE3" opacity="0.85"/><circle class="pl" style="--ax:19px;--ay:-0px;--bx:60px;--by:-12px;animation-delay:-0.47s" cx="270" cy="100" r="3.6" fill="#F2EDE3" opacity="0.85"/><circle class="pl" style="--ax:45px;--ay:10px;--bx:76px;--by:-5px;animation-delay:-0.19s" cx="320" cy="60" r="3.6" fill="#F2EDE3" opacity="0.85"/><circle class="pl" style="--ax:30px;--ay:13px;--bx:47px;--by:6px;animation-delay:-0.42s" cx="200" cy="120" r="3.6" fill="#F2EDE3" opacity="0.85"/><circle class="pl" style="--ax:15px;--ay:1px;--bx:31px;--by:-9px;animation-delay:-0.24s" cx="90" cy="100" r="3.6" fill="#F2EDE3" opacity="0.85"/><circle class="dribble-s" cx="200" cy="115" r="3" fill="#FF6B1F"/><rect x="14" y="14" width="66" height="19" rx="4" fill="#FF6B1F"/><circle class="blink" cx="24" cy="23.5" r="2.6" fill="#1A0B02"/><text x="31" y="27.5" font-family="JetBrains Mono" font-size="10" font-weight="500" fill="#1A0B02" text-anchor="start">EN VIVO</text><g transform="translate(14 196)"><rect width="140" height="20" rx="4" fill="rgba(10,11,12,.88)"/><rect x="38" width="44" height="20" fill="#FF6B1F"/><text x="9" y="14" font-family="JetBrains Mono" font-size="10" font-weight="400" fill="#F2EDE3" text-anchor="start">LOC</text><text x="47" y="14" font-family="JetBrains Mono" font-size="10" font-weight="500" fill="#1A0B02" text-anchor="start">2 – 1</text><text x="90" y="14" font-family="JetBrains Mono" font-size="10" font-weight="400" fill="#F2EDE3" text-anchor="start">VIS 63'</text></g></g></svg>
+        </div>
+        <div><h3>Transmisión en vivo <span class="badge" style="margin-left:6px;vertical-align:middle">Extra</span></h3><p>Con marcador y estadísticas en pantalla.</p></div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- PARA QUIÉN -->
+<section id="para-quien" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="eyebrow">Para quién</span>
+      <h2>Un mismo video, cuatro maneras de usarlo.</h2>
+    </div>
+    <div class="aud aud-b">
+      <article class="tile photo rv"><picture><source type="image/webp" srcset="fotos/para-quien/ligas-700.webp 700w, fotos/para-quien/ligas-1400.webp 1400w" sizes="(max-width:640px) 100vw, (max-width:960px) 50vw, 280px"><img src="fotos/para-quien/ligas-700.jpg" srcset="fotos/para-quien/ligas-700.jpg 700w, fotos/para-quien/ligas-1400.jpg 1400w" sizes="(max-width:640px) 100vw, (max-width:960px) 50vw, 280px" loading="lazy" decoding="async" alt="Partido de una liga amateur grabado por kick.ai" style="object-position:46% 70%"></picture><div><h3>Ligas y torneos</h3><p>Un nivel profesional que diferencia a tu torneo.</p></div></article>
+      <article class="tile photo rv"><picture><source type="image/webp" srcset="fotos/para-quien/escuelas-700.webp 700w, fotos/para-quien/escuelas-1400.webp 1400w" sizes="(max-width:640px) 100vw, (max-width:960px) 50vw, 280px"><img src="fotos/para-quien/escuelas-700.jpg" srcset="fotos/para-quien/escuelas-700.jpg 700w, fotos/para-quien/escuelas-1400.jpg 1400w" sizes="(max-width:640px) 100vw, (max-width:960px) 50vw, 280px" loading="lazy" decoding="async" alt="Chicos de una escuela deportiva jugando" style="object-position:55% 40%"></picture><div><h3>Escuelas deportivas</h3><p>Las familias ven a sus hijos jugar, aunque no hayan podido ir.</p></div></article>
+      <article class="tile photo rv"><picture><source type="image/webp" srcset="fotos/para-quien/entrenadores-700.webp 700w, fotos/para-quien/entrenadores-1400.webp 1400w" sizes="(max-width:640px) 100vw, (max-width:960px) 50vw, 280px"><img src="fotos/para-quien/entrenadores-700.jpg" srcset="fotos/para-quien/entrenadores-700.jpg 700w, fotos/para-quien/entrenadores-1400.jpg 1400w" sizes="(max-width:640px) 100vw, (max-width:960px) 50vw, 280px" loading="lazy" decoding="async" alt="Entrenador mirando el partido" style="object-position:38% 80%"></picture><div><h3>Entrenadores y analistas</h3><p>Corregís con imágenes y preparás el próximo partido.</p></div></article>
+      <article class="tile photo rv"><picture><source type="image/webp" srcset="fotos/para-quien/jugadores-700.webp 700w, fotos/para-quien/jugadores-1400.webp 1400w" sizes="(max-width:640px) 100vw, (max-width:960px) 50vw, 280px"><img src="fotos/para-quien/jugadores-700.jpg" srcset="fotos/para-quien/jugadores-700.jpg 700w, fotos/para-quien/jugadores-1400.jpg 1400w" sizes="(max-width:640px) 100vw, (max-width:960px) 50vw, 280px" loading="lazy" decoding="async" alt="Jugador en plena jugada" style="object-position:45% 50%"></picture><div><h3>Jugadores</h3><p>Tus mejores jugadas, para mostrar tu nivel.</p></div></article>
+    </div>
+  </div>
+</section>
+
+<!-- CÓMO FUNCIONA -->
+<section id="como" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="eyebrow">Cómo funciona</span>
+      <h2>Vos organizás el torneo. Nosotros, el video.</h2>
+    </div>
+    <div class="steps-x" id="stepsX">
+      <article class="sx on rv" tabindex="0">
+        <span class="sx-n">01.</span>
+        <div class="sx-body">
+          <div class="sx-ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FF6B1F" stroke-width="1.7" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16v11H9l-5 4z"/></svg></div>
+          <h3>Nos contás tu torneo</h3>
+          <div class="sx-desc"><p>Fechas, sede, canchas y formatos. Con eso te armamos el presupuesto.</p></div>
+        </div>
+      </article>
+      <article class="sx rv" tabindex="0">
+        <span class="sx-n">02.</span>
+        <div class="sx-body">
+          <div class="sx-ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FF6B1F" stroke-width="1.7" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="7" width="13" height="10" rx="2"/><path d="M16 11l5-3v8l-5-3"/></svg></div>
+          <h3>Grabamos en tu cancha</h3>
+          <div class="sx-desc"><p>Llevamos, instalamos y operamos la cámara. Vos no tenés que hacer nada.</p></div>
+        </div>
+      </article>
+      <article class="sx rv" tabindex="0">
+        <span class="sx-n">03.</span>
+        <div class="sx-body">
+          <div class="sx-ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FF6B1F" stroke-width="1.7" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M10 9.5l4 2.5-4 2.5z" fill="#FF6B1F"/></svg></div>
+          <h3>Subimos cada partido</h3>
+          <div class="sx-desc"><p>A la página del torneo, ordenado por fecha, listo para ver y descargar.</p></div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- PLANES -->
+<section id="planes" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="eyebrow">Planes</span>
+      <h2>Un plan base y sumás lo que necesites.</h2>
+      <p class="lead">El precio depende de cuántos partidos y canchas grabemos.</p>
+    </div>
+    <div class="pl-grid">
+      <article class="pl-base rv">
+        <div class="pl-top"><span class="pl-kicker">Plan base</span><span class="badge pl-inc">Incluido</span></div>
+        <h3>Grabación</h3>
+        <p class="pl-sub">Todo lo necesario para tener video de cada partido.</p>
+        <ul class="pl-checks"><li><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="8" fill="rgba(255,255,255,.14)"/><path d="M4.5 8.2l2.3 2.3 4.7-4.7" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>Video completo de cada partido</li><li><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="8" fill="rgba(255,255,255,.14)"/><path d="M4.5 8.2l2.3 2.3 4.7-4.7" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>Seguimiento automático con IA</li><li><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="8" fill="rgba(255,255,255,.14)"/><path d="M4.5 8.2l2.3 2.3 4.7-4.7" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>Cortes de goles y jugadas</li><li><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="8" fill="rgba(255,255,255,.14)"/><path d="M4.5 8.2l2.3 2.3 4.7-4.7" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>Página del torneo con los videos</li><li><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="8" fill="rgba(255,255,255,.14)"/><path d="M4.5 8.2l2.3 2.3 4.7-4.7" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>Descarga para redes y edición</li><li><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="8" fill="rgba(255,255,255,.14)"/><path d="M4.5 8.2l2.3 2.3 4.7-4.7" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>Instalación y operación de la cámara</li></ul>
+      </article>
+      <div class="pl-plus rv" aria-hidden="true">+</div>
+      <article class="pl-extra rv">
+        <div class="pl-top"><div class="pl-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FF6B1F" stroke-width="1.7" stroke-linecap="round"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg></div><span class="badge">Extra</span></div>
+        <div><h3>Análisis de datos</h3><p>Estadísticas por equipo y mapas de calor.</p></div>
+      </article>
+      <article class="pl-extra rv">
+        <div class="pl-top"><div class="pl-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FF6B1F" stroke-width="1.7" stroke-linecap="round"><circle cx="12" cy="12" r="2" fill="#FF6B1F"/><path d="M8.5 8.5a5 5 0 0 0 0 7M15.5 8.5a5 5 0 0 1 0 7M5.6 5.6a9 9 0 0 0 0 12.8M18.4 5.6a9 9 0 0 1 0 12.8"/></svg></div><span class="badge">Extra</span></div>
+        <div><h3>Transmisión en vivo</h3><p>El partido en vivo, con marcador en pantalla.</p></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACTO -->
+<section id="contacto" class="contact">
+  <div class="wrap contact-grid">
+    <div class="contact-side rv">
+      <span class="eyebrow">Presupuesto</span>
+      <h2>Contanos de tu torneo.</h2>
+      <p class="lead">¿Preferís hablar? Escribinos directo.</p>
+      <div class="direct">
+        <a href="https://wa.me/5491131028487" aria-label="WhatsApp" title="WhatsApp"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FF6B1F" stroke-width="1.7"><path d="M3 21l1.6-4.8A8.5 8.5 0 1 1 8 19.6z"/></svg></a>
+        <a href="mailto:kickai.recording@gmail.com" aria-label="Mail" title="Mail"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FF6B1F" stroke-width="1.7"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></a>
+        <a href="https://www.instagram.com/kick_ai/" aria-label="Instagram" title="Instagram"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FF6B1F" stroke-width="1.7"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".8" fill="#FF6B1F"/></svg></a>
+      </div>
+    </div>
+
+    <form class="form rv" id="quote" novalidate>
+      <div class="field"><label for="f-name">Tu nombre</label><input id="f-name" name="nombre" autocomplete="name" required></div>
+      <div class="field"><label for="f-tel">WhatsApp</label><input id="f-tel" name="tel" type="tel" autocomplete="tel" inputmode="tel" required></div>
+      <div class="field full"><label for="f-torneo">Torneo o club</label><input id="f-torneo" name="torneo" required></div>
+      <div class="field"><label for="f-zona">Zona</label>
+        <select id="f-zona" name="zona"><option>Zona Norte</option><option>Capital Federal</option><option>Otra zona</option></select></div>
+      <div class="field"><label for="f-partidos">Partidos por fecha (aprox.)</label><input id="f-partidos" name="partidos" type="number" min="1" inputmode="numeric"></div>
+      <fieldset class="field full"><legend>Formatos</legend>
+        <div class="pick">
+          <label><input type="checkbox" name="fmt" value="F5"><span>F5</span></label>
+          <label><input type="checkbox" name="fmt" value="F7"><span>F7</span></label>
+          <label><input type="checkbox" name="fmt" value="F8"><span>F8</span></label>
+          <label><input type="checkbox" name="fmt" value="F10"><span>F10</span></label>
+          <label><input type="checkbox" name="fmt" value="F11"><span>F11</span></label>
+        </div>
+      </fieldset>
+      <fieldset class="field full"><legend>Extras</legend>
+        <div class="pick" id="formAddons">
+          <label><input type="checkbox" name="extra" value="Análisis de datos"><span>Análisis de datos</span></label>
+          <label><input type="checkbox" name="extra" value="Transmisión en vivo"><span>Transmisión en vivo</span></label>
+        </div>
+      </fieldset>
+      <button class="btn btn-primary" type="submit">Pedí presupuesto</button>
+      <p class="form-ok" id="formOk" role="status">Pedido enviado. Te mandamos el presupuesto por WhatsApp.</p>
+    </form>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap"><span>© 2026 kick.ai</span><a href="https://www.instagram.com/kick_ai/">@kick_ai</a></div>
+</footer>
 
 <script>
-const EMAIL="kickai.recording@gmail.com", PHONE="11-3102-8487", PHONE_TEL="+5491131028487";
-let S={tournaments:[]}, canEdit=false, adminOn=false, artifact=null, query="";
-const isAdmin=()=>canEdit&&adminOn;
-const app=document.getElementById("app");
-const el=(t,a={},...k)=>{const e=document.createElement(t);for(const[x,v]of Object.entries(a)){if(x==="on")for(const[ev,f]of Object.entries(v))e.addEventListener(ev,f);else if(x==="text")e.textContent=v;else e.setAttribute(x,v)}k.flat().forEach(c=>c!=null&&e.append(c));return e};
-const safe=u=>/^https?:\/\//i.test(u)?u:null;
-const fmtDate=d=>new Date(d+"T12:00:00").toLocaleDateString("es-AR",{weekday:"long",day:"numeric",month:"long",year:"numeric"});
-const uid=()=>Math.random().toString(36).slice(2,9);
-const plural=(n,a,b)=>n+" "+(n===1?a:b);
-const fmtMonth=mo=>new Date(mo+"-15T12:00:00").toLocaleDateString("es-AR",{month:"long",year:"numeric"});
-let monthSel=null, monthT=null, weekSel=null, dateSel="all";
-const pad2=n=>String(n).padStart(2,"0");
-function weekendKey(date){const d=new Date(date+"T12:00:00");d.setDate(d.getDate()-((d.getDay()+6)%7));return d.getFullYear()+"-"+pad2(d.getMonth()+1)+"-"+pad2(d.getDate())}
-function fmtHs(t){return t?(t.endsWith(":00")?String(parseInt(t,10)):t):""}
-function shortDate(date){const d=new Date(date+"T12:00:00");return["dom","lun","mar","mié","jue","vie","sáb"][d.getDay()]+" "+d.getDate()+"/"+(d.getMonth()+1)}
-function parseVeo(u){
-  const d=/matches\/(\d{4})(\d{2})(\d{2})-/.exec(u||"");if(!d)return null;
-  const c=/cancha-(\d+)/.exec(u),h=/-(\d{1,2})hs/.exec(u),f=/-f(\d+)-/.exec(u);
-  let dt=new Date(d[1]+"-"+d[2]+"-"+d[3]+"T12:00:00");if(h&&+h[1]>=21)dt.setDate(dt.getDate()-1);
-  return {date:dt.getFullYear()+"-"+pad2(dt.getMonth()+1)+"-"+pad2(dt.getDate()),field:c?"Cancha "+c[1]:"",time:h?String(h[1]).padStart(2,"0")+":00":"",fmt:f?"F"+f[1]:"",note:/primer-tiempo/.test(u)?"Primer tiempo":""};
-}
-function autofill(inp){
-  const p=parseVeo(inp.value),f=inp.form;if(!p)return;
-  f.d.value=p.date;if(p.time)f.tm.value=p.time;if(p.field)f.fl.value=p.field;
-  if(p.fmt&&[...f.fm.options].some(o=>o.value===p.fmt))f.fm.value=p.fmt;
-}
+// Hero timecode
+(function(){
+  const tc=document.getElementById('tc'), mn=document.getElementById('min');
+  let s=47*60+12;
+  const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(!reduce) setInterval(()=>{s++;const m=Math.floor(s/60),ss=s%60;tc.textContent='00:'+String(m).padStart(2,'0')+':'+String(ss).padStart(2,'0');mn.textContent=m+"'"},1000);
+  const v=document.getElementById('heroVideo'),b=document.getElementById('pauseBtn'),ic=document.getElementById('pauseIc');
+  if(reduce){v.pause();v.removeAttribute('autoplay')}
+  const setIc=()=>{const p=v.paused;b.setAttribute('aria-label',p?'Reproducir video':'Pausar video');ic.innerHTML=p?'<path d="M3 1.5l9 5.5-9 5.5z"/>':'<rect x="2" y="1" width="3.5" height="12" rx="1"/><rect x="8.5" y="1" width="3.5" height="12" rx="1"/>'};
+  b.addEventListener('click',()=>{v.paused?v.play():v.pause();setIc()});
+  v.addEventListener('play',setIc);v.addEventListener('pause',setIc);setIc();
+})();
 
-async function save(){
-  if(!artifact)return;
-  const c=document.documentElement.cloneNode(true);
-  c.querySelector("#app").replaceChildren();
-  c.querySelector("#adminhost").replaceChildren();
-  c.querySelector("#data").textContent=JSON.stringify(S).replace(/</g,"\\u003c");
-  try{await artifact.publish("<!doctype html>\n"+c.outerHTML)}catch(e){alert("No se pudo guardar: "+(e&&e.message||e.code||"error desconocido"))}
-}
-
-function pitch(){const s=document.createElementNS("http://www.w3.org/2000/svg","svg");s.setAttribute("viewBox","0 0 1200 600");s.setAttribute("preserveAspectRatio","xMidYMid slice");s.setAttribute("aria-hidden","true");
-s.innerHTML='<g fill="none" stroke="#ff6b1f" stroke-opacity=".22" stroke-width="2"><rect x="20" y="20" width="1160" height="560"/><path d="M600 20v560"/><circle cx="600" cy="300" r="95"/><circle cx="600" cy="300" r="5" fill="#ff6b1f" fill-opacity=".3"/><path d="M20 140h170v320H20M1180 140h-170v320h170M20 225h70v150H20M1180 225h-70v150h70"/><path d="M190 240a90 90 0 0 1 0 120M1010 240a90 90 0 0 0 0 120"/></g>';return s}
-
-const PHOTOS=["fotos/cancha-1.jpg"];
-function gallery(){return el("div",{class:"gal"},PHOTOS.map(p=>el("img",{src:p,alt:"Partido grabado por kick.ai",loading:"lazy"})))}
-
-function bento(){
-  const sv=b=>'<svg viewBox="0 0 300 130" aria-hidden="true">'+b+'</svg>';
-  const V={
-   rec:sv('<g fill="none" stroke="#3d4246" stroke-width="2"><rect x="4" y="6" width="292" height="118" rx="8"/><path d="M150 6v118"/><circle cx="150" cy="65" r="24"/><path d="M4 38h34v54H4M296 38h-34v54h34"/></g><g transform="translate(14 14)"><rect width="64" height="24" rx="12" fill="#ff6b1f"/><circle class="rec" cx="15" cy="12" r="5" fill="#1a0b02"/><text x="27" y="16.5" font-size="12" font-weight="700" fill="#1a0b02" font-family="Figtree,sans-serif">REC</text></g>'),
-   track:sv('<g fill="#59606a"><circle cx="50" cy="40" r="5"/><circle cx="90" cy="95" r="5"/><circle cx="215" cy="30" r="5"/><circle cx="250" cy="96" r="5"/><circle cx="118" cy="52" r="5"/></g><circle cx="168" cy="72" r="6" fill="#ff6b1f"/><g fill="none" stroke="#ff6b1f" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M140 54v-10h10M196 54v-10h-10M140 90v10h10M196 90v10h-10"/></g>'),
-   clips:sv('<path d="M8 78h284" stroke="#3d4246" stroke-width="6" stroke-linecap="round"/><g fill="#ff6b1f"><rect x="62" y="72" width="34" height="12" rx="6"/><rect x="146" y="72" width="34" height="12" rx="6"/><rect x="230" y="72" width="44" height="12" rx="6"/></g><g fill="none" stroke="#ff6b1f" stroke-width="2.4"><circle cx="79" cy="46" r="9"/><circle cx="163" cy="46" r="9"/><circle cx="252" cy="46" r="9"/><path d="M79 55v17M163 55v17M252 55v17"/></g><g fill="#9aa0a4" font-size="12" font-family="Figtree,sans-serif" text-anchor="middle"><text x="79" y="26">gol</text><text x="163" y="26">jugada</text><text x="252" y="26">gol</text></g>'),
-   data:sv('<path d="M10 122h280" stroke="#3d4246" stroke-width="2"/><g fill="#3d4246"><rect x="24" y="82" width="36" height="40" rx="4"/><rect x="74" y="52" width="36" height="70" rx="4"/><rect x="124" y="67" width="36" height="55" rx="4"/><rect x="224" y="47" width="36" height="75" rx="4"/></g><rect x="174" y="27" width="36" height="95" rx="4" fill="#ff6b1f"/>'),
-   live:'<div class="live sm"><span class="pill"><i></i>EN VIVO</span><b>2 - 1</b></div>',
-   share:sv('<g fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="40" cy="64" r="26" stroke="#ff6b1f"/><path d="M40 50v22M30 63l10 10 10-10" stroke="#ff6b1f"/><path d="M112 74v20h30V74M127 84V54M118 63l9-9 9 9" stroke="#ff6b1f"/><rect x="196" y="12" width="66" height="108" rx="10" stroke="#59606a"/></g><path d="M219 54l24 12-24 12z" fill="#ff6b1f"/>')
+// Contador: partidos publicados de todos los torneos (videos.json, el mismo archivo que usa Torneos)
+(function(){
+  const card=document.getElementById('statCard'), tot=document.getElementById('statTotal'), wk=document.getElementById('statWeek'), lg=document.querySelector('.leagues');
+  const chip=wk.closest('.delta');
+  const show=(total,week,names)=>{
+    tot.textContent=total; tot.dataset.total=total;
+    if(week>0){wk.textContent=week;chip.hidden=false}else chip.hidden=true;
+    if(names&&names.length){lg.querySelectorAll('span').forEach(x=>x.remove());names.forEach(n=>{const e=document.createElement('span');e.textContent=n;lg.append(e)})}
+    if(matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const run=()=>{const t0=performance.now(), d=1400;
+      const step=t=>{const k=Math.min(1,(t-t0)/d), e=1-Math.pow(1-k,3); tot.textContent=Math.round(total*e); if(k<1) requestAnimationFrame(step)};
+      requestAnimationFrame(step)};
+    if(!('IntersectionObserver' in window)){run();return}
+    const io=new IntersectionObserver(es=>{if(es[0].isIntersecting){run();io.disconnect()}},{threshold:.4});
+    io.observe(card);
   };
-  const I=[
-   ["Grabación completa","Video profesional de cada partido, de principio a fin, con cortes automáticos.","rec"],
-   ["Seguimiento automático con IA","La cámara sigue la jugada sola, sin camarógrafo.","track"],
-   ["Cortes automáticos de goles y jugadas clave","Los goles y las jugadas importantes se cortan solos. Descargalos y compartilos en las plataformas favoritas de tu torneo.","clips"],
-   ["Análisis de datos","Estadísticas clave del equipo y comparativas.","data"],
-   ["Transmisión en vivo","En vivo, con marcador y estadísticas.","live"],
-   ["Videos para edición o redes","Los videos para que los edites o los subas a tus redes.","share"]
-  ];
-  const grid=el("div",{class:"bento"},I.map(([t,d,v])=>{
-    const tile=el("div",{class:"tile",tabindex:"0"});
-    const card=el("div",{class:"tc"});
-    const x=el("div",{class:"vis"});x.innerHTML=V[v];
-    card.append(x,el("b",{text:t}),el("div",{class:"more"},el("div",{},el("p",{text:d}))));
-    tile.append(card);
-    tile.addEventListener("click",()=>{const o=tile.classList.contains("open");document.querySelectorAll(".tile.open").forEach(e=>e.classList.remove("open"));if(!o)tile.classList.add("open")});
-    tile.addEventListener("mouseleave",()=>tile.classList.remove("open"));
-    return tile}));
-  return el("div",{},el("p",{class:"sub",text:"Pasá el cursor por arriba o tocá cada tarjeta para ver el detalle."}),grid);
-}
+  chip.hidden=true;
+  fetch('videos.json',{cache:'no-cache'}).then(r=>r.json()).then(d=>{
+    const T=(d.tournaments||[]).filter(t=>(t.matches||[]).length), now=new Date(), wk0=new Date(now.getTime()-7*864e5);
+    let total=0, week=0;
+    T.forEach(t=>t.matches.forEach(m=>{total++; const dt=new Date((m.date||'')+'T12:00:00'); if(dt>=wk0&&dt<=now) week++;}));
+    show(total,week,T.sort((a,b)=>b.matches.length-a.matches.length).map(t=>t.name));
+  }).catch(()=>show(+tot.textContent||0,0,null));
+})();
 
-function sportsRow(){
-  const S4=[
-   ["Básquet",'<circle cx="24" cy="24" r="20"/><path d="M24 4v40M4 24h40M10 8q12 16 0 32M38 8q-12 16 0 32"/>'],
-   ["Hockey",'<path d="M12 5v25q0 8 8 8h7"/><circle cx="37" cy="36" r="5.5"/>'],
-   ["Rugby",'<ellipse cx="24" cy="24" rx="21" ry="12" transform="rotate(-35 24 24)"/><path d="M8 35L40 13M19 24l3.4 5M22.3 21.5l3.4 5M25.6 19.2l3.4 5"/>']
-  ];
-  return el("div",{class:"sports"},S4.map(([n,p])=>{const e=el("span",{class:"sp"});e.innerHTML='<svg viewBox="0 0 48 48" aria-hidden="true">'+p+'</svg>';e.append(n);return e}));
-}
+// Cómo funciona: la card activa se expande (hover con intención / foco)
+(function(){
+  const cards=[...document.querySelectorAll('#stepsX .sx')]; let t;
+  const act=c=>cards.forEach(x=>x.classList.toggle('on',x===c));
+  cards.forEach(c=>{
+    c.addEventListener('mouseenter',()=>{clearTimeout(t);t=setTimeout(()=>act(c),90)});
+    c.addEventListener('mouseleave',()=>clearTimeout(t));
+    c.addEventListener('focus',()=>act(c));
+  });
+})();
 
-function zonasRow(){
-  const pin='<path d="M24 44S10 31 10 20a14 14 0 0 1 28 0c0 11-14 24-14 24z"/><circle cx="24" cy="20" r="5"/>';
-  return el("div",{class:"sports"},["Zona Norte","Capital Federal"].map(n=>{const e=el("span",{class:"sp"});e.innerHTML='<svg viewBox="0 0 48 48" aria-hidden="true">'+pin+'</svg>';e.append(n);return e}));
-}
+// Formulario de presupuesto -> mail a kickai.recording@gmail.com (FormSubmit)
+(function(){
+  const f=document.getElementById('quote'), ok=document.getElementById('formOk'), btn=f.querySelector('button[type=submit]');
+  const er=document.createElement('p'); er.className='form-err'; er.setAttribute('role','alert'); er.hidden=true; ok.after(er);
+  const msg={nombre:'Escribí tu nombre.',tel:'Escribí tu WhatsApp.',torneo:'Contanos el torneo o club.'};
+  const fieldErr=(inp,t)=>{let e=inp.parentElement.querySelector('.f-err'); if(!e){e=document.createElement('span');e.className='f-err';e.id=inp.id+'-err';inp.parentElement.append(e)}
+    e.textContent=t||''; inp.setAttribute('aria-invalid',t?'true':'false'); if(t) inp.setAttribute('aria-describedby',e.id); else inp.removeAttribute('aria-describedby')};
+  const check=inp=>{const v=inp.value.trim(); let t='';
+    if(inp.required&&!v) t=msg[inp.name]; else if(inp.name==='tel'&&v&&v.replace(/\D/g,'').length<8) t='Revisá el número (con característica).';
+    fieldErr(inp,t); return !t};
+  f.querySelectorAll('input[required]').forEach(i=>{i.addEventListener('blur',()=>check(i)); i.addEventListener('input',()=>{if(i.getAttribute('aria-invalid')==='true')check(i)})});
+  f.addEventListener('submit',async e=>{
+    e.preventDefault(); ok.style.display='none'; er.hidden=true;
+    const bad=[...f.querySelectorAll('input[required]')].filter(i=>!check(i));
+    if(bad.length){bad[0].focus();return}
+    const fd=new FormData(f), all=n=>fd.getAll(n).join(', ')||'-';
+    const body={'Nombre':fd.get('nombre'),'WhatsApp':fd.get('tel'),'Torneo o club':fd.get('torneo'),'Zona':fd.get('zona'),'Partidos por fecha':fd.get('partidos')||'-',
+      'Formatos':all('fmt'),'Extras':all('extra'),_subject:'Pedido de presupuesto: '+fd.get('torneo'),_template:'table',_captcha:'false'};
+    btn.disabled=true; const label=btn.textContent; btn.textContent='Enviando…';
+    try{
+      const r=await fetch('https://formsubmit.co/ajax/kickai.recording@gmail.com',{method:'POST',headers:{'Content-Type':'application/json',Accept:'application/json'},body:JSON.stringify(body)});
+      const j=await r.json().catch(()=>({}));
+      if(!r.ok||String(j.success)==='false') throw new Error(j.message||r.status);
+      ok.style.display='block'; f.reset();
+    }catch(x){
+      er.innerHTML='No se pudo enviar. Probá de nuevo o escribinos por <a href="https://wa.me/5491131028487">WhatsApp</a>.'; er.hidden=false;
+    }finally{btn.disabled=false; btn.textContent=label}
+  });
+})();
 
-function heroVideo(){
-  const v=document.createElement("video");v.className="hero-img";
-  v.src="video/portada.mp4";v.poster="video/portada.jpg";
-  v.muted=true;v.defaultMuted=true;v.loop=true;v.autoplay=true;v.playsInline=true;v.preload="auto";
-  v.setAttribute("muted","");v.setAttribute("playsinline","");v.setAttribute("aria-label","Goles de partidos grabados con kick.ai");
-  v.play&&v.play().catch(()=>{});
-  return v;
-}
-
-function igLink(){
-  const a=el("a",{class:"ig",href:"https://www.instagram.com/kick_ai/",target:"_blank",rel:"noopener","aria-label":"Instagram @kick_ai"});
-  a.innerHTML='<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.3" cy="6.7" r="1" fill="currentColor" stroke="none"/></svg>';
-  a.append("@kick_ai");return a;
-}
-
-function home(){
-  const fm=[["F5","5 vs 5"],["F7","7 vs 7"],["F10","10 vs 10"],["F11","11 vs 11"]];
-  const sv=[["Grabación completa","Video profesional de cada partido, de principio a fin, con cortes automáticos."],["Seguimiento automático con IA","La cámara sigue la jugada sola, sin camarógrafo."],["Cortes automáticos de goles y jugadas clave","Los goles y las jugadas importantes se cortan solos. Descargalos y compartilos en las plataformas favoritas de tu torneo."],["Análisis de datos","Estadísticas clave del equipo y comparativas."],["Transmisión en vivo","En vivo, con marcador y estadísticas."],["Videos para edición o redes","Los videos para que los edites o los subas a tus redes."]];
-  const au=["Ligas y torneos amateurs","Escuelas deportivas","Entrenadores y analistas","Jugadores que buscan destacar"];
-  return [
-  el("section",{class:"hero"},heroVideo(),pitch(),el("div",{class:"wrap"},
-    el("h1",{},"Transformá ",el("span",{class:"acc",text:"tu torneo"})),
-    el("p",{text:"Grabamos cada partido de tu torneo de punta a punta con cámaras VEO. Video profesional y sin vueltas, para clubes y torneos amateurs."}),
-    el("a",{class:"btn",href:"#contacto",text:"Cotizá tu torneo"}),el("a",{class:"btn alt",href:"#/torneos",text:"Buscá tu partido"}))),
-  el("section",{class:"blk"},el("div",{class:"wrap"},
-    el("h2",{text:"Pensado para torneos amateurs"}),
-    el("p",{class:"lead",text:"Vamos a tu cancha, grabamos todos los partidos de principio a fin y subimos el video completo para que jugadores, familiares y entrenadores lo vean y lo compartan."}),
-    el("div",{class:"formats"},fm.map(([f,s])=>el("div",{class:"fmt"},f))),
-    el("p",{class:"sub",text:"Fútbol masculino y femenino, en todos los formatos."}),
-    el("p",{class:"lead",text:"Grabamos en Zona Norte y Capital Federal."}),
-    zonasRow(),
-    el("p",{class:"lead",style:"margin-top:28px",text:"Y no solo fútbol, también grabamos:"}),
-    sportsRow())),
-  el("section",{class:"blk"},el("div",{class:"wrap"},
-    el("h2",{},"Más que videos: ",el("span",{class:"acc",text:"grabación, datos y análisis"})),
-    bento())),
-  el("section",{class:"band"},el("img",{src:"fotos/hero-1.jpg",alt:"Partido de fútbol en una cancha, visto desde la cámara de kick.ai",loading:"lazy"}),el("div",{class:"wrap"},
-    el("h2",{text:"Cada partido, de punta a punta."}),
-    el("p",{class:"lead",text:"La cancha completa, de arco a arco. Desde que rueda la pelota hasta el pitazo final, no te perdés nada."}))),
-  el("section",{class:"blk"},el("div",{class:"wrap"},
-    el("h2",{},el("span",{class:"acc",text:"kick.ai, "}),"tu aliado estratégico"),
-    el("div",{class:"aud"},au.map(a=>el("div",{text:a}))))),
-  el("section",{class:"blk"},el("div",{class:"wrap"},
-    el("h2",{},"Precios accesibles, ",el("span",{class:"acc",text:"para todo tipo de torneo"})),
-    el("p",{class:"lead",text:"Trabajamos con clubes y ligas amateurs, con soluciones accesibles para que tu torneo dé un salto de calidad. Armamos un plan a la medida, sea un campeonato de un día o una liga de todo el año."}),
-    el("div",{class:"chips"},["Un día o todo el año","Una cancha o varias","Todos los formatos"].map(x=>el("span",{class:"chip",text:x}))),
-    el("p",{class:"sub",style:"margin:0 0 16px",text:"Arrancás con la grabación y sumás lo que necesite tu torneo."}),
-    el("div",{class:"plans"},[["Grabación básica","Video profesional de todos los partidos, con cortes automáticos."],["Análisis de datos","Sumá estadísticas clave del equipo y comparativas."],["Transmisión en vivo","Sumá la transmisión en vivo, con marcador y estadísticas."]].map(([x,y])=>el("div",{class:"plan"},el("b",{text:x}),el("p",{text:y})))),
-    el("p",{class:"sub",style:"margin:30px 0 16px",text:"Contanos cuántos partidos, canchas y formatos tenés y te mandamos un presupuesto."}),
-    el("a",{class:"btn",href:"#contacto",text:"Pedí tu presupuesto"}))),
-  el("section",{class:"blk contact",id:"contacto"},el("img",{class:"contact-img",src:"fotos/contacto-camara.jpg",alt:"",loading:"lazy"}),el("div",{class:"wrap"},
-    el("h2",{},el("span",{class:"acc",text:"Transformá"}),el("br"),"tu torneo."),
-    el("p",{class:"lead",text:"Armamos una propuesta a medida, con planes flexibles que se adaptan a tus necesidades. Contanos fechas, sede y formatos."}),
-    el("div",{style:"display:flex;flex-wrap:wrap;gap:4px 36px"},el("a",{class:"mail",href:"mailto:"+EMAIL,text:EMAIL}),el("a",{class:"mail",href:"tel:"+PHONE_TEL,text:PHONE})),igLink()))];
-}
-
-function torneos(){
-  const w=el("div",{class:"wrap page"},el("h1",{text:"Torneos"}),el("p",{class:"sub",text:"Elegí tu torneo y encontrá tu partido por fecha."}));
-  if(isAdmin())w.append(el("div",{class:"admin"},el("h3",{text:"Agregar torneo"}),
-    el("form",{on:{submit:e=>{e.preventDefault();const f=e.target;S.tournaments.push({id:uid(),name:f.n.value.trim(),place:f.p.value.trim(),matches:[]});save()}}},
-      el("input",{name:"n",placeholder:"Nombre del torneo",required:""}),el("input",{name:"p",placeholder:"Sede / ciudad"}),el("button",{class:"btn sm",text:"Agregar torneo"}))));
-  if(!S.tournaments.length)w.append(el("div",{class:"empty",text:"Todavía no hay torneos. Volvé pronto."}));
-  w.append(el("div",{class:"tgrid"},S.tournaments.map(t=>
-    el("div",{},el("a",{class:"tcard",href:"#/t/"+t.id},el("h3",{text:t.name}),el("span",{text:t.place||""}),el("span",{text:plural(t.matches.length,"partido","partidos")})),
-      isAdmin()?el("button",{class:"x",text:"Eliminar torneo",on:{click:()=>{if(confirm("¿Eliminar "+t.name+" y todos sus videos?")){S.tournaments=S.tournaments.filter(x=>x!==t);save()}}}}):null))));
-  return w;
-}
-
-function torneo(id){
-  const t=S.tournaments.find(x=>x.id===id);
-  if(!t)return el("div",{class:"wrap page"},el("p",{text:"No encontramos ese torneo."}),el("a",{href:"#/torneos",text:"Volver a torneos"}));
-  const w=el("div",{class:"wrap page"},el("a",{class:"back",href:"#/torneos",text:"Todos los torneos"}),el("h1",{text:t.name}),el("p",{class:"sub",text:t.place||""}));
-  if(isAdmin())w.append(el("div",{class:"admin"},el("h3",{text:"Agregar video"}),
-    el("form",{on:{submit:e=>{e.preventDefault();const f=e.target;
-      if(!safe(f.url.value.trim())){alert("El link debe empezar con http:// o https://");return}
-      t.matches.push({id:uid(),date:f.d.value,time:f.tm.value,field:f.fl.value.trim(),home:f.h.value.trim(),away:f.a.value.trim(),fmt:f.fm.value,gender:f.g.value,url:f.url.value.trim(),note:(parseVeo(f.url.value.trim())||{}).note||""});save()}}},
-      el("input",{type:"date",name:"d",required:"","aria-label":"Fecha"}),el("input",{type:"time",name:"tm","aria-label":"Horario"}),
-      el("input",{name:"fl",placeholder:"Cancha"}),el("input",{name:"h",placeholder:"Equipo local (opcional)"}),el("input",{name:"a",placeholder:"Equipo visitante (opcional)"}),
-      el("select",{name:"fm"},["F5","F7","F8","F10","F11"].map(x=>el("option",{text:x}))),el("select",{name:"g","aria-label":"Género"},[["","Género (opcional)"],["Masculino","Masculino"],["Femenino","Femenino"]].map(([v,x])=>el("option",{value:v,text:x}))),
-      el("input",{name:"url",placeholder:"Pegá el link del video (https://...)",required:"",on:{input:e=>autofill(e.target)}}),el("button",{class:"btn sm",text:"Agregar video"}))));
-  const q=el("input",{type:"search",placeholder:"Buscar por equipo, cancha o formato",value:query,"aria-label":"Buscar partidos"});
-  const list=el("div"), tabs=el("div",{class:"mos"}), wtabs=el("div",{class:"mos wks"}), dtabs=el("div",{class:"mos wks"});
-  if(monthT!==id){monthSel=null;weekSel=null;dateSel="all";monthT=id}
-  q.addEventListener("input",()=>{query=q.value;draw()});
-  w.append(el("div",{class:"bar"},q),tabs,wtabs,dtabs,list);
-  function draw(){
-    const s=query.toLowerCase();
-    const months=[...new Set(t.matches.map(m=>m.date.slice(0,7)))].sort().reverse();
-    if(monthSel&&!months.includes(monthSel)){monthSel=null;weekSel=null;dateSel="all"}
-    tabs.replaceChildren();wtabs.replaceChildren();dtabs.replaceChildren();
-    if(!s&&months.length>1)tabs.append(el("button",{class:"mo"+(!monthSel?" on":""),type:"button",text:"Todos",on:{click:()=>{monthSel=null;weekSel=null;dateSel="all";draw()}}}));
-    if(!s)months.forEach(mo=>tabs.append(el("button",{class:"mo"+(mo===monthSel?" on":""),type:"button",text:fmtMonth(mo),on:{click:()=>{monthSel=mo;weekSel=null;dateSel="all";draw()}}})));
-    const inMonth=monthSel?t.matches.filter(m=>m.date.slice(0,7)===monthSel):[];
-    const wks=[...new Set(inMonth.map(m=>weekendKey(m.date)))].sort().reverse();
-    if(weekSel&&weekSel!=="all"&&!wks.includes(weekSel))weekSel=null;
-    if(!s&&monthSel){
-      wks.forEach(k=>{const ds=[...new Set(inMonth.filter(m=>weekendKey(m.date)===k).map(m=>m.date))].sort();
-        wtabs.append(el("button",{class:"mo"+(k===weekSel?" on":""),type:"button",text:ds.map(shortDate).join(" y "),on:{click:()=>{weekSel=k;dateSel="all";draw()}}}))});
-      if(wks.length>1)wtabs.append(el("button",{class:"mo"+(!weekSel||weekSel==="all"?" on":""),type:"button",text:"Todo el mes",on:{click:()=>{weekSel="all";dateSel="all";draw()}}}));
-    }
-    const wd=(!s&&weekSel&&weekSel!=="all")?[...new Set(inMonth.filter(m=>weekendKey(m.date)===weekSel).map(m=>m.date))].sort():[];
-    if(dateSel!=="all"&&!wd.includes(dateSel))dateSel="all";
-    if(wd.length>1){
-      dtabs.append(el("button",{class:"mo"+(dateSel==="all"?" on":""),type:"button",text:"Ambos días",on:{click:()=>{dateSel="all";draw()}}}));
-      wd.forEach(d=>dtabs.append(el("button",{class:"mo"+(d===dateSel?" on":""),type:"button",text:shortDate(d),on:{click:()=>{dateSel=d;draw()}}})));
-    }
-    const ms=s?t.matches.filter(m=>[m.home,m.away,m.field,m.fmt,m.gender].join(" ").toLowerCase().includes(s)):(monthSel?inMonth:t.matches).filter(m=>(!weekSel||weekSel==="all"||weekendKey(m.date)===weekSel)&&(dateSel==="all"||m.date===dateSel));
-    list.replaceChildren();
-    if(!ms.length){list.append(el("div",{class:"empty",text:s?"No encontramos partidos. Probá con otro equipo.":(t.matches.length?(monthSel?"Elegí una fecha para ver los videos.":"Elegí un mes para ver los videos."):"Los videos de este torneo van a aparecer acá.")}));return}
-    [...new Set(ms.map(m=>m.date))].sort((a,b)=>(weekSel&&weekSel!=="all")?a.localeCompare(b):b.localeCompare(a)).forEach(d=>{
-      const dm=ms.filter(m=>m.date===d).sort((a,b)=>(a.field||"").localeCompare(b.field||"",undefined,{numeric:true})||(a.time||"").localeCompare(b.time||""));
-      const multi=new Set(dm.map(m=>m.field)).size>1;let last=null;
-      list.append(el("div",{class:"date"},el("h2",{text:fmtDate(d)}),el("span",{text:plural(dm.length,"partido","partidos")})));
-      dm.forEach(m=>{const u=safe(m.url);
-        if(multi&&m.field!==last){list.append(el("h3",{class:"fh",text:m.field||"Otra cancha"}));last=m.field}
-        list.append(el("div",{class:"match"+(m.thumb?" th":"")},m.thumb?el("a",{class:"thumb",href:u||"#",target:"_blank",rel:"noopener","aria-label":"Ver video"},el("img",{src:m.thumb,alt:"Imagen del partido",loading:"lazy",on:{error:e=>{const a=e.target.parentNode;a.parentNode&&a.parentNode.classList.remove("th");a.remove()}}})):null,el("div",{class:"t",text:m.time||"·"}),
-          el("div",{},el("div",{class:"tm",text:(m.home||m.away)?(m.home+" vs "+m.away):(m.title||(m.time?"Partido de las "+fmtHs(m.time)+" hs":"Partido"))}),el("div",{class:"meta"},m.fmt?el("span",{class:"tag",text:m.fmt}):null,m.note?el("span",{class:"tag",text:m.note}):null,m.gender?el("span",{class:"tag",text:m.gender}):null,(m.home||m.away)?(m.field||""):null)),
-          el("div",{class:"go"},u?el("a",{class:"btn sm",href:u,target:"_blank",rel:"noopener",text:"Ver video"}):el("span",{class:"soon",text:"Video próximamente"}),
-            isAdmin()?el("button",{class:"x",text:"Quitar",style:"margin-left:10px",on:{click:()=>{t.matches=t.matches.filter(x=>x!==m);save()}}}):null)))});
-    });
-  }
-  draw();return w;
-}
-
-function render(){
-  const h=location.hash||"#/";let r="home",out;
-  if(h.startsWith("#/t/")){r="torneos";out=torneo(h.slice(4))}
-  else if(h.startsWith("#/torneos")){r="torneos";out=torneos()}
-  else if(h.startsWith("#/equipo")){location.replace("equipos/");return}   // Equipos v2 lives in equipos/ (2026-11-11)
-  else out=home();
-  document.getElementById("adminhost").replaceChildren(...(canEdit?[el("div",{class:"adminbar"},el("span",{text:adminOn?"Modo administrador: solo vos ves los formularios.":"Estás viendo la página como la ve un visitante."}),el("button",{class:"x",text:adminOn?"Ver como visitante":"Volver al modo administrador",on:{click:()=>{adminOn=!adminOn;render()}}}))]:[]));
-  app.replaceChildren(...[].concat(out));
-  document.querySelectorAll("nav a,.drawer a").forEach(a=>a.classList.toggle("on",a.dataset.r===r&&a.dataset.r!=="contacto"));
-  if(h==="#contacto")document.getElementById("contacto")?.scrollIntoView();else window.scrollTo(0,0);
-}
-(function(){const hd=document.querySelector("header.top"),bt=hd.querySelector(".burger");
-const set=o=>{hd.classList.toggle("open",o);bt.setAttribute("aria-expanded",o);bt.setAttribute("aria-label",o?"Cerrar menú":"Abrir menú")};
-bt.addEventListener("click",()=>set(!hd.classList.contains("open")));
-hd.querySelectorAll(".drawer a").forEach(a=>a.addEventListener("click",()=>set(false)));
-document.addEventListener("click",e=>{if(!hd.contains(e.target))set(false)});
-window.addEventListener("hashchange",()=>set(false));})();
-window.addEventListener("hashchange",render);
-fetch("videos.json",{cache:"no-cache"}).then(r=>r.json()).then(d=>{S=d}).catch(()=>{}).finally(render);
+// Reveal: escalonado por grupo al entrar en pantalla + parallax del video del hero
+(function(){
+  const els=[...document.querySelectorAll('.rv')];
+  els.forEach(el=>{
+    if(el.style.getPropertyValue('--d')) return;
+    const sib=[...el.parentElement.children].filter(c=>c.classList.contains('rv'));
+    const i=sib.indexOf(el); if(sib.length>1) el.style.setProperty('--d',(Math.min(i,5)*0.09).toFixed(2)+'s');
+  });
+  if(!('IntersectionObserver' in window)){els.forEach(e=>e.classList.add('in'));return}
+  const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12,rootMargin:'0px 0px -6% 0px'});
+  els.forEach(e=>io.observe(e));
+  if(matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const vf=document.querySelector('.viewfinder'); let ticking=false;
+  const upd=()=>{const k=Math.min(1,Math.max(0,scrollY/500)); vf.style.scale=(0.94+0.06*k).toFixed(4); ticking=false};
+  addEventListener('scroll',()=>{if(!ticking){ticking=true;requestAnimationFrame(upd)}},{passive:true}); upd();
+})();
 </script>
 </body>
 </html>
