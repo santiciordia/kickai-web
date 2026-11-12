@@ -252,11 +252,48 @@ function lineChart(id, vals, x, y, grid, fmt, W, H, L, R, labels, aria, ref){
     ${pts.map((p, i) => `<text x="${p[0]}" y="${H - 6}" text-anchor="middle">${labels[i]}</text>`).join("")}
   </svg>`;
 }
+/* Evolución v2 (owner 2026-11-12 'needs tuning'): drawn at the real width (no 1.8x blow-up), integer scale with hairline grid (1 goal is not half the chart),
+   thin columns (<= 22 px) with a rounded data-end and square baseline, value at the tip, rival crest + score under each match, hover/keyboard tooltip
+   (<title> on a wide hit area), table view. Possession = one 2 px line on a 0-100 scale with the 50 % line, dots with a surface ring, value only at the last match. */
+const chartW = () => innerWidth >= 900 ? 560 : Math.max(280, Math.min(560, innerWidth - 64));
+function xLabels(s, x, y0){
+  return s.matches.map((m, i) => { const o = outcome(m, s.id), r = TEAMS[o.rival] || {}, cx = x(i);
+    const crest = r.crest ? `<image href="${BASE}escudos/${r.crest}.webp" x="${cx - 10}" y="${y0}" width="20" height="20"/>` : `<text x="${cx}" y="${y0 + 14}" text-anchor="middle" class="ini">${esc(r.ini || "")}</text>`;
+    return `${crest}<text x="${cx}" y="${y0 + 36}" text-anchor="middle" class="sc ${o.cls}">${o.gf}-${o.ga}</text>`; }).join("");
+}
+function chartTable(s, head, rows){
+  return `<details class="ctable"><summary>Ver como tabla</summary><table><thead><tr><th>Partido</th>${head.map(h => `<th>${h}</th>`).join("")}</tr></thead><tbody>${
+    s.matches.map((m, i) => `<tr><td>vs ${esc(TEAMS[outcome(m, s.id).rival].name)}</td>${rows(m, i).map(v => `<td>${v}</td>`).join("")}</tr>`).join("")}</tbody></table></details>`;
+}
+function chartPair(s, get, aria, unit){
+  unit = unit || ["gol", "goles"];
+  const W = chartW(), n = s.matches.length, V = s.matches.map(m => get(m)), L = 26, R = 8, T = 18, Hp = 170, B = 46;
+  const maxF = Math.max(2, ...V.map(v => v[0])), maxA = Math.max(2, ...V.map(v => v[1]));
+  const k = Hp / (maxF + maxA), mid = T + maxF * k, H = T + Hp + B;
+  const step = (W - L - R) / Math.max(n, 2), x = i => L + step * (i + .5) + (n === 1 ? step / 2 : 0), bw = Math.min(22, step * .34), r = Math.min(4, bw / 2);
+  const every = maxF + maxA > 8 ? 2 : 1, grid = [];
+  for (let v = -maxA; v <= maxF; v += every) grid.push(`<line class="grid${v === 0 ? " base" : ""}" x1="${L}" x2="${W - R}" y1="${mid - v * k}" y2="${mid - v * k}"/><text class="tick" x="${L - 8}" y="${mid - v * k + 4}" text-anchor="end">${Math.abs(v)}</text>`);
+  const up = (cx, h) => `M${cx - bw/2},${mid - 1} V${mid - h + r} Q${cx - bw/2},${mid - h} ${cx - bw/2 + r},${mid - h} H${cx + bw/2 - r} Q${cx + bw/2},${mid - h} ${cx + bw/2},${mid - h + r} V${mid - 1} Z`;
+  const dn = (cx, h) => `M${cx - bw/2},${mid + 1} V${mid + h - r} Q${cx - bw/2},${mid + h} ${cx - bw/2 + r},${mid + h} H${cx + bw/2 - r} Q${cx + bw/2},${mid + h} ${cx + bw/2},${mid + h - r} V${mid + 1} Z`;
+  const cols = s.matches.map((m, i) => { const [f, a] = V[i], cx = x(i), riv = TEAMS[outcome(m, s.id).rival].name, pl = v => `${v} ${v === 1 ? unit[0] : unit[1]}`;
+    return `<g class="col" tabindex="0"><title>vs ${esc(riv)}: ${pl(f)} a favor, ${pl(a)} en contra</title><rect class="hit" x="${cx - step/2}" y="${T - 10}" width="${step}" height="${Hp + 20}"/>
+      ${f ? `<path class="barg" style="--i:${i}" d="${up(cx, f * k - 1)}" fill="#34D399"/><text class="val" x="${cx}" y="${mid - f * k - 6}" text-anchor="middle">${f}</text>` : ""}
+      ${a ? `<path class="barc" style="--i:${i}" d="${dn(cx, a * k - 1)}" fill="#F87171"/><text class="val" x="${cx}" y="${mid + a * k + 15}" text-anchor="middle">${a}</text>` : ""}</g>`; }).join("");
+  return `<svg class="chart c2" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" role="img" aria-label="${aria}">${grid.join("")}${cols}${xLabels(s, x, T + Hp + 6)}</svg>
+    <div class="legend"><span><i style="--c:#34D399"></i>A favor</span><span><i style="--c:#F87171"></i>En contra</span></div>
+    ${chartTable(s, ["A favor", "En contra"], (m, i) => V[i])}`;
+}
 function chartPoss(s){
-  const W = 320, H = 170, L = 48, R = 18, T = 24, B = 26, n = s.poss.length;
-  const x = i => L + (W - L - R) * (n > 1 ? i / (n - 1) : .5), y = v => T + (H - T - B) * (1 - (v - 20) / 60);
-  return lineChart(s.id, s.poss, x, y, [[y(80), "80%"], [y(50), "50%"], [y(20), "20%"]], v => v + "%", W, H, L, R, s.matches.map(m => fShort(m.F)),
-    `Posesión por partido: ${s.poss.map((v, i) => `${fLabel(s.matches[i].F)}, ${v}%`).join("; ")}`, y(50));
+  const W = chartW(), n = s.poss.length, L = 34, R = 30, T = 14, Hp = 150, B = 46, H = T + Hp + B;
+  const step = (W - L - R) / Math.max(n, 2), x = i => L + step * (i + .5) + (n === 1 ? step / 2 : 0), y = v => T + Hp * (1 - v / 100);
+  const grid = [0, 25, 50, 75, 100].map(v => `<line class="grid${v === 50 ? " base" : ""}" x1="${L}" x2="${W - R}" y1="${y(v)}" y2="${y(v)}"/><text class="tick" x="${L - 8}" y="${y(v) + 4}" text-anchor="end">${v}%</text>`).join("");
+  const pts = s.poss.map((v, i) => [x(i), y(v)]), d = pts.map((p, i) => (i ? "L" : "M") + p[0].toFixed(1) + "," + p[1].toFixed(1)).join(" ");
+  const area = "";   // no area: 0 % is not a meaningful floor here
+  const dots = s.poss.map((v, i) => `<g class="col" tabindex="0"><title>vs ${esc(TEAMS[outcome(s.matches[i], s.id).rival].name)}: ${v}% de posesión</title>
+      <rect class="hit" x="${x(i) - step/2}" y="${T}" width="${step}" height="${Hp}"/><circle class="pt" style="--i:${i}" cx="${pts[i][0]}" cy="${pts[i][1]}" r="5"/>
+      ${i === n - 1 ? `<text class="val" x="${pts[i][0]}" y="${pts[i][1] - 12}" text-anchor="middle">${v}%</text>` : ""}</g>`).join("");
+  return `<svg class="chart c2" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" role="img" aria-label="Posesión por partido">${grid}${area}${n > 1 ? `<path class="pline" d="${d}"/>` : ""}${dots}${xLabels(s, x, T + Hp + 6)}</svg>
+    <p class="chint">Arriba de la línea del 50 % = tuvo más la pelota que el rival.</p>${chartTable(s, ["Posesión"], (m, i) => [s.poss[i] + "%"])}`;
 }
 function chartGoals(s){
   const W = 320, H = 190, L = 14, R = 14, n = s.matches.length;
@@ -273,7 +310,7 @@ function chartGoals(s){
     <line class="grid" x1="${L}" x2="${W - R}" y1="${mid + 1}" y2="${mid + 1}"/>${bars}</svg>
     <div class="legend"><span><i style="--c:#34D399"></i>A favor</span><span><i style="--c:#F87171"></i>En contra</span></div>`;
 }
-const MIN_TREND = 3;   // HANDOFF: configurable
+const MIN_TREND = 2;   // owner 2026-11-12: trends from the 2nd match
 // EXAMPLE mode (owner 2026-11-11, only with ?ejemplo in the link): 4 invented earlier matches per team so the Evolución chart can be seen. Labelled on the page; real numbers untouched.
 const DEMO = /[?&]ejemplo\b/.test(location.search);
 function demoStats(s){
@@ -288,7 +325,7 @@ function demoStats(s){
   const ms = fake.concat(s.matches);
   return {...s, matches: ms, poss: fake.map(m => m.poss.total[0]).concat(s.poss), played: ms.length};
 }
-function chartFor(s){ s = demoStats(s); return (DEMO ? `<p class="demo-tag">Ejemplo — los partidos anteriores al ${s.matches[s.matches.length - 1].F.date} son inventados</p>` : "") + (state.chart === "poss" ? chartPoss(s) : chartGoals(s)); }
+function chartFor(s){ s = demoStats(s); return (DEMO ? `<p class="demo-tag">Ejemplo — los partidos anteriores al ${s.matches[s.matches.length - 1].F.date} son inventados</p>` : "") + (state.chart === "poss" ? chartPoss(s) : state.chart === "corners" && hasCorners(s) ? chartCorners(s) : chartPair(s, m => { const o = outcome(m, s.id); return [o.gf, o.ga]; }, "Goles a favor y en contra por partido")); }
 function teamMatchesHTML(id, s){
   if (state.mtab === "next") return `<div class="empty"><span class="art">${icon("calendar")}</span><h3>Próximo partido a confirmar</h3><p>Cuando la organización lo programe, aparece acá.</p></div>`;
   if (!s.played) return `<div class="empty"><span class="art">${icon("whistle")}</span><h3>Todavía sin partidos</h3><p>Su primer partido aparece acá.</p></div>`;
@@ -324,6 +361,66 @@ function drawHeat(m){
   const bw = W * .15, bh = Hh * .48; g.strokeRect(p, (Hh - bh) / 2, bw, bh); g.strokeRect(W - p - bw, (Hh - bh) / 2, bw, bh);
   cv.setAttribute("aria-label", `Mapa de calor de ${TEAMS[team].name}, ${half === "all" ? "todo el partido" : half + "º tiempo"}, atacando hacia la derecha`);
 }
+/* ===== Team page extras (owner 2026-11-12): chart with toggle, goal videos with a menu, automatic summary ===== */
+const shortName = (nm, n) => { const t = nm.replace(/\s+(FC|Club)$/i, ""), max = n <= 3 ? 14 : n <= 5 ? 9 : 6; return t.length <= max ? t : t.slice(0, max - 1) + "…"; };
+const cornersOf = (m, id) => m.corners ? (m.home === id ? [m.corners[0], m.corners[1]] : [m.corners[1], m.corners[0]]) : null;
+const hasCorners = s => s.matches.length && s.matches.every(m => m.corners);
+function chartCorners(s){ return chartPair(s, m => cornersOf(m, s.id), "Córners a favor y en contra por partido", ["córner", "córners"]); }
+
+function goalVideosHTML(id, s){
+  const ms = s.matches.filter(m => m.goals.length);
+  if (!ms.length) return `<div class="empty"><span class="art">${icon("film")}</span><h3>Todavía sin goles</h3><p>Los goles de sus partidos aparecen acá.</p></div>`;
+  const menu = ms.slice().reverse().map(m => { const o = outcome(m, id), riv = TEAMS[o.rival];
+    return `<div class="gm-match"><a class="gm-h" href="#partido/${m.id}">${shield(o.rival, 24)}<span>vs ${esc(riv.name)}</span><b class="num ${o.cls}">${o.gf}-${o.ga}</b></a>
+      ${m.goals.map(g => { const mine = g.team === id;
+        return `<button type="button" class="gitem ${mine ? "for" : "against"}" data-clip="${g.clip}" data-mid="${m.id}" data-n="${g.n}" aria-label="Gol ${mine ? "a favor" : "en contra"}, minuto ${g.min}, contra ${esc(riv.name)}">
+          <i aria-hidden="true"></i><span class="num">${g.min}'</span><span>${mine ? "A favor" : "En contra"}</span>${icon("play")}</button>`; }).join("")}</div>`; }).join("");
+  return `<div class="gvid"><nav class="gmenu" aria-label="Goles por partido">${menu}</nav>
+    <div class="gstage"><div class="gscreen"><video id="tv" playsinline controls muted preload="none"></video><div class="gwait" id="tvwait">${icon("play")}<span>Elegí un gol</span></div></div>
+      <div class="gcap"><span id="tvcap"></span><a id="tvlink" href="#" hidden>Verlo con jugadores y mapa${icon("next")}</a></div></div></div>`;
+}
+function bindGoalVideos(id){
+  const v = $("#tv"); if (!v) return; let url = null, seq = 0;
+  app.querySelectorAll(".gitem").forEach(b => b.addEventListener("click", async () => {
+    app.querySelectorAll(".gitem").forEach(x => x.setAttribute("aria-current", x === b ? "true" : "false"));
+    const my = ++seq, m = MATCHES.find(x => x.id === b.dataset.mid), riv = TEAMS[outcome(m, id).rival], mine = b.classList.contains("for");
+    $("#tvcap").textContent = `${mine ? "Gol a favor" : "Gol en contra"} · min ${b.querySelector(".num").textContent} · vs ${riv.name}`;
+    const L = $("#tvlink"); L.hidden = false; L.onclick = e => { e.preventDefault(); state.from = id; state.pendingGoal = +b.dataset.n; location.hash = "partido/" + m.id; };
+    $("#tvwait").innerHTML = `<span>Cargando…</span>`; $("#tvwait").hidden = false;
+    try {
+      const u = await clipURL(b.dataset.clip); if (my !== seq) return;
+      if (url && url.startsWith("blob:")) URL.revokeObjectURL(url); url = u;
+      v.src = u; $("#tvwait").hidden = true; v.play().catch(() => {});
+      if (innerWidth < 900) v.scrollIntoView({behavior: "smooth", block: "center"});
+    } catch (e) { $("#tvwait").innerHTML = `<span>No se pudo cargar el video</span>`; }
+  }));
+}
+
+function recapHTML(id, s){   // only what the numbers show; small samples said plainly
+  const n = s.played; if (!n) return "";
+  const out = [], pl = (k, a, b) => `${k} ${k === 1 ? a : b}`;
+  const gf = [], ga = [];
+  s.matches.forEach(m => m.goals.forEach(g => (g.team === id ? gf : ga).push({m, g})));
+  const early = L => L.filter(x => x.g.half === 1 && x.g.sec < 300).length;
+  const late = L => L.filter(x => { const len = (x.m.len && x.m.len[x.g.half - 1]) || 0; return len > 600 && x.g.sec >= len - 300; }).length;
+  const eA = early(ga), eF = early(gf), lA = late(ga), lF = late(gf);
+  if (ga.length >= 2 && eA / ga.length >= .5) out.push(`${eA} de sus ${ga.length} goles en contra llegaron en los primeros 5 minutos: a este equipo le cuesta arrancar.`);
+  if (gf.length >= 2 && eF / gf.length >= .5) out.push(`${eF} de sus ${gf.length} goles los hizo en los primeros 5 minutos: sale con todo.`);
+  if (ga.length >= 2 && lA / ga.length >= .5) out.push(`${lA} de sus ${ga.length} goles en contra llegaron en los últimos 5 minutos.`);
+  if (gf.length >= 2 && lF / gf.length >= .5) out.push(`${lF} de sus ${gf.length} goles llegaron en los últimos 5 minutos: no se rinde.`);
+  const first = s.matches.filter(m => m.goals.length).map(m => ({m, mine: m.goals[0].team === id}));
+  const fm = first.filter(x => x.mine), fwin = fm.filter(x => outcome(x.m, id).cls === "w").length;
+  if (fm.length && first.length >= 2) out.push(`Hizo el primer gol en ${fm.length} de ${pl(first.length, "partido", "partidos")} con goles${fm.length >= 2 ? ` y ganó ${fwin} de esos` : ""}.`);
+  const more = s.matches.filter(m => (m.home === id ? m.poss.total[0] : m.poss.total[1]) > 50), mw = more.filter(m => outcome(m, id).cls === "w").length;
+  if (n >= 2) out.push(more.length ? `Tuvo más la pelota que el rival en ${more.length} de ${n} partidos (promedio ${s.possAvg} %)${more.length >= 2 ? `; ganó ${mw} de esos` : ""}.` : `Jugó con menos pelota que el rival en sus ${n} partidos (promedio ${s.possAvg} %).`);
+  const cs = s.matches.filter(m => outcome(m, id).ga === 0).length;
+  if (cs) out.push(`${cs === n ? (n === 1 ? "No le hicieron goles." : `No le hicieron goles en ninguno de sus ${n} partidos.`) : `Terminó sin goles en contra en ${pl(cs, "partido", "partidos")}.`}`);
+  if (n >= 2 && s.gf) out.push(`Promedio: ${(s.gf / n).toFixed(1).replace(".", ",")} goles a favor y ${(s.ga / n).toFixed(1).replace(".", ",")} en contra por partido.`);
+  if (!out.length) return "";
+  return `<section class="section"><div class="sh"><h2>${icon("info")}Resumen del equipo</h2><span class="aside">${tip("Frases armadas automáticamente con los datos de sus partidos: goles, minutos y posesión.")}</span></div>
+    <div class="recap">${n < 4 ? `<p class="recap-note">Con ${pl(n, "partido jugado", "partidos jugados")}, son primeras señales.</p>` : ""}<ul>${out.slice(0, 5).map(x => `<li>${x}</li>`).join("")}</ul></div></section>`;
+}
+
 function viewTeam(tid, id){
   const t = TEAMS[id], T = TOURN.find(x => x.id === tid); if (!t || !T) return viewNotFound();
   const s = teamStats(id, tid), g = T.groups ? Object.keys(T.groups).find(k => T.groups[k].includes(id)) : T.teams.includes(id) ? "" : null;
@@ -362,22 +459,23 @@ function viewTeam(tid, id){
           <div id="mBox" class="mbox">${teamMatchesHTML(id, s)}</div>
         </section>
         <section class="section">
-          <div class="sh"><h2>${icon("chart")}Evolución</h2>${trend ? `<div class="seg" role="group" aria-label="Qué mostrar">${seg("goals","Goles")}${seg("poss","Posesión")}</div>` : ""}</div>
+          <div class="sh"><h2>${icon("chart")}Evolución</h2>${trend ? `<div class="seg" role="group" aria-label="Qué mostrar">${seg("goals","Goles")}${seg("poss","Posesión")}${hasCorners(s) ? seg("corners","Córners") : ""}</div>` : ""}</div>
           ${trend ? `<div class="chart-card"><div id="chartBox">${chartFor(s)}</div></div>`
             : `<div class="empty"><span class="art">${icon("chart")}</span><h3>Faltan partidos</h3><p>Con ${MIN_TREND} partidos jugados ves la evolución. Van ${s.played} de ${MIN_TREND}.</p></div>`}
         </section>
-        <section class="section">
-          <div class="sh"><h2>${icon("film")}Goles</h2><span class="aside">${s.goals.length} en ${s.played} ${s.played === 1 ? "partido" : "partidos"}</span></div>
-          ${goals}
-        </section>
       </div>
       <div class="view">
+        ${recapHTML(id, s)}
         ${SHOW_TABLE ? `<section class="section">
           <div class="sh"><h2>${icon("list")}Posición</h2><a class="aside" href="#t/${tid}">Todos${icon("next")}</a></div>
           ${g != null ? groupTable(T, g, id) : `<div class="empty"><span class="art">${icon("list")}</span><h3>La tabla llega con el fixture</h3><p>Cuando la organización cargue grupos y fechas.</p></div>`}
         </section>` : ""}
       </div>
     </div>
+    <section class="section">
+      <div class="sh"><h2>${icon("film")}Videos de goles</h2><span class="aside">${s.gf} a favor · ${s.ga} en contra</span></div>
+      ${goalVideosHTML(id, s)}
+    </section>
   </div>`;
 }
 
@@ -731,6 +829,8 @@ function mount(p){
   if (p[0] === "equipo" && TEAMS[p[2]]){
     const s = teamStats(p[2], p[1]);
     swap("chart", "chart", "data-chart", () => { $("#chartBox").innerHTML = chartFor(s); });
+    bindGoalVideos(p[2]);
+    let cw0 = chartW(), rt; onresize = () => { clearTimeout(rt); rt = setTimeout(() => { const b = $("#chartBox"); if (b && chartW() !== cw0){ cw0 = chartW(); b.innerHTML = chartFor(s); } }, 150); };
     swap("mtab", "mtab", "data-mtab", () => { $("#mBox").innerHTML = teamMatchesHTML(p[2], s); const r = $("#mBox .formstrip"); if (r) r.scrollLeft = r.scrollWidth; });
   }
   const mm = p[0] === "partido" ? MATCHES.find(x => x.id === p[1]) : null;
