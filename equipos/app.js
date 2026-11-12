@@ -23,7 +23,7 @@ const ddmm = d => { const [, m, z] = d.split("-"); return `${z}/${m}`; };
 const largo = d => { const [a, m, z] = d.split("-"); return `${DIAS[new Date(+a, +m - 1, +z).getDay()]} ${z}/${m}`; };
 // Crests the clubs published (owner's sisters' package). Others get a drawn shield with initials.
 const CRESTS = {"manchester-city":"mancity", carioca:"carioca", liverpool:"liverpool", "ultimo-minuto":"ultimo", juventus:"juventus", "tirame-un-centro":"tirame",
-  "tirame-un-centro-fc":"tirame", "tinto-de-verano-fc":"tinto", "ascendente-en-leo":"leo", "manchester-united":"united", "mal-clima-fc":"malclima", "play-futbol-fc":"playfutbol", psg:"psg"};
+  "tirame-un-centro-fc":"tirame", "tinto-de-verano-fc":"tinto", "ascendente-en-leo":"leo", "manchester-united":"united", "mal-clima-fc":"malclima", "play-futbol-fc":"playfutbol", psg:"psg", tinto:"tinto", "mal-clima":"malclima", "play-futbol":"playfutbol"};
 const COPA_JAG = n => /copa\s*jag/i.test(n);
 
 /* ================= DATA (real) ================= */
