@@ -450,6 +450,18 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
   html{scroll-behavior:auto}
 }
 .tile.photo picture{display:contents}
+.burger{display:none;width:40px;height:36px;border-radius:8px;border:1px solid var(--line-2);background:transparent;padding:0;cursor:pointer;flex-direction:column;align-items:center;justify-content:center;gap:4px}
+.burger span{display:block;width:16px;height:1.6px;background:var(--text);border-radius:2px;transition:transform .25s,opacity .25s}
+.burger[aria-expanded=true] span:nth-child(1){transform:translateY(5.6px) rotate(45deg)}
+.burger[aria-expanded=true] span:nth-child(2){opacity:0}
+.burger[aria-expanded=true] span:nth-child(3){transform:translateY(-5.6px) rotate(-45deg)}
+.burger:focus-visible{outline:2px solid var(--orange);outline-offset:3px}
+.drawer{display:flex;flex-direction:column;padding:8px 24px 20px;border-top:1px solid var(--line);background:rgba(10,11,12,.96)}
+.drawer[hidden]{display:none}
+.drawer a:not(.btn){padding:14px 0;font-size:17px;color:var(--text);border-bottom:1px solid var(--line)}
+.drawer .btn{margin-top:16px;justify-content:center}
+@media (max-width:920px){.burger{display:inline-flex}}
+@media (min-width:921px){.drawer{display:none!important}}
 .nav-links a,.nav-cta .btn{white-space:nowrap}
 @media (max-width:920px){.nav-links{display:none}}   /* 6 links since Calificar y Revisar was added */
 .delta[hidden]{display:none!important}
@@ -480,8 +492,14 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
     <div class="nav-cta">
       <a href="torneos.html#/torneos" class="btn btn-ghost btn-sm">Buscá tu partido</a>
       <a href="#contacto" class="btn btn-primary btn-sm">Pedí presupuesto</a>
+      <button class="burger" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="drawer"><span></span><span></span><span></span></button>
     </div>
   </div>
+  <nav class="drawer" id="drawer" aria-label="Menú" hidden>
+    <a href="#servicio">Servicio</a><a href="#para-quien">Para quién</a><a href="#planes">Planes</a><a href="torneos.html#/torneos">Torneos</a><a href="equipos/">Equipos</a>
+    <a href="https://claude.ai/artifact/RG7pwsMTZe8Zc5FAbdBi7a" target="_blank" rel="noopener">Calificar y Revisar</a>
+    <a href="#contacto" class="btn btn-primary">Pedí presupuesto</a>
+  </nav>
 </header>
 
 <main>
@@ -745,6 +763,16 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
 </footer>
 
 <script>
+// Menú en celular (owner 2026-11-12)
+(function(){
+  const b=document.querySelector('.burger'), d=document.getElementById('drawer'); if(!b) return;
+  const set=o=>{d.hidden=!o; b.setAttribute('aria-expanded',o); b.setAttribute('aria-label',o?'Cerrar menú':'Abrir menú')};
+  b.addEventListener('click',e=>{e.stopPropagation(); set(d.hidden)});
+  d.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>set(false)));
+  document.addEventListener('click',e=>{if(!d.hidden&&!d.contains(e.target))set(false)});
+  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!d.hidden){set(false);b.focus()}});
+  addEventListener('resize',()=>{if(innerWidth>920)set(false)});
+})();
 // Hero timecode
 (function(){
   const tc=document.getElementById('tc'), mn=document.getElementById('min');
