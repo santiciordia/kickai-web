@@ -532,10 +532,6 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
         <p class="big-label">Partidos grabados y publicados</p>
         <div class="big"><strong id="statTotal" data-total="0">0</strong><span class="delta"><span>↑</span><span>+<b id="statWeek" style="font-weight:500">14</b> esta semana</span></span></div>
       </div>
-      <div class="leagues" aria-label="Torneos que graban con kick.ai">
-        <small>Graban con kick.ai</small>
-        <span>Liga Olivos</span><span>JAG</span><span>Boston League</span><span>Northchamp</span>
-      </div>
     </div>
   </div>
 </div>
@@ -764,12 +760,12 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
 
 // Contador: partidos publicados de todos los torneos (videos.json, el mismo archivo que usa Torneos)
 (function(){
-  const card=document.getElementById('statCard'), tot=document.getElementById('statTotal'), wk=document.getElementById('statWeek'), lg=document.querySelector('.leagues');
+  const card=document.getElementById('statCard'), tot=document.getElementById('statTotal'), wk=document.getElementById('statWeek'), lg=document.querySelector('.leagues');   // gone since 2026-11-12 (null)
   const chip=wk.closest('.delta');
   const show=(total,week,names)=>{
     tot.textContent=total; tot.dataset.total=total;
     if(week>0){wk.textContent=week;chip.hidden=false}else chip.hidden=true;
-    if(names&&names.length){lg.querySelectorAll('span').forEach(x=>x.remove());names.forEach(n=>{const e=document.createElement('span');e.textContent=n;lg.append(e)})}
+    if(lg&&names&&names.length){lg.querySelectorAll('span').forEach(x=>x.remove());names.forEach(n=>{const e=document.createElement('span');e.textContent=n;lg.append(e)})}
     if(matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     const run=()=>{const t0=performance.now(), d=1400;
       const step=t=>{const k=Math.min(1,(t-t0)/d), e=1-Math.pow(1-k,3); tot.textContent=Math.round(total*e); if(k<1) requestAnimationFrame(step)};
