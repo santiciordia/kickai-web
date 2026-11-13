@@ -575,6 +575,15 @@ details.more[open] summary .chev{transform:rotate(180deg)}
 /* 2026-11-13 owner: team/minute label off the kick.ai mark (top-left of the clip) -> bottom-right, over the Veo logo, left of the full-screen button */
 .slabel{top:auto;left:auto;right:52px;bottom:10px;justify-content:flex-end}
 @media (max-width:639px){.slabel{right:42px;bottom:8px}.slabel span{font-size:10.5px;padding:2px 7px}}
+/* 2026-11-13 owner: Evolución = Goles, Posesión, Córners side by side (stacked on a phone) */
+.evo3{display:grid;grid-template-columns:repeat(var(--n),minmax(0,1fr));gap:16px}
+.evo-t{margin:0 0 8px;font-size:15px;font-weight:600}
+@media (max-width:899px){.evo3{grid-template-columns:1fr}}
+.evo-sw{display:inline-flex;gap:4px;padding:3px;border-radius:999px;background:var(--surface-2,#16191B);border:1px solid var(--line)}
+.evo-sw button{font:inherit;font-size:13px;font-weight:600;padding:5px 11px;border-radius:999px;border:0;background:transparent;color:var(--muted,#9aa0a6);cursor:pointer}
+.evo-sw button[aria-pressed=true]{background:var(--surface-3,#24282C);color:var(--fg,#F2F3F4)}
+.seg.thm{max-width:100%;overflow-x:auto;flex-wrap:nowrap;scrollbar-width:none}
+.seg.thm button{white-space:nowrap}.seg.thm b{font-weight:700;margin-left:4px}.seg.thm b.w{color:var(--win)}.seg.thm b.l{color:var(--loss)}
 </style>
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
@@ -668,6 +677,6 @@ addEventListener('hashchange',function(){set(false)});addEventListener('resize',
 <div id="tipBox" role="tooltip"></div>
 <div class="toast" id="toast" role="status"></div>
 <script src="equipos_data.js"></script>
-<script src="app.js?v=1794540330"></script>
+<script src="app.js?v=1794541530"></script>
 </body>
 </html>

@@ -1,4 +1,4 @@
-const SHOW_TABLE = false; const SHOW_HEAT = false;   // owner 2026-11-12: heat maps hidden (built on wrong pitch limits)   // owner 2026-11-11: no standings table yet
+const SHOW_TABLE = false; const SHOW_HEAT = true; /* 2026-11-13 v2 */ const SHOW_HEAT_OLD = false;   // owner 2026-11-12: heat maps hidden (built on wrong pitch limits)   // owner 2026-11-11: no standings table yet
 /* kick.ai · Equipos v2 (2026-11-11). Port of the approved prototype (docs/rediseno_1111/sitio/equipos.html) on our real data.
    Flow (owner): Liga (JAG, Liga Olivos) -> Torneo (tabla + resultados + goles) -> Equipo (tendencias) -> Partido.
    Data: window.EQ_DATA (preview) or data.enc (AES-GCM, key from the password, same lock as the live site). Clips: clips/ or enc/clips/. */
@@ -114,7 +114,7 @@ function groupTable(T, g, highlight){
 
 /* ================= STATE / HEADER ================= */
 const app = $("#app");
-const state = {fecha: {}, goal: 0, pendingGoal: null, chart: "goals", mtab: "played", stab: 0, from: null};
+const state = {fecha: {}, goal: 0, pendingGoal: null, chart: "goals", evo3: "shots", mtab: "played", stab: 0, from: null};
 let player = null;
 function setCtx(F){
   const el = $("#ctx");
@@ -255,7 +255,7 @@ function lineChart(id, vals, x, y, grid, fmt, W, H, L, R, labels, aria, ref){
 /* Evolución v2 (owner 2026-11-12 'needs tuning'): drawn at the real width (no 1.8x blow-up), integer scale with hairline grid (1 goal is not half the chart),
    thin columns (<= 22 px) with a rounded data-end and square baseline, value at the tip, rival crest + score under each match, hover/keyboard tooltip
    (<title> on a wide hit area), table view. Possession = one 2 px line on a 0-100 scale with the 50 % line, dots with a surface ring, value only at the last match. */
-const chartW = () => innerWidth >= 900 ? 560 : Math.max(280, Math.min(560, innerWidth - 64));
+const chartW = () => innerWidth >= 900 ? 340 : Math.max(280, Math.min(560, innerWidth - 64));   // 2026-11-13 owner: 3 charts side by side on a computer
 function xLabels(s, x, y0){
   return s.matches.map((m, i) => { const o = outcome(m, s.id), r = TEAMS[o.rival] || {}, cx = x(i);
     const crest = r.crest ? `<image href="${BASE}escudos/${r.crest}.webp" x="${cx - 10}" y="${y0}" width="20" height="20"/>` : `<text x="${cx}" y="${y0 + 14}" text-anchor="middle" class="ini">${esc(r.ini || "")}</text>`;
@@ -325,7 +325,12 @@ function demoStats(s){
   const ms = fake.concat(s.matches);
   return {...s, matches: ms, poss: fake.map(m => m.poss.total[0]).concat(s.poss), played: ms.length};
 }
-function chartFor(s){ s = demoStats(s); return (DEMO ? `<p class="demo-tag">Ejemplo — los partidos anteriores al ${s.matches[s.matches.length - 1].F.date} son inventados</p>` : "") + (state.chart === "poss" ? chartPoss(s) : state.chart === "corners" && hasCorners(s) ? chartCorners(s) : chartPair(s, m => { const o = outcome(m, s.id); return [o.gf, o.ga]; }, "Goles a favor y en contra por partido")); }
+function chartFor(s){ s = demoStats(s);
+  const card = (t, body) => `<div class="chart-card evo-card"><h3 class="evo-t">${t}</h3>${body}</div>`;
+  const cards = [card("Goles", chartPair(s, m => { const o = outcome(m, s.id); return [o.gf, o.ga]; }, "Goles a favor y en contra por partido")), card("Posesión", chartPoss(s))]
+    .concat(hasShots(s) ? [card(hasCorners(s) ? `<span class="evo-sw">${["shots", "corners"].map(k => `<button type="button" data-evo3="${k}" aria-pressed="${state.evo3 === k}">${k === "shots" ? "Tiros al arco" : "Córners"}</button>`).join("")}</span>` : "Tiros al arco",
+      `<div id="evo3Box">${state.evo3 === "corners" && hasCorners(s) ? chartCorners(s) : chartShots(s)}</div>`)] : hasCorners(s) ? [card("Córners", chartCorners(s))] : []);
+  return (DEMO ? `<p class="demo-tag">Ejemplo — los partidos anteriores al ${s.matches[s.matches.length - 1].F.date} son inventados</p>` : "") + `<div class="evo3" style="--n:${cards.length}">${cards.join("")}</div>`; }
 function teamMatchesHTML(id, s){
   if (state.mtab === "next") return `<div class="empty"><span class="art">${icon("calendar")}</span><h3>Próximo partido a confirmar</h3><p>Cuando la organización lo programe, aparece acá.</p></div>`;
   if (!s.played) return `<div class="empty"><span class="art">${icon("whistle")}</span><h3>Todavía sin partidos</h3><p>Su primer partido aparece acá.</p></div>`;
@@ -333,38 +338,48 @@ function teamMatchesHTML(id, s){
     <a class="fm ${o.cls} rise" style="--i:${i}" href="#partido/${m.id}" aria-label="${fLabel(m.F)}: ${o.gf} a ${o.ga} contra ${esc(TEAMS[o.rival].name)}">
       <small>${fLabel(m.F)}</small>${shield(o.rival, 76)}<span class="sc num">${o.gf}-${o.ga}</span></a>`; }).join("")}</div>`;
 }
-// Heat map (owner 2026-11-11, Sofascore style): smoothed density from web_heat.py, attack to the right, colours from transparent green to red.
+// Heat map v2 (owner 2026-11-13: 'like Veo's'): web_heat.py v2 grid (base64 bytes, keepers and people standing at the lines left out),
+// Veo-like colours (deep blue -> light -> yellow -> red, opaque), pitch lines on top. Home team attacks to the right, the rival to the left (owner).
+const HEAT_STOPS = [[0, [43, 58, 150]], [.18, [60, 95, 200]], [.38, [150, 195, 235]], [.55, [245, 240, 200]], [.7, [250, 205, 90]], [.85, [240, 120, 50]], [1, [190, 25, 30]]];
 function drawHeat(m){
   const cv = $("#heat"); if (!cv || !m.heat) return;
-  const H = m.heat, team = H.teams[state.hteam] ? state.hteam : m.home, half = H.teams[team][state.hhalf] ? state.hhalf : "all", G = H.teams[team][half];
+  const team = m.heat.teams[state.hteam] ? state.hteam : m.home;
+  heatOn(cv, $("#heatFoot"), m, team, m.heat.teams[team][state.hhalf] ? state.hhalf : "all", team !== m.home);
+}
+function heatOn(cv, f, m, team, half, left){
+  const H = m.heat, raw = H.teams[team][half];
+  const G = typeof raw === "string" ? Uint8Array.from(atob(raw), c => c.charCodeAt(0)) : raw;
   const dp = devicePixelRatio || 1, w = cv.getBoundingClientRect().width || 600, h = w * H.ratio;
   cv.style.height = h + "px"; cv.width = Math.round(w * dp); cv.height = Math.round(h * dp);
-  const g = cv.getContext("2d"), W = cv.width, Hh = cv.height, lw = Math.max(1, W / 320);
-  g.fillStyle = "#123a26"; g.fillRect(0, 0, W, Hh);
-  for (let i = 0; i < 12; i++) if (i % 2){ g.fillStyle = "rgba(255,255,255,.03)"; g.fillRect(i * W / 12, 0, W / 12, Hh); }
-  // density -> colour (transparent at low values), drawn small then scaled up smooth
+  const g = cv.getContext("2d"), W = cv.width, Hh = cv.height, lw = Math.max(1.5, W / 300);
   const o = document.createElement("canvas"); o.width = H.nx; o.height = H.ny; const ox = o.getContext("2d"), im = ox.createImageData(H.nx, H.ny);
-  const stops = [[0, [40, 160, 90]], [.35, [120, 200, 60]], [.6, [250, 220, 50]], [.8, [250, 140, 30]], [1, [230, 40, 30]]];
-  for (let k = 0; k < G.length; k++){
-    const v = G[k] / 255; let a = stops[0], b = stops[stops.length - 1];
-    for (let j = 1; j < stops.length; j++) if (v <= stops[j][0]){ a = stops[j - 1]; b = stops[j]; break; }
+  for (let r = 0; r < H.ny; r++) for (let c = 0; c < H.nx; c++){
+    const v = G[r * H.nx + (left ? H.nx - 1 - c : c)] / 255, k = r * H.nx + c; let a = HEAT_STOPS[0], b = HEAT_STOPS[HEAT_STOPS.length - 1];
+    for (let j = 1; j < HEAT_STOPS.length; j++) if (v <= HEAT_STOPS[j][0]){ a = HEAT_STOPS[j - 1]; b = HEAT_STOPS[j]; break; }
     const t = (v - a[0]) / Math.max(1e-6, b[0] - a[0]);
-    for (let c = 0; c < 3; c++) im.data[4 * k + c] = Math.round(a[1][c] + (b[1][c] - a[1][c]) * t);
-    im.data[4 * k + 3] = v < .06 ? 0 : Math.round(255 * Math.min(.85, .15 + v * .8));
+    for (let q = 0; q < 3; q++) im.data[4 * k + q] = Math.round(a[1][q] + (b[1][q] - a[1][q]) * t);
+    im.data[4 * k + 3] = 255;
   }
   ox.putImageData(im, 0, 0); g.imageSmoothingEnabled = true; g.imageSmoothingQuality = "high"; g.drawImage(o, 0, 0, W, Hh);
-  // pitch lines on top
-  g.strokeStyle = "rgba(255,255,255,.7)"; g.lineWidth = lw; const p = lw;
+  g.strokeStyle = "rgba(255,255,255,.92)"; g.lineWidth = lw; const p = lw / 2;
   g.strokeRect(p, p, W - 2 * p, Hh - 2 * p);
-  g.beginPath(); g.moveTo(W / 2, p); g.lineTo(W / 2, Hh - p); g.stroke();
-  g.beginPath(); g.arc(W / 2, Hh / 2, Hh * .13, 0, 7); g.stroke();
-  const bw = W * .15, bh = Hh * .48; g.strokeRect(p, (Hh - bh) / 2, bw, bh); g.strokeRect(W - p - bw, (Hh - bh) / 2, bw, bh);
-  cv.setAttribute("aria-label", `Mapa de calor de ${TEAMS[team].name}, ${half === "all" ? "todo el partido" : half + "º tiempo"}, atacando hacia la derecha`);
+  g.beginPath(); g.moveTo(W / 2, 0); g.lineTo(W / 2, Hh); g.stroke();
+  g.beginPath(); g.arc(W / 2, Hh / 2, W * .08, 0, 7); g.stroke();
+  const bw = W * .15, bh = Hh * .58; g.strokeRect(p, (Hh - bh) / 2, bw, bh); g.strokeRect(W - p - bw, (Hh - bh) / 2, bw, bh);
+  if (f) f.innerHTML = left ? `<span class="att">${icon("prev")} Ataca</span><span>Arco propio</span>` : `<span>Arco propio</span><span class="att">Ataca ${icon("next")}</span>`;
+  cv.setAttribute("aria-label", `Mapa de calor de ${TEAMS[team].name}, ${half === "all" ? "todo el partido" : half + "º tiempo"}, atacando hacia la ${left ? "izquierda" : "derecha"}`);
 }
 /* ===== Team page extras (owner 2026-11-12): chart with toggle, goal videos with a menu, automatic summary ===== */
 const shortName = (nm, n) => { const t = nm.replace(/\s+(FC|Club)$/i, ""), max = n <= 3 ? 14 : n <= 5 ? 9 : 6; return t.length <= max ? t : t.slice(0, max - 1) + "…"; };
 const cornersOf = (m, id) => m.corners ? (m.home === id ? [m.corners[0], m.corners[1]] : [m.corners[1], m.corners[0]]) : null;
 const hasCorners = s => s.matches.length && s.matches.every(m => m.corners);
+// team page heat map (owner 2026-11-13): this team only, one match at a time (latest first), always attacking to the right
+const teamHeatMatch = s => { const L = s.matches.filter(m => m.heat); return L.find(m => m.id === state.thm) ? state.thm : (L.length ? L[L.length - 1].id : null); };
+function drawTeamHeat(s){ const cv = $("#theat"), id = teamHeatMatch(s); if (!cv || !id) return; const m = s.matches.find(x => x.id === id);
+  heatOn(cv, $("#theatFoot"), m, s.id, "all", false); }
+const shotsOf = (m, id) => m.shots ? (m.home === id ? [m.shots[0], m.shots[1]] : [m.shots[1], m.shots[0]]) : null;
+const hasShots = s => s.matches.length && s.matches.every(m => m.shots);
+function chartShots(s){ return chartPair(s, m => shotsOf(m, s.id), "Tiros al arco a favor y en contra por partido", ["tiro", "tiros"]); }
 function chartCorners(s){ return chartPair(s, m => cornersOf(m, s.id), "Córners a favor y en contra por partido", ["córner", "córners"]); }
 
 function goalVideosHTML(id, s){
@@ -458,11 +473,6 @@ function viewTeam(tid, id){
           <div class="sh"><h2>${icon("whistle")}Partidos</h2><div class="seg" role="group" aria-label="Partidos">${mseg("played","Jugados")}${mseg("next","Próximos")}</div></div>
           <div id="mBox" class="mbox">${teamMatchesHTML(id, s)}</div>
         </section>
-        <section class="section">
-          <div class="sh"><h2>${icon("chart")}Evolución</h2>${trend ? `<div class="seg" role="group" aria-label="Qué mostrar">${seg("goals","Goles")}${seg("poss","Posesión")}${hasCorners(s) ? seg("corners","Córners") : ""}</div>` : ""}</div>
-          ${trend ? `<div class="chart-card"><div id="chartBox">${chartFor(s)}</div></div>`
-            : `<div class="empty"><span class="art">${icon("chart")}</span><h3>Faltan partidos</h3><p>Con ${MIN_TREND} partidos jugados ves la evolución. Van ${s.played} de ${MIN_TREND}.</p></div>`}
-        </section>
       </div>
       <div class="view">
         ${recapHTML(id, s)}
@@ -472,6 +482,20 @@ function viewTeam(tid, id){
         </section>` : ""}
       </div>
     </div>
+    <section class="section">
+      <div class="sh"><h2>${icon("chart")}Evolución</h2></div>
+      ${trend ? `<div id="chartBox">${chartFor(s)}</div>`
+        : `<div class="empty"><span class="art">${icon("chart")}</span><h3>Faltan partidos</h3><p>Con ${MIN_TREND} partidos jugados ves la evolución. Van ${s.played} de ${MIN_TREND}.</p></div>`}
+    </section>
+    ${SHOW_HEAT && s.matches.some(m => m.heat) ? `<section class="section">
+      <div class="sh"><h2>${icon("chart")}Mapa de calor</h2><span class="aside">${tip("Dónde estuvieron sus jugadores en cada partido (sin el arquero). Rojo = donde más estuvieron.")}</span></div>
+      <div class="heat-card tm-heat">
+        <div class="heat-ctl"><div class="seg thm" role="group" aria-label="Partido">${s.matches.filter(m => m.heat).slice().reverse().map(m => { const o = outcome(m, id);
+          return `<button type="button" data-thm="${m.id}" aria-pressed="${m.id === teamHeatMatch(s)}">vs ${esc(shortName(TEAMS[o.rival].name, 3))} <b class="${o.cls}">${o.gf}-${o.ga}</b></button>`; }).join("")}</div></div>
+        <canvas id="theat" class="heat" aria-label="Mapa de calor"></canvas>
+        <div class="heat-foot" id="theatFoot"></div>
+      </div>
+    </section>` : ""}
     <section class="section">
       <div class="sh"><h2>${icon("film")}Videos de goles</h2><span class="aside">${s.gf} a favor · ${s.ga} en contra</span></div>
       ${goalVideosHTML(id, s)}
@@ -494,9 +518,9 @@ function statsHTML(m){
       <b class="num ${a > h ? "lead" : ""}">${fmt(a)}</b></div>`;
   };
   let s = row("Posesión", poss[0], poss[1], true, "Qué parte del tiempo tuvo la pelota cada equipo.") + row("Goles", gh, ga);
-  if (m.shots) s += half ? "" : row("Tiros al arco", m.shots[0], m.shots[1], false, "Remates al arco.");
+  if (m.shots) s += half ? "" : row("Tiros al arco", m.shots[0], m.shots[1], false);
   const co = half && m.corners_h ? m.corners_h[half - 1] : !half ? m.corners : null;
-  if (co) s += row("Tiros de esquina", co[0], co[1], false, "Córners.");
+  if (co) s += row("Tiros de esquina", co[0], co[1], false);
   return s;
 }
 function viewMatch(mid){
@@ -572,14 +596,14 @@ function viewMatch(mid){
       </section>` : ""}
     </div>
     ${m.heat && SHOW_HEAT ? `<section class="section">
-      <div class="sh"><h2>${icon("chart")}Mapa de calor</h2><span class="aside">${tip("Dónde estuvieron los jugadores de cada equipo durante el partido (cada medio segundo de juego). Rojo = donde más estuvieron. Siempre atacando hacia la derecha.")}</span></div>
+      <div class="sh"><h2>${icon("chart")}Mapa de calor</h2><span class="aside">${tip("Dónde estuvieron los jugadores de cada equipo (sin el arquero). Rojo = donde más estuvieron.")}</span></div>
       <div class="heat-card">
         <div class="heat-ctl">
           <div class="seg" role="group" aria-label="Equipo">${[m.home, m.away].map(k => `<button type="button" data-hteam="${k}" aria-pressed="${state.hteam === k}"><i class="hdot" style="--c:${tcol(k)}"></i>${esc(TEAMS[k].name)}</button>`).join("")}</div>
-          <div class="seg" role="group" aria-label="Tiempo">${["all","1","2"].filter(h => h === "all" || m.heat.halves.includes(h)).map(h => `<button type="button" data-hhalf="${h}" aria-pressed="${state.hhalf === h}">${h === "all" ? "Global" : "T" + h}</button>`).join("")}</div>
+          ${m.heat.halves.length > 1 && !m.single ? `<div class="seg" role="group" aria-label="Tiempo">${["all","1","2"].filter(h => h === "all" || m.heat.halves.includes(h)).map(h => `<button type="button" data-hhalf="${h}" aria-pressed="${state.hhalf === h}">${h === "all" ? "Global" : "T" + h}</button>`).join("")}</div>` : ""}
         </div>
         <canvas id="heat" class="heat" aria-label="Mapa de calor"></canvas>
-        <div class="heat-foot"><span>Arco propio</span><span class="att">Ataca ${icon("next")}</span></div>
+        <div class="heat-foot" id="heatFoot"></div>
       </div>
     </section>` : ""}
     <section class="section">
@@ -828,7 +852,9 @@ function mount(p){
   }
   if (p[0] === "equipo" && TEAMS[p[2]]){
     const s = teamStats(p[2], p[1]);
-    swap("chart", "chart", "data-chart", () => { $("#chartBox").innerHTML = chartFor(s); });
+    const th = $(".tm-heat"); if (th){ const dh = () => drawTeamHeat(s); th.onclick = e => { const b = e.target.closest("[data-thm]"); if (!b) return; state.thm = b.dataset.thm;
+      th.querySelectorAll("[data-thm]").forEach(x => x.setAttribute("aria-pressed", x === b)); dh(); }; dh(); addEventListener("resize", dh); }
+    const cb = $("#chartBox"); if (cb) cb.onclick = e => { const b = e.target.closest("[data-evo3]"); if (!b) return; state.evo3 = b.dataset.evo3; cb.innerHTML = chartFor(s); };   // delegated: survives re-draws
     bindGoalVideos(p[2]);
     let cw0 = chartW(), rt; onresize = () => { clearTimeout(rt); rt = setTimeout(() => { const b = $("#chartBox"); if (b && chartW() !== cw0){ cw0 = chartW(); b.innerHTML = chartFor(s); } }, 150); };
     swap("mtab", "mtab", "data-mtab", () => { $("#mBox").innerHTML = teamMatchesHTML(p[2], s); const r = $("#mBox .formstrip"); if (r) r.scrollLeft = r.scrollWidth; });
