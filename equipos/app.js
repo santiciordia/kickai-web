@@ -494,7 +494,7 @@ function statsHTML(m){
       <b class="num ${a > h ? "lead" : ""}">${fmt(a)}</b></div>`;
   };
   let s = row("Posesión", poss[0], poss[1], true, "Qué parte del tiempo tuvo la pelota cada equipo.") + row("Goles", gh, ga);
-  if (m.shots) s += half ? "" : row("Tiros al arco", m.shots[0], m.shots[1], false, "Remates que iban adentro del arco.");
+  if (m.shots) s += half ? "" : row("Tiros al arco", m.shots[0], m.shots[1], false, "Remates al arco.");
   const co = half && m.corners_h ? m.corners_h[half - 1] : !half ? m.corners : null;
   if (co) s += row("Tiros de esquina", co[0], co[1], false, "Córners.");
   return s;

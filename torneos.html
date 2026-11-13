@@ -158,15 +158,63 @@ input,select{font:inherit;font-size:16px;padding:10px 12px;border:1px solid #333
 @media(prefers-reduced-motion:no-preference){.hero h1{animation:rise .8s ease-out both}@keyframes rise{from{opacity:0;transform:translateY(14px)}}}
 </style>
 <link rel="stylesheet" href="equipos/equipos.css">
+<style id="kn-gutter">@media(max-width:700px){#app{padding-left:16px;padding-right:16px}}</style>
 </head>
 <body>
 <div id="adminhost"></div>
-<header class="top"><div class="wrap">
-<button class="burger" aria-label="Abrir menú" aria-expanded="false"><span></span><span></span><span></span></button>
-<a class="logo" href="./" aria-label="kick.ai, inicio"><svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="6.5" cy="9" r="4.5" fill="#ff6b1f"/><circle cx="6.5" cy="31" r="4.5" fill="#ff6b1f"/><path d="M33 5 17 20l16 15" fill="none" stroke="#ff6b1f" stroke-width="8.5" stroke-linecap="round" stroke-linejoin="round"/></svg>kick.ai</a>
-<div class="drawer"><a href="./" data-r="home">Servicio</a><a href="#/torneos" data-r="torneos">Torneos</a><a href="equipos/" data-r="equipos">Equipos</a><a href="https://claude.ai/artifact/RG7pwsMTZe8Zc5FAbdBi7a" target="_blank" rel="noopener">Calificar y Revisar</a><a href="./#contacto" data-r="contacto">Contacto</a></div>
-<nav><a href="./" data-r="home">Servicio</a><a href="#/torneos" data-r="torneos">Torneos</a><a href="equipos/" data-r="equipos">Equipos</a><a href="https://claude.ai/artifact/RG7pwsMTZe8Zc5FAbdBi7a" target="_blank" rel="noopener">Calificar y Revisar</a><a href="./#contacto" data-r="contacto">Contacto</a></nav>
-</div></header>
+<!-- KN-NAV (code/site_nav.py) -->
+<style>
+.kn{position:sticky;top:0;z-index:60;background:rgba(10,11,12,.72);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid rgba(255,255,255,.08);font-family:Figtree,system-ui,sans-serif}
+body{margin:0}
+.kn *{box-sizing:border-box}
+.kn a{text-decoration:none;margin:0;text-shadow:none}
+.kn nav{margin:0}
+.kn-in{max-width:1120px;margin:0 auto;padding:0 max(16px,env(safe-area-inset-left,0px));display:flex;align-items:center;justify-content:space-between;gap:16px;height:64px}
+.kn-logo{display:flex;align-items:center;gap:8px;font-weight:500;font-size:20px;letter-spacing:-.02em;color:#F2F3F4}
+.kn-logo svg{width:26px;height:26px}
+.kn-btn{font-family:inherit;text-shadow:none}
+.kn-links{display:flex;gap:28px;font-size:14px}
+.kn-links a{color:#9BA1A6;white-space:nowrap;padding:6px 0;border-bottom:2px solid transparent;font-size:14px;font-weight:400}
+.kn-links a:hover{color:#F2F3F4}
+.kn-links a[aria-current=page]{color:#F2F3F4;border-bottom-color:#FF6B1F}
+.kn-cta{display:flex;gap:8px;align-items:center}
+.kn-btn{display:inline-flex;align-items:center;justify-content:center;height:36px;padding:0 14px;font-size:14px;font-weight:500;border-radius:8px;white-space:nowrap;border:1px solid transparent}
+.kn-btn.p{background:#FF6B1F;color:#1A0B02}
+.kn-btn.g{border-color:rgba(255,255,255,.14);color:#F2F3F4}
+.kn-burger{display:none;width:40px;height:36px;border-radius:8px;border:1px solid rgba(255,255,255,.14);background:transparent;padding:0;cursor:pointer;flex-direction:column;align-items:center;justify-content:center;gap:4px}
+.kn-burger span{display:block;width:16px;height:1.6px;background:#F2F3F4;border-radius:2px;transition:transform .25s,opacity .25s}
+.kn-burger[aria-expanded=true] span:nth-child(1){transform:translateY(5.6px) rotate(45deg)}
+.kn-burger[aria-expanded=true] span:nth-child(2){opacity:0}
+.kn-burger[aria-expanded=true] span:nth-child(3){transform:translateY(-5.6px) rotate(-45deg)}
+.kn-drawer{display:flex;flex-direction:column;padding:8px 24px 20px;border-top:1px solid rgba(255,255,255,.08);background:rgba(10,11,12,.97)}
+.kn-drawer[hidden]{display:none}
+.kn-drawer a:not(.kn-btn){padding:14px 0;font-size:17px;color:#F2F3F4;border-bottom:1px solid rgba(255,255,255,.08)}
+.kn-drawer a[aria-current=page]{color:#FF6B1F}
+.kn-drawer .kn-btn{margin-top:16px;height:44px;font-size:15px}
+@media (max-width:920px){.kn-links{display:none}.kn-burger{display:inline-flex}}
+@media (min-width:921px){.kn-drawer{display:none!important}}
+@media (max-width:420px){.kn-cta .kn-btn.p{display:none}}
+</style>
+<header class="kn">
+  <div class="kn-in">
+    <a class="kn-logo" href="./" aria-label="kick.ai inicio"><svg width="26" height="26" viewBox="0 0 40 40" aria-hidden="true"><circle cx="6.5" cy="9" r="4.5" fill="#FF6B1F"/><circle cx="6.5" cy="31" r="4.5" fill="#FF6B1F"/><path d="M33 5 17 20l16 15" fill="none" stroke="#FF6B1F" stroke-width="8.5" stroke-linecap="round" stroke-linejoin="round"/></svg>kick.ai</a>
+    <nav class="kn-links" aria-label="Principal"><a href="./#servicio">Servicio</a><a href="./#para-quien">Para quién</a><a href="./#planes">Planes</a><a href="torneos.html#/torneos" aria-current="page">Torneos</a><a href="equipos/">Equipos</a><a href="https://claude.ai/artifact/RG7pwsMTZe8Zc5FAbdBi7a" target="_blank" rel="noopener">Calificar y Revisar</a></nav>
+    <div class="kn-cta">
+      <a href="torneos.html#/torneos" class="kn-btn g">Buscá tu partido</a>
+      <a href="./#contacto" class="kn-btn p">Pedí presupuesto</a>
+      <button class="kn-burger" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="kn-drawer"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+  <nav class="kn-drawer" id="kn-drawer" aria-label="Menú" hidden><a href="./#servicio">Servicio</a><a href="./#para-quien">Para quién</a><a href="./#planes">Planes</a><a href="torneos.html#/torneos" aria-current="page">Torneos</a><a href="equipos/">Equipos</a><a href="https://claude.ai/artifact/RG7pwsMTZe8Zc5FAbdBi7a" target="_blank" rel="noopener">Calificar y Revisar</a><a href="./#contacto" class="kn-btn p">Pedí presupuesto</a></nav>
+</header>
+<script>(function(){var b=document.querySelector('.kn-burger'),d=document.getElementById('kn-drawer');if(!b||!d)return;
+var set=function(o){d.hidden=!o;b.setAttribute('aria-expanded',o);b.setAttribute('aria-label',o?'Cerrar menú':'Abrir menú')};
+b.addEventListener('click',function(e){e.stopPropagation();set(d.hidden)});
+d.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){set(false)})});
+document.addEventListener('click',function(e){if(!d.hidden&&!d.contains(e.target))set(false)});
+document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!d.hidden){set(false);b.focus()}});
+addEventListener('hashchange',function(){set(false)});addEventListener('resize',function(){if(innerWidth>920)set(false)});})();</script>
+<!-- /KN-NAV -->
 <!-- torneos: Liga Olvos, JAG, Boston League -->
 <main id="app"></main>
 <script src="equipos/equipos.js"></script>
@@ -396,7 +444,7 @@ function render(){
   document.querySelectorAll("nav a,.drawer a").forEach(a=>a.classList.toggle("on",a.dataset.r===r&&a.dataset.r!=="contacto"));
   if(h==="#contacto")document.getElementById("contacto")?.scrollIntoView();else window.scrollTo(0,0);
 }
-(function(){const hd=document.querySelector("header.top"),bt=hd.querySelector(".burger");
+(function(){const hd=document.querySelector("header.top");if(!hd)return;const bt=hd.querySelector(".burger");
 const set=o=>{hd.classList.toggle("open",o);bt.setAttribute("aria-expanded",o);bt.setAttribute("aria-label",o?"Cerrar menú":"Abrir menú")};
 bt.addEventListener("click",()=>set(!hd.classList.contains("open")));
 hd.querySelectorAll(".drawer a").forEach(a=>a.addEventListener("click",()=>set(false)));
