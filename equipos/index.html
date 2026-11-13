@@ -584,6 +584,14 @@ details.more[open] summary .chev{transform:rotate(180deg)}
 .evo-sw button[aria-pressed=true]{background:var(--surface-3,#24282C);color:var(--fg,#F2F3F4)}
 .seg.thm{max-width:100%;overflow-x:auto;flex-wrap:nowrap;scrollbar-width:none}
 .seg.thm button{white-space:nowrap}.seg.thm b{font-weight:700;margin-left:4px}.seg.thm b.w{color:var(--win)}.seg.thm b.l{color:var(--loss)}
+/* 2026-11-13 owner: heat maps smaller, both teams side by side (stacked on a phone); team page map capped too */
+.heat2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.heat-one{display:grid;gap:8px;min-width:0}
+.heat-name{display:flex;align-items:center;gap:6px;font-size:14px;font-weight:600}
+.heat-name .hdot{width:10px;height:10px;border-radius:50%;background:var(--c);display:inline-block}
+.heat-ctl:empty{display:none}
+.tm-heat{max-width:380px}
+@media (max-width:639px){.heat2{grid-template-columns:1fr}}
 </style>
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
@@ -677,6 +685,6 @@ addEventListener('hashchange',function(){set(false)});addEventListener('resize',
 <div id="tipBox" role="tooltip"></div>
 <div class="toast" id="toast" role="status"></div>
 <script src="equipos_data.js"></script>
-<script src="app.js?v=1794541530"></script>
+<script src="app.js?v=1794542021"></script>
 </body>
 </html>

@@ -341,10 +341,9 @@ function teamMatchesHTML(id, s){
 // Heat map v2 (owner 2026-11-13: 'like Veo's'): web_heat.py v2 grid (base64 bytes, keepers and people standing at the lines left out),
 // Veo-like colours (deep blue -> light -> yellow -> red, opaque), pitch lines on top. Home team attacks to the right, the rival to the left (owner).
 const HEAT_STOPS = [[0, [43, 58, 150]], [.18, [60, 95, 200]], [.38, [150, 195, 235]], [.55, [245, 240, 200]], [.7, [250, 205, 90]], [.85, [240, 120, 50]], [1, [190, 25, 30]]];
-function drawHeat(m){
-  const cv = $("#heat"); if (!cv || !m.heat) return;
-  const team = m.heat.teams[state.hteam] ? state.hteam : m.home;
-  heatOn(cv, $("#heatFoot"), m, team, m.heat.teams[team][state.hhalf] ? state.hhalf : "all", team !== m.home);
+function drawHeat(m){   // 2026-11-13 owner: both teams side by side (home attacks right, rival left), smaller
+  if (!m.heat) return;
+  [m.home, m.away].forEach((team, i) => { const cv = $("#heat" + i); if (cv && m.heat.teams[team]) heatOn(cv, $("#heatFoot" + i), m, team, m.heat.teams[team][state.hhalf] ? state.hhalf : "all", i === 1); });
 }
 function heatOn(cv, f, m, team, half, left){
   const H = m.heat, raw = H.teams[team][half];
@@ -599,11 +598,10 @@ function viewMatch(mid){
       <div class="sh"><h2>${icon("chart")}Mapa de calor</h2><span class="aside">${tip("Dónde estuvieron los jugadores de cada equipo (sin el arquero). Rojo = donde más estuvieron.")}</span></div>
       <div class="heat-card">
         <div class="heat-ctl">
-          <div class="seg" role="group" aria-label="Equipo">${[m.home, m.away].map(k => `<button type="button" data-hteam="${k}" aria-pressed="${state.hteam === k}"><i class="hdot" style="--c:${tcol(k)}"></i>${esc(TEAMS[k].name)}</button>`).join("")}</div>
           ${m.heat.halves.length > 1 && !m.single ? `<div class="seg" role="group" aria-label="Tiempo">${["all","1","2"].filter(h => h === "all" || m.heat.halves.includes(h)).map(h => `<button type="button" data-hhalf="${h}" aria-pressed="${state.hhalf === h}">${h === "all" ? "Global" : "T" + h}</button>`).join("")}</div>` : ""}
         </div>
-        <canvas id="heat" class="heat" aria-label="Mapa de calor"></canvas>
-        <div class="heat-foot" id="heatFoot"></div>
+        <div class="heat2">${[m.home, m.away].map((k, i) => `<div class="heat-one"><div class="heat-name"><i class="hdot" style="--c:${tcol(k)}"></i>${esc(TEAMS[k].name)}</div>
+          <canvas id="heat${i}" class="heat" aria-label="Mapa de calor"></canvas><div class="heat-foot" id="heatFoot${i}"></div></div>`).join("")}</div>
       </div>
     </section>` : ""}
     <section class="section">
@@ -860,7 +858,7 @@ function mount(p){
     swap("mtab", "mtab", "data-mtab", () => { $("#mBox").innerHTML = teamMatchesHTML(p[2], s); const r = $("#mBox .formstrip"); if (r) r.scrollLeft = r.scrollWidth; });
   }
   const mm = p[0] === "partido" ? MATCHES.find(x => x.id === p[1]) : null;
-  if (mm && mm.heat && SHOW_HEAT){ const hd = () => drawHeat(mm); swap("hteam", "hteam", "data-hteam", hd); swap("hhalf", "hhalf", "data-hhalf", hd); hd(); addEventListener("resize", hd); }
+  if (mm && mm.heat && SHOW_HEAT){ const hd = () => drawHeat(mm); swap("hhalf", "hhalf", "data-hhalf", hd); hd(); addEventListener("resize", hd); }
   if (mm) swap("stab", "stab", "data-stab", () => { const st = $("#stats"); st.classList.remove("is-in"); $("#statRows").innerHTML = statsHTML(mm); requestAnimationFrame(() => requestAnimationFrame(() => st.classList.add("is-in"))); });
   bindGoto();
   const back = app.querySelector("[data-back]");
